@@ -3,22 +3,32 @@ import Css from "./style.sass";
 
 function Home() {
     return (
-        <div className={Css['hello']}>hello,world</div>
+        <header className={Css['lHeader']}>
+            <nav>
+                <div className={Css['logo']}>
+                    <img src="https://static.zcool.cn/git_z/z/common/images/svg/logo.svg" />
+                </div>
+                <div className={Css['header-menu-bar']}>
+                    <div className={Css['search-input-hull']+" hide"}></div>
+                    <div className="hide"></div>
+                    <div className={Css['menu-box']}>
+                        <ul className={Css['menu-list-content']}>
+                            <li className={Css['menu-list-content__item']}>首页</li>
+                            <li className={Css['menu-list-content__item']}>发现</li>
+                            <li className={Css['menu-list-content__item']}>活动</li>
+                            <li className={Css['menu-list-content__item']}>榜单</li>
+                            <li className={Css["menu-list-content__item--placeholder"]}></li>
+                            <li className={Css["menu-list-content__item--placeholder"]}></li>
+                            <li className={Css["menu-list-content__item--placeholder"]}></li>
+                            <li className={Css["more-menu header-menu-withmore"]}></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className={Css["search"]}></div>
+                <div className={Css["user-center"]}></div>
+            </nav>
+        </header>
     )
 }
 
-function Test() {
-    return (
-        <h2>test</h2>
-    )
-}
-// 这个可以是布局， 往布局内部插入函数
-function Compose() {
-    return (
-        <div>
-            {Home()}
-            {Test()}
-        </div>
-    )
-}
-export default React.memo(Compose);
+export default React.memo(Home);
