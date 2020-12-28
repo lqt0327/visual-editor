@@ -331,7 +331,9 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
-        src: path.resolve(__dirname, '../src')
+        src: path.resolve(__dirname, '../src'),
+        components: path.resolve(__dirname, '../src/components'),
+        baseUI: path.resolve(__dirname, '../src/baseUI')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -503,7 +505,6 @@ module.exports = function (webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
-                  modules: true,
                   sourceMap: isEnvProduction
                     ? shouldUseSourceMap
                     : isEnvDevelopment,
