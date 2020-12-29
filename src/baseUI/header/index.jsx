@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import cx from "classnames";
 import "./style.sass";
 
-function Header() {
+function Header(props) {
+    console.log(props.comp,'??????')
     const [searchShow,setSearchShow] = useState(false);
 
     const _onSearch = useCallback(() => {
@@ -42,7 +43,8 @@ function Header() {
                         </ul>
                     </div>
                 </div>
-                <div 
+                {
+                    props.comp == '0' ? <div 
                     className={cx(
                         'search',
                         {'hide': searchShow}
@@ -50,7 +52,9 @@ function Header() {
                     onClick={()=>{setSearchShow(true)}}
                 >
                     <i className="icon iconfont">&#xe8aa;</i>
-                </div>
+                </div> : ''
+                }
+                
                 <div className="user-center"><i className="icon iconfont">&#xe8ac;</i></div>
             </nav>
         </header>

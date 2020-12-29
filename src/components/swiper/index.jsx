@@ -8,6 +8,8 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+
+import "./index.sass";
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
@@ -22,11 +24,12 @@ function SwiperComponent() {
             scrollbar={{ draggable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
+            className="swiper-custom"
         >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
+            <SwiperSlide><img src="https://img.jj59.com/6/5a717afb6f4b.jpg" alt="test" /></SwiperSlide>
+            <SwiperSlide><img src="https://img.jj59.com/6/5a717afb6f4b.jpg" alt="test" /></SwiperSlide>
+            <SwiperSlide><img src="https://img.jj59.com/6/5a717afb6f4b.jpg" alt="test" /></SwiperSlide>
+            <SwiperSlide><img src="https://img.jj59.com/6/5a717afb6f4b.jpg" alt="test" /></SwiperSlide>
         </Swiper>
     )
 }
