@@ -2,60 +2,30 @@ import React, { useCallback, useState, useEffect } from "react";
 import cx from "classnames";
 import "./style.sass";
 
-function Header(props) {
-    console.log(props.comp,'??????')
-    const [searchShow,setSearchShow] = useState(false);
-
-    const _onSearch = useCallback(() => {
-        console.log('查询')
-    }, [])
-
+function Header() {
     return (
-        <header className='lHeader'>
+        <header className="l-header">
             <nav>
-                <div className='logo'>
-                    <img src="https://static.zcool.cn/git_z/z/common/images/svg/logo.svg" />
-                </div>
-                <div className='header-menu-bar'>
-                    <div className={cx(
-                        "search-input-hull",
-                        {"hide": !searchShow}
-                    )}>
-                        <span className="search-ipt" onClick={_onSearch}><i className="icon iconfont">&#xe8aa;</i></span>
-                        <input type="text" name="search" />
-                        <span className="search-cancel" onClick={()=>{setSearchShow(false)}}><i className="icon iconfont">&#xe75e;</i></span>
-                        <div className="search-content hide"></div>
+                <div className="header-left">
+                    <div className="header-left-logo">
+                        <img src="https://gw.alipayobjects.com/zos/rmsportal/ZLdipPynpsirzAfeulEf.png" alt=""/>
                     </div>
-                    <div className="hide"></div>
-                    <div className={cx(
-                        'menu-box',
-                        {'hide': searchShow}
-                    )}>
-                        <ul className='menu-list-content'>
-                            <li className='menu-list-content__item'>首页</li>
-                            <li className='menu-list-content__item'>发现</li>
-                            <li className='menu-list-content__item'>活动</li>
-                            <li className='menu-list-content__item'>榜单</li>
-                            <li className='menu-list-content__item'>发现</li>
-                            <li className='menu-list-content__item'>活动</li>
-                            <li className='menu-list-content__item'>榜单</li>
-                            <li className="more-menu"><i className="icon iconfont">&#xe77e;</i></li>
-                        </ul>
+                    <div className="header-left-tabbar">
+                        <span className="header-left-tabbar__icon">
+                            <i className="icon iconfont">&#xe75d;</i>
+                        </span>
+                        <span className="header-left-tabbar__text">
+                            页面：专题 - 5
+                        </span>
                     </div>
                 </div>
-                {
-                    props.comp == '0' ? <div 
-                    className={cx(
-                        'search',
-                        {'hide': searchShow}
-                    )} 
-                    onClick={()=>{setSearchShow(true)}}
-                >
-                    <i className="icon iconfont">&#xe8aa;</i>
-                </div> : ''
-                }
-                
-                <div className="user-center"><i className="icon iconfont">&#xe8ac;</i></div>
+                <div className="header-right">
+                    <span className="header-right-preview"><i className="icon iconfont">&#xe752;</i>&nbsp;预览</span>
+                    <span className="header-right-save"><i className="icon iconfont">&#xe7c8;</i>&nbsp;保存</span>
+                    <div className="header-right-publish">
+                        <button type="button" className="header-right-publish-btn"><i className="icon iconfont">&#xe6a9;</i>发布</button>
+                    </div>
+                </div>
             </nav>
         </header>
     )

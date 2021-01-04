@@ -257,7 +257,7 @@ main
         .l-prevew-box
             position: relative
             z-index: 0
-            height: calc( 100% - 96px )
+            height: calc( 100% - 120px )
             overflow: hidden
 
             .l-preview-iframe
@@ -283,17 +283,22 @@ main
                     .lAnt-spin-nested-loading
                         position: relative
 
-                        .lAnt-spin-container
+                        .lAnt-spin__main
                             width: 375px
                             height: 100%
                             position: relative
                             transition: opacity .3s
+
+                            &-inner
+                                position: relative
+                                width: 100%
 
             .l-preview-container
                 width: 100%
                 height: 100%
                 overflow: hidden
                 overflow-y: scroll
+                padding: 0
 
                 .l-preview-tips
                     position: relative
