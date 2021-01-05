@@ -1,0 +1,176 @@
+.l-preview
+    flex-grow: 1
+    height: 100%
+    overflow: hidden
+    transition: width .2s ease-in
+
+    .l-page-path-container
+        position: relative
+        display: flex
+        justify-content: center
+        align-items: center
+        padding-top: 24px
+        height: 72px
+        width: 100%
+
+        .l-page-path
+            position: absolute
+            display: flex
+            justify-content: space-between
+            align-items: center
+            bottom: 0
+            left: 50%
+            width: 375px
+            transform: translateX(-187px)
+            height: 38px
+            border-radius: 2px 2px 0 0
+            box-shadow: 0 3px 16px 0 rgba(0,0,0,.04)
+            background: #f9f9f9
+
+            .l-pp-url
+                margin: 6px 12px
+                padding: 0 4px
+                justify-content: space-between
+                align-items: center
+                display: flex
+                height: 26px
+                border-radius: 2px
+                background: #fff
+
+                span
+                    display: block
+                    width: 291px
+                    white-space: nowrap
+                    font-size: 12px
+                    color: rgba(0,0,0,.65)
+                    overflow: hidden
+                    text-overflow: ellipsis
+
+            .l-pp-share
+                display: flex
+                margin: 0 12px 0 0
+                justify-content: center
+                align-items: center
+                width: 20px
+                height: 20px
+
+    .l-prevew-box
+        position: relative
+        z-index: 0
+        height: calc( 100% - 120px )
+        overflow: hidden
+
+        .l-preview-iframe
+            position: absolute
+            z-index: 2
+            top: 0
+            bottom: 0
+            left: 50%
+            width: 375px
+            transform: translateX(-187px)
+            border-radius: 0 0 2px 2px
+            box-shadow: 0 3px 16px 0 rgba(0,0,0,.04)
+            overflow: hidden
+            background: #fff
+
+            .l-preview-scroll
+                padding-right: 17px
+                width: 392px
+                height: 100%
+                overflow: hidden
+                overflow-y: scroll
+
+                .lAnt-spin-nested-loading
+                    position: relative
+
+                    .lAnt-spin__main
+                        width: 375px
+                        height: 100%
+                        position: relative
+                        transition: opacity .3s
+
+                        &-inner
+                            position: relative
+                            width: 100%
+
+        .l-preview-container
+            width: 100%
+            height: 100%
+            overflow: hidden
+            overflow-y: scroll
+            padding: 0
+
+            .l-preview-tips
+                position: relative
+                z-index: auto
+                width: 100%
+
+                .l-view-hover-tip, .l-view-active-tip
+                    position: absolute
+                    z-index: auto
+                    left: 0
+                    right: 0
+
+                .l-view-hover-tip
+                    background: #ededef
+
+                .l-view-active-tip
+                    background: #e8e8ea
+
+                .l-view-tools
+                    position: absolute
+                    z-index: 3
+                    right: 0
+                    left: 50%
+                    transform: translateX(208px)
+                    width: 40px
+
+                    .l-tools-move, .l-tools-copy, .l-tools-delete
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        justify-content: center
+                        margin-bottom: 16px
+                        border-radius: 40px
+                        font-size: 20px
+                        background: #fff
+                        box-shadow: 0 3px 16px 0 rgba(0,0,0,.04)
+
+                        .iconfont
+                            display: flex
+                            width: 40px
+                            height: 40px
+                            font-size: 18px
+                            justify-content: center
+                            align-items: center
+                            cursor: pointer
+
+                    .l-tools-copy, .l-tools-delete
+                        width: 40px
+                        height: 40px
+
+                    .l-tools-move
+                        position: relative
+                        padding: 6px 0
+                        justify-content: space-between
+
+                        .iconfont
+                            margin-bottom: 13px
+                        
+                        .iconfont:last-child
+                            margin-bottom: 0px
+
+                    .l-tools-move:after
+                        content: ""
+                        position: absolute
+                        left: 10px
+                        top: 52px
+                        width: 20px
+                        height: 1px
+                        background: #f0f0f0
+
+                    .l-tools-move-single
+                        padding: 0
+
+                    .l-tools-delete
+                        margin-bottom: 0

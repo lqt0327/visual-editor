@@ -1,0 +1,126 @@
+.l-panel
+    position: absolute
+    top: 72px
+    left: 0
+    bottom: 0
+    z-index: 1
+    background-color: #fff
+
+    &-container
+        height: 100%
+        width: 336px
+        box-shadow: 3px 0 16px rgba(0, 0, 0, .06)
+        overflow: hidden
+
+        h3
+            display: flex
+            justify-content: space-between
+            align-items: center
+            margin: 24px 24px 20px
+            font-weight: 400
+
+        .l-panel-list
+            position: relative
+            margin: 0 8px 0 20px
+            padding-left: 4px
+            height: calc( 100% - 160px )
+            overflow-x: hidden
+            overflow-y: auto
+
+            .l-panel-item, .l-panel-item-active
+                display: flex
+                align-items: center
+                position: relative
+                margin: 0 16px 10px 0
+                z-index: 0
+                height: 56px
+                border-radius: 2px
+                font-size: 14px
+                color: rgba(0, 0, 0, .65)
+                cursor: default
+
+                .l-panel-item__drag
+                    visibility: hidden
+                    margin-left: 8px
+                    width: 20px
+                    height: 20px
+                    background: url('../../../assets/images/move2.png') no-repeat 0 0
+                    background-size: 20px 20px
+                    cursor: row-resize
+                    outline: 0
+
+                .l-panel-item__title
+                    width: 225px
+                    padding-left: 4px
+                    height: 56px
+
+                    h4
+                        display: flex
+                        align-items: center
+                        position: relative
+                        margin: 0
+                        padding: 8px 0 0
+                        font-size: 14px
+                        font-weight: 400
+
+                        span
+                            max-width: 180px
+                            margin-right: 8px
+                            overflow: hidden
+                            white-space: nowrap
+                            text-overflow: ellipsis
+
+                        em
+                            margin-right: 8px
+                            width: 38px
+                            height: 19px
+                            line-height: 19px
+                            text-align: center
+                            border-radius: 320px
+                            font-style: normal
+                            font-size: 11px
+                            transform: scale(.9)
+                            color: rgba(0,0,0,.45)
+                            background: rgba(0,0,0,.05)
+
+            .l-panel-item-active
+                color: #ffffff
+                background-color: #1890ff
+
+                .l-panel-item__drag
+                    visibility: visible
+                    background: url('../../../assets/images/move1.png') no-repeat 0 0
+                    background-size: 20px 20px
+
+                .l-panel-item__title
+                    h4
+                        color: #ffffff
+
+                        em
+                            color: #1890ff
+                            background-color: #fff
+
+        .l-panel-add
+            color: rgba(0, 0, 0, .65)
+
+            span
+                display: flex
+                margin: 0 40px
+                height: 40px
+                width: 256px
+                justify-content: center
+                align-items: center
+                border-radius: 2px
+                border: 1px solid rgba(0,0,0,.1)
+                cursor: pointer
+
+                .iconfont
+                    margin-right: 8px
+                    color: rgba(0,0,0,.65)
+
+.l-panel-animate
+    width: 0
+    min-width: 0
+    height: 100%
+    float: left
+    transition: all .15s ease-out

@@ -1,8 +1,11 @@
 import './index.sass'
+import cx from 'classnames'
 
 function LouCengBiaoTi() {
     return (
-        <div className="instance-container instance-container--active" style={{width:"375px"}}>
+        <div className={cx("instance-container", {
+            "instance-container--active":false
+        })} style={{width:"375px"}}>
             <div>
                 <div className="loucengbiaoti" style={{backgroundColor:"rgb(255,255,255)"}}>
                     <div className="page-right title-left">
