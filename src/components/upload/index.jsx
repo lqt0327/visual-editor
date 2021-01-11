@@ -10,6 +10,7 @@ function upload() {
                 maxCount={1}
             >
                 <Button icon={<UploadOutlined />}>选择图片</Button>
+                &nbsp;（建议尺寸：750*280）
             </Upload>
         </div>
     )
