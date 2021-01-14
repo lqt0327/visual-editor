@@ -333,7 +333,8 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
         src: path.resolve(__dirname, '../src'),
         components: path.resolve(__dirname, '../src/components'),
-        baseUI: path.resolve(__dirname, '../src/baseUI')
+        baseUI: path.resolve(__dirname, '../src/baseUI'),
+        store: path.resolve(__dirname, '../src/store')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
