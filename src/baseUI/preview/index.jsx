@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 import { changePanel } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
+import * as components from 'components'
 import './style.sass'
 
 
 function Preview(props) {
     const lqtref = useRef(null)
     console.log(props, '------')
+
+    const [data,setData] = useState([components.Banner,components.Advert,components.Carousel])
 
     const _onClick = useCallback((e) => {
         // let child = lqtref.current.childNodes
@@ -24,6 +27,11 @@ function Preview(props) {
         ReactDOM.render(<React.Fragment>
             {Compile(json)}
             {Compile(json)}
+            {data.map((_,i)=>{
+                return (
+                    React.createElement(_,{key:i},'')
+                )
+            })}
         </React.Fragment>, document.getElementById("stage"))
         // return (
         //     <div className="lAnt-spin__main" style={{background:"rgb(255,255,255)"}}>
@@ -55,21 +63,6 @@ function Preview(props) {
                                     {/* <div className="lAnt-spin__main-first-screen-line"></div> */}
                                 </div>
                             </div>
-
-                            {
-                                // props.arr.map((item,i)=>{
-                                //     return (
-                                //         <React.Fragment key={i} >
-                                //             {
-                                //                 item()
-                                //             }
-                                //             {/* <div className="placeholder-container vm-loadable">
-                                //                 <div className="viewport__placeholder">放置在该位置</div>
-                                //             </div> */}
-                                //         </React.Fragment>
-                                //     )
-                                // })
-                            }
                         </div>
                     </div>
                 </div>

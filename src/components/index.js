@@ -7,5 +7,6 @@ export { default as LouCengJianGe } from './loucengjiange'
 export { default as Header } from './header'
 export { default as LinkAddress } from './link_address'
 export { default as Upload } from './upload'
+export { default as Banner } from './banner'
 // 轮播图
 export { default as Carousel } from './carousel'

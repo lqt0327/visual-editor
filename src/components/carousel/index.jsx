@@ -1,8 +1,10 @@
 import { Carousel } from 'antd';
+import React from 'react'
 import { connect } from 'react-redux';
 import { changePanel } from 'store/actions'
 
 function carousel(props) {
+    console.log(props,'????')
     const contentStyle = {
         height: '160px',
         color: '#fff',
@@ -30,17 +32,20 @@ function carousel(props) {
     )
 }
 
-// 映射Redux全局的state到组件到props上
-const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels','currentPanel'])
-})
-// 映射dispatch到props上
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changePreviewDispatch(data) {
-            dispatch(changePanel(data))
-        }
-    }
-}
+// // 映射Redux全局的state到组件到props上
+// const mapStateToProps = (state) => ({
+//     panel: state.getIn(['panels','currentPanel'])
+// })
+// // 映射dispatch到props上
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         changePreviewDispatch(data) {
+//             dispatch(changePanel(data))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(carousel);
+export default connect((state)=>{
+    return {state}
+})(carousel);
+// export default React.memo(carousel);

@@ -6,7 +6,9 @@ var props = {
             { value: '张三' },
             { value: '李四' },
             { value: '王五'}
-        ]
+		],
+		className:"test123",
+		style:{color:"red"}
 	},
 	Alert:{
 		showIcon:true,
