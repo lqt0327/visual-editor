@@ -12,7 +12,7 @@ function Preview(props) {
     const lqtref = useRef(null)
     console.log(props, '------')
 
-    const [data,setData] = useState([components.Banner,components.Advert,components.Carousel])
+    const [data,setData] = useState([[components.Banner,{className:'test'},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3'},'']])
 
     const _onClick = useCallback((e) => {
         // let child = lqtref.current.childNodes
@@ -27,9 +27,17 @@ function Preview(props) {
         ReactDOM.render(<React.Fragment>
             {Compile(json)}
             {Compile(json)}
+            {/* 
+                如何传递 值，配置好各个模板的props和classname等参数
+                统一循环渲染 ？
+            */}
+            {
+                React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
+            }
             {data.map((_,i)=>{
+                console.log(_[1],_[2],'////')
                 return (
-                    React.createElement(_,{key:i},'')
+                    React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])
                 )
             })}
         </React.Fragment>, document.getElementById("stage"))

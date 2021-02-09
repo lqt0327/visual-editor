@@ -45,7 +45,5 @@ function carousel(props) {
 //     }
 // }
 
-export default connect((state)=>{
-    return {state}
-})(carousel);
-// export default React.memo(carousel);
+// export default connect(mapStateToProps, mapDispatchToProps)(carousel);
+export default React.memo(carousel);

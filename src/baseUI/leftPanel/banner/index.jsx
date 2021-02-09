@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 import * as components from "components";
-import { Collapse } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux'
+// import { changePanel } from 'store/actions'
+import BannerStatic from './bannerStatic';
+import BannerDynamic from './bannerDynamic'
 import './style.sass'
-
-const { Panel } = Collapse;
-
-const genExtra = () => (
-    <DeleteOutlined
-        onClick={event => {
-        // If you don't want click extra trigger collapse, you can prevent this:
-        // event.stopPropagation();
-        console.log('delete')
-        }}
-    />
-);
 
 // 根据传入 参数 判断 使用 折叠面板 ｜ 直接展示 ？
 
-function LeftPanelBanner() {
+function LeftPanelBanner(props) {
+    console.log(props,'leftbanner')
     const [list, setList] = useState([components.Upload,components.LinkAddress])
     return (
         <React.Fragment>
@@ -28,43 +19,10 @@ function LeftPanelBanner() {
                         <div className="schema-editor-main">
                             <h2>Banner</h2>
                             <div className="schema-editor-scroll">
-                                <div className="schema-editor-container">
-                                    {/* {
-                                        list.map((item)=>{
-                                            return item()
-                                        })
-                                    } */}
-                                    <Collapse accordion>
-                                        <Panel header="This is panel header 1" key="1" extra={genExtra()}>
-                                            {
-                                                list.map((item,i)=>{
-                                                    return (
-                                                        <div key={i}>{item()}</div>
-                                                    )
-                                                })
-                                            }
-                                        </Panel>
-                                        <Panel header="This is panel header 2" key="2" extra={genExtra()}>
-                                            {
-                                                list.map((item,i)=>{
-                                                    return (
-                                                        <div key={i}>{item()}</div>
-                                                    )
-                                                })
-                                            }
-                                        </Panel>
-                                        <Panel header="This is panel header 3" key="3" extra={genExtra()}>
-                                            {
-                                                list.map((item,i)=>{
-                                                    return (
-                                                        <div key={i}>{item()}</div>
-                                                    )
-                                                })
-                                            }
-                                        </Panel>
-                                    </Collapse>
-                                    <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
-                                </div>
+                                {
+                                    false ? <BannerDynamic list={list}/> : 
+                                    <BannerStatic list={list}/>
+                                }
                             </div>
                         </div>
                     </div>
@@ -75,4 +33,18 @@ function LeftPanelBanner() {
     )
 }
 
-export default React.memo(LeftPanelBanner)
+// 映射Redux全局的state到组件到props上
+
+const mapStateToProps = (state) => ({
+    panel: state.getIn(['panels', 'currentPanel'])
+})
+// 映射dispatch到props上
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // getPreviewDataDispatch(data) {
+        //     dispatch(changePanel(data))
+        // }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(LeftPanelBanner))
