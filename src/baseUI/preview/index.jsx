@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel } from 'store/actions'
+import { changeBannerDynamic, changeBannerStatic } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import * as components from 'components'
@@ -12,7 +12,9 @@ function Preview(props) {
     const lqtref = useRef(null)
     console.log(props, '------')
 
-    const [data,setData] = useState([[components.Banner,{className:'test'},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3'},'']])
+    const { changeBannerStaticStateDispatch, changeBannerDynamicStateDispatch } = props
+
+    const [data,setData] = useState([[components.Banner,{className:'test',changeBannerStaticStateDispatch},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3',changeBannerDynamicStateDispatch},'']])
 
     const _onClick = useCallback((e) => {
         // let child = lqtref.current.childNodes
@@ -104,8 +106,11 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPreviewDataDispatch(data) {
-            dispatch(changePanel(data))
+        changeBannerStaticStateDispatch(data) {
+            dispatch(changeBannerStatic(data))
+        },
+        changeBannerDynamicStateDispatch(data) {
+            dispatch(changeBannerDynamic(data))
         }
     }
 }

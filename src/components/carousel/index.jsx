@@ -1,10 +1,13 @@
 import { Carousel } from 'antd';
 import React from 'react'
 import { connect } from 'react-redux';
-import { changePanel } from 'store/actions'
+// import { changePanel } from 'store/actions'
 
 function carousel(props) {
     console.log(props,'????')
+
+    const { changeBannerDynamicStateDispatch } = props
+
     const contentStyle = {
         height: '160px',
         color: '#fff',
@@ -13,7 +16,7 @@ function carousel(props) {
         background: '#364d79',
     };
     return (
-        <div onClick={()=>{console.log('=====------')}}>
+        <div onClick={()=>{changeBannerDynamicStateDispatch('bannerDynamic')}}>
             <Carousel autoplay>
                 <div>
                     <h3 style={contentStyle}>1</h3>

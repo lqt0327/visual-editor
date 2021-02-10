@@ -1,1 +1,1 @@
-export { changePanel } from './panelaction'
+export { changeBannerDynamic, changeBannerStatic } from './panelaction'
