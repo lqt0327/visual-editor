@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changeBannerDynamic, changeBannerStatic } from 'store/actions'
+import { changeBannerDynamic, changeBannerStatic, getTop, getHeight } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import * as components from 'components'
@@ -12,9 +12,16 @@ function Preview(props) {
     const lqtref = useRef(null)
     console.log(props, '------')
 
-    const { changeBannerStaticStateDispatch, changeBannerDynamicStateDispatch } = props
+    const {
+        aTipTop,
+        aTipHeight,
+        changeBannerStaticStateDispatch,
+        changeBannerDynamicStateDispatch,
+        getTopStateDispatch,
+        getHeightStateDispatch
+    } = props
 
-    const [data,setData] = useState([[components.Banner,{className:'test',changeBannerStaticStateDispatch},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3',changeBannerDynamicStateDispatch},'']])
+    const [data,setData] = useState([[components.Banner,{className:'test',changeBannerStaticStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3',changeBannerDynamicStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']])
 
     const _onClick = useCallback((e) => {
         // let child = lqtref.current.childNodes
@@ -78,8 +85,8 @@ function Preview(props) {
                 </div>
                 <div className="l-preview-container">
                     <div className="l-preview-tips" style={{ height: '600px' }}>
-                        <div className="l-view-hover-tip" style={{ top: '0px', height: '140px' }}></div>
-                        <div className="l-view-active-tip" style={{ top: '0px', height: '140px' }}></div>
+                        <div className="l-view-hover-tip" style={{ top: '0px', height: '0px' }}></div>
+                        <div className="l-view-active-tip" style={{ top: aTipTop + 'px', height: aTipHeight + 'px' }}></div>
                         <div className="l-view-tools" style={{ top: '8px' }}>
                             {/* <div className="l-tools-move l-tools-move-single"> */}
                             <div className="l-tools-move">
@@ -101,7 +108,9 @@ function Preview(props) {
 }
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels', 'currentPanel'])
+    panel: state.getIn(['panels', 'currentPanel']),
+    aTipTop: state.getIn(['activeTip','currentTop']),
+    aTipHeight: state.getIn(['activeTip','currentHeight'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
@@ -111,6 +120,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeBannerDynamicStateDispatch(data) {
             dispatch(changeBannerDynamic(data))
+        },
+        getTopStateDispatch(data) {
+            dispatch(getTop(data))
+        },
+        getHeightStateDispatch(data) {
+            dispatch(getHeight(data))
         }
     }
 }
