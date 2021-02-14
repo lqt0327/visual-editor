@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 import { changeBannerDynamic, changeBannerStatic, getTop, getHeight } from 'store/actions'
@@ -9,8 +9,10 @@ import './style.sass'
 
 
 function Preview(props) {
-    const lqtref = useRef(null)
+    const tipHeightRef = useRef(null)
     console.log(props, '------')
+
+    let [tipHeight,setTipHeight] = useState(0)
 
     const {
         aTipTop,
@@ -21,14 +23,13 @@ function Preview(props) {
         getHeightStateDispatch
     } = props
 
-    const [data,setData] = useState([[components.Banner,{className:'test',changeBannerStaticStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],[components.Advert,{className:'test2'},''],[components.Carousel,{className:'test3',changeBannerDynamicStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']])
+    const [data,setData] = useState([
+        [components.Banner,{className:'test',changeBannerStaticStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
+        [components.Advert,{className:'test2'},''],
+        [components.Carousel,{className:'test3',changeBannerDynamicStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
+    ])
 
     const _onClick = useCallback((e) => {
-        // let child = lqtref.current.childNodes
-        // for(let k in child) {
-
-        // }
-        console.log(lqtref, '=======')
     }, [])
 
     const Dustbin = () => {
@@ -50,18 +51,13 @@ function Preview(props) {
                 )
             })}
         </React.Fragment>, document.getElementById("stage"))
-        // return (
-        //     <div className="lAnt-spin__main" style={{background:"rgb(255,255,255)"}}>
-        //         <div className="lAnt-spin__main-inner" onClick={_onClick} style={{paddingBottom:"0px"}} ref={lqtref} id="stage">
-        //             {/* <div className="lAnt-spin__main-first-screen-line"></div> */}
-        //         </div>
-        //     </div>
-        // )
     }
 
     useEffect(() => {
+        setTipHeight(tipHeightRef.current.offsetHeight)
+        console.log(tipHeight,'=====')
         Dustbin()
-    }, [])
+    }, [tipHeight])
 
     return (
         <div className="l-preview">
@@ -72,11 +68,11 @@ function Preview(props) {
                 </div>
             </div>
             <div className="l-prevew-box">
-                <div className="l-preview-iframe">
+                <div className="l-preview-iframe" ref={tipHeightRef}>
                     <div className="l-preview-scroll">
                         <div className="lAnt-spin-nested-loading">
                             <div className="lAnt-spin__main" style={{ background: "rgb(255,255,255)" }}>
-                                <div className="lAnt-spin__main-inner" onClick={_onClick} style={{ paddingBottom: "0px" }} ref={lqtref} id="stage">
+                                <div className="lAnt-spin__main-inner" onClick={_onClick} style={{ paddingBottom: "0px" }} id="stage">
                                     {/* <div className="lAnt-spin__main-first-screen-line"></div> */}
                                 </div>
                             </div>
@@ -84,7 +80,7 @@ function Preview(props) {
                     </div>
                 </div>
                 <div className="l-preview-container">
-                    <div className="l-preview-tips" style={{ height: '600px' }}>
+                    <div className="l-preview-tips" style={{ height: tipHeight + 'px' }} onClick={()=>console.log([document.querySelector('.l-preview-iframe').offsetHeight])}>
                         <div className="l-view-hover-tip" style={{ top: '0px', height: '0px' }}></div>
                         <div className="l-view-active-tip" style={{ top: aTipTop + 'px', height: aTipHeight + 'px' }}></div>
                         <div className="l-view-tools" style={{ top: '8px' }}>
