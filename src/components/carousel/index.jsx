@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 function carousel(props) {
     console.log(props,'????')
 
-    const { changeBannerDynamicStateDispatch } = props
+    const { changeBannerDynamicStateDispatch, getTopStateDispatch, getHeightStateDispatch } = props
 
     const contentStyle = {
         height: '160px',
@@ -14,9 +14,14 @@ function carousel(props) {
         lineHeight: '160px',
         textAlign: 'center',
         background: '#364d79',
+        marginBottom: 0
     };
     return (
-        <div onClick={()=>{changeBannerDynamicStateDispatch('bannerDynamic')}}>
+        <div className="carousel-content" onClick={()=>{
+            changeBannerDynamicStateDispatch('bannerDynamic');
+            getTopStateDispatch(document.querySelector('.carousel-content').offsetTop);
+            getHeightStateDispatch(document.querySelector('.carousel-content').offsetHeight)
+        }}>
             <Carousel autoplay>
                 <div>
                     <h3 style={contentStyle}>1</h3>

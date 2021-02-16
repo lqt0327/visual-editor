@@ -2,7 +2,7 @@ import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
     currentTop: 0,
-    currentHeight: 140
+    currentHeight: 0
 })
 
 export default (state = defaultState, action) => {

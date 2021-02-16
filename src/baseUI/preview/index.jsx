@@ -25,7 +25,7 @@ function Preview(props) {
 
     const [data,setData] = useState([
         [components.Banner,{className:'test',changeBannerStaticStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        [components.Advert,{className:'test2'},''],
+        // [components.Advert,{className:'test2'},''],
         [components.Carousel,{className:'test3',changeBannerDynamicStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
     ])
 
