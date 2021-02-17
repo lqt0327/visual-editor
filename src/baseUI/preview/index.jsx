@@ -47,7 +47,11 @@ function Preview(props) {
             {data.map((_,i)=>{
                 console.log(_[1],_[2],'////')
                 return (
-                    React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])
+                    <div className="lqt123" key={i}>
+                        <button className="add-components" type="button" onClick={()=>{console.log('hello1')}}>+</button>
+                        {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
+                        <button className="add-components" type="button" onClick={()=>{console.log('hello2')}}>+</button>
+                    </div>
                 )
             })}
         </React.Fragment>, document.getElementById("stage"))

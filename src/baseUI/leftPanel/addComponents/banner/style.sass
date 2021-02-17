@@ -1,0 +1,73 @@
+.l-resource-item
+    flex-wrap: wrap
+    padding: 8px 0 0
+    list-style: none
+    height: 100%
+    overflow: hidden
+    overflow-y: auto
+
+.smooth-dnd-container
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    align-items: flex-end
+    position: relative
+
+.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper
+    overflow: hidden
+
+.ser-module-item
+    margin: 0 12px 24px
+    width: 280px
+    max-height: 200px
+    border-radius: 4px
+    border: 1px solid #f0f0f0
+    cursor: pointer
+
+    div
+        display: flex
+        position: relative
+        justify-content: center
+        flex-direction: column
+        align-items: center
+        width: 100%
+        min-height: 100px
+        max-height: 200px
+
+        &::before
+            content: ""
+            display: block
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            background: transparent
+
+        .ser-module-item-image
+            display: block
+            max-height: 200px
+
+        .ser-module-item-title
+            position: absolute
+            bottom: 0
+            width: 100%
+            opacity: 0
+            visibility: hidden
+            transition: all .1s
+            text-align: center
+            background: rgba(0,0,0,.65)
+            color: #fff
+            font-size: 14px
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            padding: 0 24px
+
+    &:hover
+        transform: scale(1.057)
+        transition: all .2s ease
+
+        .ser-module-item-title
+            opacity: 1
+            visibility: visible

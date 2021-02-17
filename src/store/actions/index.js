@@ -1,2 +1,2 @@
-export { changeBannerDynamic, changeBannerStatic } from './panelaction'
+export { changeBannerDynamic, changeBannerStatic, changePage } from './panelaction'
 export { getTop, getHeight } from './activetipaction'

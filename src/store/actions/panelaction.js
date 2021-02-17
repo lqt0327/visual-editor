@@ -1,3 +1,8 @@
+export const changePage = (data) => ({
+    type: 'CHANGE_PAGE',
+    data
+})
+
 export const changeBannerStatic = (data) => ({
     type: 'CHANGE_BANNER_STATIC',
     data

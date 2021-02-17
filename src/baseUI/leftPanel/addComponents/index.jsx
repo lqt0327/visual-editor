@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Tabs } from 'antd';
+import Banner from './banner'
 import './style.sass'
 
 const { TabPane } = Tabs
@@ -15,14 +16,41 @@ function AddComponents() {
                 <div className="l-resource">
                     <h3>添加组件</h3>
                     <div className="l-resource-list">
-                        <Tabs tabPosition="left" defaultActiveKey="1" onChange={callback}>
-                            <TabPane tab="Tab 1" key="1">
-                            Content of Tab Pane 1
+                        <Tabs tabPosition="left" defaultActiveKey="1" onChange={callback} size="small">
+                            <TabPane tab="BANNER" key="1">
+                                <Banner />
                             </TabPane>
-                            <TabPane tab="Tab 2" key="2">
+                            <TabPane tab="TAB" key="2">
                             Content of Tab Pane 2
                             </TabPane>
-                            <TabPane tab="Tab 3" key="3">
+                            <TabPane tab="列表" key="3">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="标题" key="4">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="引言" key="5">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="配图" key="6">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="段落" key="7">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="按钮" key="8">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="FAQ" key="9">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="规则" key="10">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="页脚" key="11">
+                            Content of Tab Pane 3
+                            </TabPane>
+                            <TabPane tab="步骤" key="12">
                             Content of Tab Pane 3
                             </TabPane>
                         </Tabs>

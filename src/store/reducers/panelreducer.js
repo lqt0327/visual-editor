@@ -10,6 +10,8 @@ export default (state = defaultState, action) => {
             return state.set('currentPanel', action.data);
         case 'CHANGE_BANNER_DYNAMIC':
             return state.set('currentPanel', action.data);
+        case 'CHANGE_PAGE':
+            return state.set('currentPanel', action.data);
         default:
             return state;
     }
