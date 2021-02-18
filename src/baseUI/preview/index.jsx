@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changeBannerDynamic, changeBannerStatic, getTop, getHeight } from 'store/actions'
+import { changePanel, getTop, getHeight } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import * as components from 'components'
@@ -17,16 +17,16 @@ function Preview(props) {
     const {
         aTipTop,
         aTipHeight,
-        changeBannerStaticStateDispatch,
-        changeBannerDynamicStateDispatch,
+        panel,
+        changePanelStateDispatch,
         getTopStateDispatch,
         getHeightStateDispatch
     } = props
 
     const [data,setData] = useState([
-        [components.Banner,{className:'test',changeBannerStaticStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
+        [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
         // [components.Advert,{className:'test2'},''],
-        [components.Carousel,{className:'test3',changeBannerDynamicStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
+        [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
     ])
 
     const _onClick = useCallback((e) => {
@@ -47,10 +47,16 @@ function Preview(props) {
             {data.map((_,i)=>{
                 console.log(_[1],_[2],'////')
                 return (
-                    <div className="lqt123" key={i}>
-                        <button className="add-components" type="button" onClick={()=>{console.log('hello1')}}>+</button>
+                    <div className="fengdie-components" key={i}>
+                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: panel === 'addComponents' ? 'flex' : 'none'}}>
+                            "添加至此处"
+                        </div>
+                        <button className="add-components" type="button" onClick={()=>changePanelStateDispatch('addComponents')}>+</button>
                         {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
-                        <button className="add-components" type="button" onClick={()=>{console.log('hello2')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>changePanelStateDispatch('addComponents')}>+</button>
+                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: panel === 'addComponents' ? 'flex' : 'none'}}>
+                            "添加至此处"
+                        </div>
                     </div>
                 )
             })}
@@ -61,7 +67,7 @@ function Preview(props) {
         setTipHeight(tipHeightRef.current.offsetHeight)
         console.log(tipHeight,'=====')
         Dustbin()
-    }, [tipHeight])
+    }, [tipHeight,panel])
 
     return (
         <div className="l-preview">
@@ -115,11 +121,8 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeBannerStaticStateDispatch(data) {
-            dispatch(changeBannerStatic(data))
-        },
-        changeBannerDynamicStateDispatch(data) {
-            dispatch(changeBannerDynamic(data))
+        changePanelStateDispatch(data) {
+            dispatch(changePanel(data))
         },
         getTopStateDispatch(data) {
             dispatch(getTop(data))
