@@ -12,7 +12,8 @@ function Preview(props) {
     const tipHeightRef = useRef(null)
     console.log(props, '------')
 
-    let [tipHeight,setTipHeight] = useState(0)
+    const [tipHeight,setTipHeight] = useState(0)
+    const [showAdd,setShowAdd] = useState('')
 
     const {
         aTipTop,
@@ -48,13 +49,13 @@ function Preview(props) {
                 console.log(_[1],_[2],'////')
                 return (
                     <div className="fengdie-components" key={i}>
-                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: panel === 'addComponents' ? 'flex' : 'none'}}>
+                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>changePanelStateDispatch('addComponents')}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch('addComponents');setShowAdd(i+'top')}}>+</button>
                         {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
-                        <button className="add-components" type="button" onClick={()=>changePanelStateDispatch('addComponents')}>+</button>
-                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: panel === 'addComponents' ? 'flex' : 'none'}}>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch('addComponents');setShowAdd(i+'bottom')}}>+</button>
+                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
                     </div>
@@ -67,10 +68,11 @@ function Preview(props) {
         setTipHeight(tipHeightRef.current.offsetHeight)
         console.log(tipHeight,'=====')
         Dustbin()
-    }, [tipHeight,panel])
+    }, [tipHeight,panel,showAdd])
 
     return (
         <div className="l-preview">
+            <div className="l-preview--mask" onClick={()=>setShowAdd('')}></div>
             <div className="l-page-path-container">
                 <div className="l-page-path">
                     <div className="l-pp-url"><span>https://render.yunfengdie.cn/p/q/kj9nbl7b</span></div>
