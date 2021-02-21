@@ -2,9 +2,19 @@
     flex-wrap: wrap
     padding: 8px 0 0
     list-style: none
-    height: 100%
+    height: calc(100vh - 125px)
     overflow: hidden
     overflow-y: auto
+
+    /* 设置滚动条样式 */
+    &::-webkit-scrollbar
+        width: 8px
+        height: 8px
+    
+    &::-webkit-scrollbar-thumb
+        height: 40px
+        background-color: #eee
+        border-radius: 16px
 
 .smooth-dnd-container
     display: flex

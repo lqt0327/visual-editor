@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Tabs } from 'antd';
-import Banner from './banner'
+import GeneralTemplate from './generalTemplate'
 import './style.sass'
+import data from './data.json'
 
 const { TabPane } = Tabs
 
@@ -17,13 +18,27 @@ function AddComponents() {
                     <h3>添加组件</h3>
                     <div className="l-resource-list">
                         <Tabs tabPosition="left" defaultActiveKey="1" onChange={callback} size="small">
-                            <TabPane tab="BANNER" key="1">
-                                <Banner />
+                            {
+                                // console.log(Object.values(data),"[][][][][][]")
+                                Object.keys(data).map((item,i)=>{
+                                    return (
+                                        <TabPane tab={item} key={i}>
+                                            <GeneralTemplate 
+                                                imgs={data[item]}
+                                            />
+                                        </TabPane>
+                                    )
+                                })
+                            }
+                            {/* <TabPane tab="BANNER" key="1">
+                                <GeneralTemplate
+                                    // imgs={}
+                                />
                             </TabPane>
                             <TabPane tab="TAB" key="2">
                             Content of Tab Pane 2
-                            </TabPane>
-                            <TabPane tab="列表" key="3">
+                            </TabPane> */}
+                            {/* <TabPane tab="列表" key="3">
                             Content of Tab Pane 3
                             </TabPane>
                             <TabPane tab="标题" key="4">
@@ -52,7 +67,7 @@ function AddComponents() {
                             </TabPane>
                             <TabPane tab="步骤" key="12">
                             Content of Tab Pane 3
-                            </TabPane>
+                            </TabPane> */}
                         </Tabs>
                     </div>
                 </div>
