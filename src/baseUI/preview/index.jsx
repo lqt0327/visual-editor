@@ -27,7 +27,8 @@ function Preview(props) {
     const [data,setData] = useState([
         [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
         // [components.Advert,{className:'test2'},''],
-        [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
+        [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
+        [components.Tab,{changePanelStateDispatch},'']
     ])
 
     const _onClick = useCallback((e) => {

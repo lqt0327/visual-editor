@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Header, LeftPanelPage, Preview, LeftPanelBanner, AddComponents } from "baseUI";
+import { Header, LeftPanelPage, Preview, LeftPanelBanner, AddComponents, TabPanel } from "baseUI";
 import * as components from "components";
 import { connect } from 'react-redux';
 import cx from "classnames";
@@ -21,6 +21,7 @@ function Home(props) {
                     panel === 'page' ? <LeftPanelPage /> :
                     panel === 'bannerStatic' ? <LeftPanelBanner /> :
                     panel === 'bannerDynamic' ? <LeftPanelBanner /> :
+                    panel === 'tab' ? <TabPanel /> :
                     <LeftPanelPage />
                 }
                 <Preview
