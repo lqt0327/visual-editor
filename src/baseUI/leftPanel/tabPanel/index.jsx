@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse } from 'antd';
+import { Collapse, Input } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress} from "components";
 import { connect } from 'react-redux'
@@ -22,18 +22,33 @@ const EditorContainer = () => {
     return (
         <div className="schema-editor-container">
             <Collapse accordion>
-                <Panel header="This is panel header 1" key="1" extra={genExtra()}>
-                    <Upload />
-                    <LinkAddress />
-                </Panel>
-                <Panel header="This is panel header 2" key="2" extra={genExtra()}>
-                    <Upload />
-                    <LinkAddress />
-                </Panel>
-                <Panel header="This is panel header 3" key="3" extra={genExtra()}>
-                    <Upload />
-                    <LinkAddress />
-                </Panel>
+                {
+                    new Array(4).fill(null).map((_,i)=>{
+                        return (
+                            <Panel header={`Tab ${i+1}`} key={i} extra={genExtra()}>
+                                <h3>标签</h3>
+                                <Input placeholder="Tab 1" />
+                                <h3>内容</h3>
+                                <Collapse accordion>
+                                    {
+                                        new Array(2).fill(null).map((_,j)=>{
+                                            return (
+                                                <Panel header={`${j+1}.为什么`} key={j} extra={genExtra()}>
+                                                    <h3>标题</h3>
+                                                    <Input defaultValue={`${j+1}.为什么`} />
+                                                    <h3>封面</h3>
+                                                    <Upload />
+                                                    <LinkAddress />
+                                                </Panel>
+                                            )
+                                        })
+                                    }
+                                </Collapse>
+                                <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+                            </Panel>
+                        )
+                    })
+                }
             </Collapse>
             <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
         </div>
