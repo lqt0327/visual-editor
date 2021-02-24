@@ -1,14 +1,13 @@
-function BannerStatic(props) {
-    const {list} = props
+import { Upload, LinkAddress } from "components";
+
+function BannerStatic() {
     return (
         <div className="schema-editor-container">
-            {
-                list.map((item, i) => {
-                    return (
-                        <div key={i}>{item()}</div>
-                    )
-                })
-            }
+            <Upload 
+                imgWidth={750}
+                imgHeight={280}
+            />
+            <LinkAddress />
         </div>
     )
 }

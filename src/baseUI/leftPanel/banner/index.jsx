@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as components from "components";
 import { connect } from 'react-redux'
 // import { changePanel } from 'store/actions'
 import BannerStatic from './bannerStatic';
@@ -11,7 +10,6 @@ import './style.sass'
 function LeftPanelBanner(props) {
     console.log(props,'leftbanner')
     const {panel} = props
-    const [list, setList] = useState([components.Upload,components.LinkAddress])
     return (
         <React.Fragment>
             <div className="l-panel" style={{width:"490px"}}>
@@ -21,10 +19,10 @@ function LeftPanelBanner(props) {
                             <h2>Banner</h2>
                             <div className="schema-editor-scroll">
                                 {
-                                    panel === 'bannerDynamic' && <BannerDynamic list={list}/>
+                                    panel[1] === 'dynamic' && <BannerDynamic />
                                 }
                                 {
-                                    panel === 'bannerStatic' && <BannerStatic list={list}/>
+                                    panel[1] === 'static' && <BannerStatic />
                                 }
                             </div>
                         </div>

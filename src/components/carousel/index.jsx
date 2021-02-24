@@ -18,7 +18,7 @@ function carousel(props) {
     };
     return (
         <div className="carousel-content" onClick={()=>{
-            changePanelStateDispatch('bannerDynamic');
+            changePanelStateDispatch(['banner','dynamic']);
             getTopStateDispatch(document.querySelector('.carousel-content').offsetTop);
             getHeightStateDispatch(document.querySelector('.carousel-content').offsetHeight)
         }}>

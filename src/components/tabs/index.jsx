@@ -13,7 +13,7 @@ function Tab(props) {
     const { changePanelStateDispatch } = props
 
     return (
-        <Tabs defaultActiveKey="1" onChange={callback} onClick={()=>{changePanelStateDispatch('tab')}}>
+        <Tabs defaultActiveKey="1" onChange={callback} onClick={()=>{changePanelStateDispatch(['tab','normal'])}}>
             {
                 new Array(4).fill(null).map((_,i)=>{
                     return (

@@ -28,7 +28,8 @@ function Preview(props) {
         [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
         // [components.Advert,{className:'test2'},''],
         [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        [components.Tab,{changePanelStateDispatch},'']
+        [components.Tab,{changePanelStateDispatch},''],
+        [components.EntryTab,{changePanelStateDispatch},'']
     ])
 
     const _onClick = useCallback((e) => {
@@ -53,9 +54,9 @@ function Preview(props) {
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch('addComponents');setShowAdd(i+'top')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top')}}>+</button>
                         {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch('addComponents');setShowAdd(i+'bottom')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom')}}>+</button>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>

@@ -1,5 +1,6 @@
 import { Collapse } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { Upload, LinkAddress } from "components";
 
 const { Panel } = Collapse;
 
@@ -13,37 +14,30 @@ const genExtra = () => (
     />
 );
 
-function BannerDynamic(props) {
-    const {list} = props
+function BannerDynamic() {
     return (
         <div className="schema-editor-container">
             <Collapse accordion>
                 <Panel header="This is panel header 1" key="1" extra={genExtra()}>
-                    {
-                        list.map((item, i) => {
-                            return (
-                                <div key={i}>{item()}</div>
-                            )
-                        })
-                    }
+                    <Upload 
+                        imgWidth={750}
+                        imgHeight={280}
+                    />
+                    <LinkAddress />
                 </Panel>
                 <Panel header="This is panel header 2" key="2" extra={genExtra()}>
-                    {
-                        list.map((item, i) => {
-                            return (
-                                <div key={i}>{item()}</div>
-                            )
-                        })
-                    }
+                    <Upload 
+                        imgWidth={750}
+                        imgHeight={280}
+                    />
+                    <LinkAddress />
                 </Panel>
                 <Panel header="This is panel header 3" key="3" extra={genExtra()}>
-                    {
-                        list.map((item, i) => {
-                            return (
-                                <div key={i}>{item()}</div>
-                            )
-                        })
-                    }
+                    <Upload 
+                        imgWidth={750}
+                        imgHeight={280}
+                    />
+                    <LinkAddress />
                 </Panel>
             </Collapse>
             <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>

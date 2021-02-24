@@ -17,11 +17,10 @@ function Home(props) {
             <Header />
             <main>
                 {
-                    panel === 'addComponents' ? <AddComponents /> :
-                    panel === 'page' ? <LeftPanelPage /> :
-                    panel === 'bannerStatic' ? <LeftPanelBanner /> :
-                    panel === 'bannerDynamic' ? <LeftPanelBanner /> :
-                    panel === 'tab' ? <TabPanel /> :
+                    panel[0] === 'addComponents' ? <AddComponents /> :
+                    panel[0] === 'page' ? <LeftPanelPage /> :
+                    panel[0] === 'banner' ? <LeftPanelBanner /> :
+                    panel[0] === 'tab' ? <TabPanel /> :
                     <LeftPanelPage />
                 }
                 <Preview

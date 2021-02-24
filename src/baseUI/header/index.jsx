@@ -16,7 +16,7 @@ function Header(props) {
                         <img src="https://gw.alipayobjects.com/zos/rmsportal/ZLdipPynpsirzAfeulEf.png" alt=""/>
                     </div>
                     <div className="header-left-tabbar" onClick={()=>{
-                        changePanelStateDispatch('page');console.log(props,'[[[123')
+                        changePanelStateDispatch(['page']);console.log(props,'[[[123')
                     }}>
                         <span className="header-left-tabbar__icon">
                             <i className="icon iconfont">&#xe75d;</i>

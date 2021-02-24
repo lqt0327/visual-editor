@@ -6,7 +6,7 @@ function Banner(props) {
     
     return (
         <div className={cx("banner",props.className)} onClick={()=>{
-            changePanelStateDispatch('bannerStatic');
+            changePanelStateDispatch(['banner','static']);
             getTopStateDispatch(document.querySelector('.banner').offsetTop);
             getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
         }}>

@@ -18,6 +18,72 @@ const genExtra = () => (
     />
 );
 
+const EditorContainer3 = () => {
+    return (
+        <div className="schema-editor-container">
+            <Collapse accordion>
+                {
+                    new Array(2).fill(null).map((_,i)=>{
+                        return (
+                            <Panel header={`${i+1}.第 ${i+1} 页`} key={i} extra={genExtra()}>
+                                <h3>别名</h3>
+                                <Input placeholder={`第 ${i+1} 页`} />
+                                <h3>每页配置</h3>
+                                <Collapse accordion>
+                                    {
+                                        new Array(4).fill(null).map((_,j)=>{
+                                            return (
+                                                <Panel header={`${j+1}.测试数据`} key={j} extra={genExtra()}>
+                                                    <h3>文案</h3>
+                                                    <Input defaultValue={`${j+1}.测试数据`} />
+                                                    <h3>图片</h3>
+                                                    <Upload
+                                                        imgHeight={56}
+                                                        imgWidth={56}
+                                                    />
+                                                    <LinkAddress />
+                                                </Panel>
+                                            )
+                                        })
+                                    }
+                                </Collapse>
+                                <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+                            </Panel>
+                        )
+                    })
+                }
+            </Collapse>
+            <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+        </div>
+    )
+}
+
+const EditorContainer2 = () => {
+    return (
+        <div className="schema-editor-container">
+            <Collapse accordion>
+                {
+                    new Array(4).fill(null).map((_,i)=>{
+                        return (
+                            <Panel header={`Tab ${i+1}`} key={i} extra={genExtra()}>
+                                <h3>文案</h3>
+                                <Input defaultValue={`${i+1}.为什么`} />
+                                <h3>图片</h3>
+                                <Upload
+                                    imgHeight={56}
+                                    imgWidth={56}
+                                />
+                                <LinkAddress />
+                            </Panel>
+                        )
+                    })
+                }
+            </Collapse>
+            <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+        </div>
+    )
+}
+
 const EditorContainer = () => {
     return (
         <div className="schema-editor-container">
@@ -37,7 +103,10 @@ const EditorContainer = () => {
                                                     <h3>标题</h3>
                                                     <Input defaultValue={`${j+1}.为什么`} />
                                                     <h3>封面</h3>
-                                                    <Upload />
+                                                    <Upload
+                                                        imgHeight={144}
+                                                        imgWidth={220}
+                                                    />
                                                     <LinkAddress />
                                                 </Panel>
                                             )
@@ -55,7 +124,10 @@ const EditorContainer = () => {
     )
 }
 
-function TabPanel() {
+function TabPanel(props) {
+
+    const { panel } = props
+
     return (
         <React.Fragment>
             <div className="l-panel" style={{ width: "490px" }}>
@@ -64,7 +136,11 @@ function TabPanel() {
                         <div className="schema-editor-main">
                             <h2>Tab</h2>
                             <div className="schema-editor-scroll">
-                                <EditorContainer  />
+                                {
+                                    panel[1] === 'normal' ? <EditorContainer /> :
+                                    panel[1] === 'entry' ? <EditorContainer2 /> :
+                                    ''
+                                }
                             </div>
                         </div>
                     </div>
