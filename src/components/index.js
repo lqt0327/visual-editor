@@ -10,5 +10,8 @@ export { default as Upload } from './upload'
 export { default as Banner } from './banner'
 export { default as Tab } from './tabs'
 export { default as EntryTab } from './tabs/entryTab'
+export { default as NormalList } from './normalList'
+export { default as RowList } from './rowList'
+export { default as OperationList } from './operationList'
 // 轮播图
 export { default as Carousel } from './carousel'

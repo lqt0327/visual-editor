@@ -29,7 +29,10 @@ function Preview(props) {
         // [components.Advert,{className:'test2'},''],
         [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
         [components.Tab,{changePanelStateDispatch},''],
-        [components.EntryTab,{changePanelStateDispatch},'']
+        [components.EntryTab,{changePanelStateDispatch},''],
+        [components.NormalList,{},''],
+        [components.RowList,{},''],
+        [components.OperationList,{},'']
     ])
 
     const _onClick = useCallback((e) => {
