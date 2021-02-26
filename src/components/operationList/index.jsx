@@ -1,12 +1,16 @@
 import React from 'react'
+import cx from 'classnames'
 import './style.sass'
 
-function OpertaionList() {
+function OpertaionList(props) {
+
+    const { template } = props
+
     return (
         <div className="use-tag">
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">
-                    <div className="fd-subject-cover" style={{backgroundImage:"url('https://gw.alipayobjects.com/zos/rmsportal/qnMZzTAViDGQHHjgyICm.png')"}}></div>
+                    <div className={cx({"fd-subject-cover":template === 'opt1' ? false : true})} style={{backgroundImage:"url('https://gw.alipayobjects.com/zos/rmsportal/qnMZzTAViDGQHHjgyICm.png')"}}></div>
                     <div className="fd-subject-content">
                         <div>
                             <h1 className="fd-title title">云凤蝶全栈工程师兼职</h1>

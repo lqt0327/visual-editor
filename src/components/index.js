@@ -13,5 +13,7 @@ export { default as EntryTab } from './tabs/entryTab'
 export { default as NormalList } from './normalList'
 export { default as RowList } from './rowList'
 export { default as OperationList } from './operationList'
+export { default as NewList } from './newList'
+export { default as NewList2 } from './newList2'
 // 轮播图
 export { default as Carousel } from './carousel'

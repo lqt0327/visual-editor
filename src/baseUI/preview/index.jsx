@@ -30,9 +30,11 @@ function Preview(props) {
         [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
         [components.Tab,{changePanelStateDispatch},''],
         [components.EntryTab,{changePanelStateDispatch},''],
-        [components.NormalList,{},''],
+        [components.NormalList,{template:'normal1'},''],
         [components.RowList,{},''],
-        [components.OperationList,{},'']
+        [components.OperationList,{template:'opt1'},''],
+        [components.NewList,{template:'new1'},''],
+        [components.NewList2,{template:'cut2'},'']
     ])
 
     const _onClick = useCallback((e) => {
