@@ -34,7 +34,11 @@ function Preview(props) {
         [components.RowList,{},''],
         [components.OperationList,{template:'opt1'},''],
         [components.NewList,{template:'new1'},''],
-        [components.NewList2,{template:'cut2'},'']
+        [components.NewList2,{template:'cut2'},''],
+        [components.GridList,{template:'grid3'},''],
+        [components.GridList2,{template:'card1'},''],
+        [components.Title,{template:'block8'},''],
+        [components.Quote,{},'']
     ])
 
     const _onClick = useCallback((e) => {
