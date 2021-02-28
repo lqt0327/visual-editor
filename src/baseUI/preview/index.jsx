@@ -38,7 +38,8 @@ function Preview(props) {
         [components.GridList,{template:'grid3'},''],
         [components.GridList2,{template:'card1'},''],
         [components.Title,{template:'block8'},''],
-        [components.Quote,{},'']
+        [components.Quote,{template:"quote1"},''],
+        [components.Qaragraph,{template:'detail3'},'']
     ])
 
     const _onClick = useCallback((e) => {
