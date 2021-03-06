@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel, getTop, getHeight } from 'store/actions'
+import { changePanel, getTop, getHeight, addTemplate } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import * as components from 'components'
@@ -12,6 +12,7 @@ function Preview(props) {
     const tipHeightRef = useRef(null)
     console.log(props, '------')
 
+    const [index, setIndex] = useState(0)
     const [tipHeight,setTipHeight] = useState(0)
     const [showAdd,setShowAdd] = useState('')
 
@@ -19,27 +20,29 @@ function Preview(props) {
         aTipTop,
         aTipHeight,
         panel,
+        currentTemplate,
         changePanelStateDispatch,
         getTopStateDispatch,
-        getHeightStateDispatch
+        getHeightStateDispatch,
+        addTemplateDispatch
     } = props
 
     const [data,setData] = useState([
         [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        // [components.Advert,{className:'test2'},''],
-        [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        [components.Tab,{changePanelStateDispatch},''],
-        [components.EntryTab,{changePanelStateDispatch},''],
-        [components.NormalList,{template:'normal1'},''],
-        [components.RowList,{},''],
-        [components.OperationList,{template:'opt1'},''],
-        [components.NewList,{template:'new1'},''],
-        [components.NewList2,{template:'cut2'},''],
-        [components.GridList,{template:'grid3'},''],
-        [components.GridList2,{template:'card1'},''],
-        [components.Title,{template:'block8'},''],
-        [components.Quote,{template:"quote1"},''],
-        [components.Qaragraph,{template:'detail3'},'']
+        // // [components.Advert,{className:'test2'},''],
+        // [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
+        // [components.Tab,{changePanelStateDispatch},''],
+        // [components.EntryTab,{changePanelStateDispatch},''],
+        // [components.NormalList,{template:'normal1'},''],
+        // [components.RowList,{},''],
+        // [components.OperationList,{template:'opt1'},''],
+        // [components.NewList,{template:'new1'},''],
+        // [components.NewList2,{template:'cut2'},''],
+        // [components.GridList,{template:'grid3'},''],
+        // [components.GridList2,{template:'card1'},''],
+        // [components.Title,{template:'block8'},''],
+        // [components.Quote,{template:"quote1"},''],
+        // [components.Qaragraph,{template:'detail3'},'']
     ])
 
     const _onClick = useCallback((e) => {
@@ -64,9 +67,9 @@ function Preview(props) {
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top');setIndex(i);console.log(i,'测试数据top')}}>+</button>
                         {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
@@ -76,11 +79,31 @@ function Preview(props) {
         </React.Fragment>, document.getElementById("stage"))
     }
 
-    useEffect(() => {
+    const addTemplate = (currentTemplate, i) => {
+        // 还应该使用 localstorage 做一个长期存储，
+        switch(currentTemplate) {
+            case 'banner1':
+                setData(data.splice(i,0,
+                    [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']
+                    ))
+                console.log(data,'????1111')
+                // setData([...data,[components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']])
+                break;
+            case 'Carousel2':
+                setData([...data,[components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']])
+                break;
+            default :
+        }
+    }
+
+    useEffect(async () => {
         setTipHeight(tipHeightRef.current.offsetHeight)
-        console.log(tipHeight,'=====')
+        console.log(currentTemplate,index,'=====')
+        await addTemplate(currentTemplate,index)
+        console.log(data,'????222')
+        addTemplateDispatch('')
         Dustbin()
-    }, [tipHeight,panel,showAdd])
+    }, [tipHeight,panel,showAdd,currentTemplate])
 
     return (
         <div className="l-preview">
@@ -129,6 +152,7 @@ function Preview(props) {
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
     panel: state.getIn(['panels', 'currentPanel']),
+    currentTemplate: state.getIn(['template', 'currentTemplate']),
     aTipTop: state.getIn(['activeTip','currentTop']),
     aTipHeight: state.getIn(['activeTip','currentHeight'])
 })
@@ -143,6 +167,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getHeightStateDispatch(data) {
             dispatch(getHeight(data))
+        },
+        addTemplateDispatch(data) {
+            dispatch(addTemplate(data))
         }
     }
 }
