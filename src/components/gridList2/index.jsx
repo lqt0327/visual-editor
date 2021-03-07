@@ -53,7 +53,7 @@ const Card2 = (props) => {
     )
 }
 
-const Grid3 = (props) => {
+const Grid2 = (props) => {
 
     const { imgUrl, tag, title, desc } = props
 
@@ -102,14 +102,14 @@ function GridList2(props) {
                 template === 'card1' ?
                 <Card1 /> :
                 <div className={cx("fd-grid", {
-                    "comp_list_grid_3": template === 'grid3' ? true : false,
+                    "comp_list_grid_3": template === 'grid2' ? true : false,
                     "comp_list_grid_1": template === 'grid1' ? true : false
                 })}>
                     <div className="fd-grid-row">
                         <div className="fd-grid-col">
                             {
-                                template === 'grid3' ?
-                                    <Grid3
+                                template === 'grid2' ?
+                                    <Grid2
                                         imgUrl="https://gw.alipayobjects.com/zos/rmsportal/ZnGdPxoHrVXmGUqXouiU.png"
                                         tag="旅行"
                                         title="海外旅行"
@@ -125,8 +125,8 @@ function GridList2(props) {
                         </div>
                         <div className="fd-grid-col">
                             {
-                                template === 'grid3' ?
-                                    <Grid3
+                                template === 'grid2' ?
+                                    <Grid2
                                         imgUrl="https://gw.alipayobjects.com/zos/rmsportal/FpAKgrtDMKTXhIVdVfIj.png"
                                         tag="留学"
                                         title="出国留学"
@@ -144,8 +144,8 @@ function GridList2(props) {
                     <div className="fd-grid-row">
                         <div className="fd-grid-col">
                             {
-                                template === 'grid3' ?
-                                    <Grid3
+                                template === 'grid2' ?
+                                    <Grid2
                                         imgUrl="https://gw.alipayobjects.com/zos/rmsportal/KmzovGuElReNFnhykhMf.png"
                                         tag="商务"
                                         title="商务出行"
@@ -161,8 +161,8 @@ function GridList2(props) {
                         </div>
                         <div className="fd-grid-col">
                             {
-                                template === 'grid3' ?
-                                    <Grid3
+                                template === 'grid2' ?
+                                    <Grid2
                                         imgUrl="https://gw.alipayobjects.com/zos/rmsportal/RfVtHjHOpezICADhNcxh.png"
                                         tag="资产"
                                         title="资产配置"

@@ -17,7 +17,7 @@ const Normal1 = () => {
     )
 }
 
-const Dot5 = () => {
+const Dot3 = () => {
     return (
         <div className="comp_title_dot_5">
             <h1 className="fd-title-dot">
@@ -30,7 +30,7 @@ const Dot5 = () => {
     )
 }
 
-const Dot4 = () => {
+const Dot2 = () => {
     return (
         <div className="comp_title_dot_4">
             <h1 className="fd-title-dot">
@@ -43,7 +43,7 @@ const Dot4 = () => {
     )
 }
 
-const Dot3 = () => {
+const Dot1 = () => {
     return (
         <div className="comp_title_dot_3">
             <h1 className="fd-title-dot">
@@ -56,7 +56,7 @@ const Dot3 = () => {
     )
 }
 
-const Block8 = () => {
+const Block1 = () => {
     return (
         <h1 className="fd-title-block comp_title_block_8">
             <span className="fd-title-block-marker">
@@ -81,14 +81,14 @@ function Title(props) {
                 <Normal2 /> : 
                 template === 'normal1' ? 
                 <Normal1 /> :
-                template === 'dot5' ? 
-                <Dot5 /> : 
-                template === 'dot4' ? 
-                <Dot4 /> : 
                 template === 'dot3' ? 
                 <Dot3 /> : 
-                template === 'block8' ? 
-                <Block8 /> : ""
+                template === 'dot2' ? 
+                <Dot2 /> : 
+                template === 'dot1' ? 
+                <Dot1 /> : 
+                template === 'block1' ? 
+                <Block1 /> : ""
             }
         </div>
     )

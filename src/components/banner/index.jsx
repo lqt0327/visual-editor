@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.sass';
 import cx from 'classnames'
 
@@ -17,4 +18,4 @@ function Banner(props) {
     )
 }
 
-export default Banner;
+export default React.memo(Banner);

@@ -19,6 +19,6 @@ export { default as GridList } from './gridList'
 export { default as GridList2 } from './gridList2'
 export { default as Title } from './title'
 export { default as Quote } from './quote'
-export { default as Qaragraph } from './paragraph'
+export { default as Paragraph } from './paragraph'
 // 轮播图
 export { default as Carousel } from './carousel'

@@ -21,7 +21,7 @@ const Quote1 = () => {
     )
 }
 
-const Quote4 = () => {
+const Quote2 = () => {
     return (
         <div className="comp_quote_4">
             <div className="fd-foreword has-left">
@@ -45,8 +45,8 @@ function Quote(props) {
             {
                 template === 'quote1' ? 
                 <Quote1 /> : 
-                template === 'quote4' ?
-                <Quote4 /> : ""
+                template === 'quote2' ?
+                <Quote2 /> : ""
             }
         </div>
     )
