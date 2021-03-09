@@ -17,7 +17,7 @@ function AddComponents() {
                 <div className="l-resource">
                     <h3>添加组件</h3>
                     <div className="l-resource-list">
-                        <Tabs tabPosition="left" defaultActiveKey="1" onChange={callback} size="small">
+                        <Tabs tabPosition="left" defaultActiveKey="0" onChange={callback} size="small">
                             {
                                 // console.log(Object.values(data),"[][][][][][]")
                                 Object.keys(data).map((item,i)=>{
