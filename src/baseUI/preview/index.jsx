@@ -42,7 +42,12 @@ function Preview(props) {
         [components.GridList2,{template:'grid2'},''],
         [components.Title,{template:'dot3'},''],
         [components.Quote,{template:"quote2"},''],
-        [components.Paragraph,{template:'parleft3'},'']
+        [components.Paragraph,{template:'parleft3'},''],
+        [components.ComImg,{template:"img1"},''],
+        [components.ComButton,{template:"btn2"},""],
+        [components.ComFAQ,{template:"faq2"},""],
+        [components.ComFooter,{},""],
+        [components.ComStep,{template:"step1"},""]
     ])
 
     const _onClick = useCallback((e) => {

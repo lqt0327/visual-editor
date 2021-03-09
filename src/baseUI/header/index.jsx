@@ -13,7 +13,8 @@ function Header(props) {
             <nav>
                 <div className="header-left">
                     <div className="header-left-logo">
-                        <img src="https://gw.alipayobjects.com/zos/rmsportal/ZLdipPynpsirzAfeulEf.png" alt=""/>
+                        {/* <img src="https://gw.alipayobjects.com/zos/rmsportal/ZLdipPynpsirzAfeulEf.png" alt=""/> */}
+                        <div style={{width:"40px",height:"40px",backgroundColor:"#efefef"}}></div>
                     </div>
                     <div className="header-left-tabbar" onClick={()=>{
                         changePanelStateDispatch(['page']);console.log(props,'[[[123')
