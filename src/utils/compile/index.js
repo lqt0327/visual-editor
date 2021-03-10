@@ -1,10 +1,14 @@
 import React from 'react'
 import { getJsxClass } from '../help'
 
+// const getJsxClass2 = (name) => {
+//     return antd[name]
+// }
+
 const Compile = (json) => {
     let { tag, id } = json
     let jsxClass = getJsxClass(json.tag)
-    console.log(json,'jsxClass')
+    // console.log(jsxClass,'jsxClass')
     let props = {
         ...json.props,
         id,

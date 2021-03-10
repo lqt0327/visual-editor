@@ -30,44 +30,6 @@ function AddComponents() {
                                     )
                                 })
                             }
-                            {/* <TabPane tab="BANNER" key="1">
-                                <GeneralTemplate
-                                    // imgs={}
-                                />
-                            </TabPane>
-                            <TabPane tab="TAB" key="2">
-                            Content of Tab Pane 2
-                            </TabPane> */}
-                            {/* <TabPane tab="列表" key="3">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="标题" key="4">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="引言" key="5">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="配图" key="6">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="段落" key="7">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="按钮" key="8">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="FAQ" key="9">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="规则" key="10">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="页脚" key="11">
-                            Content of Tab Pane 3
-                            </TabPane>
-                            <TabPane tab="步骤" key="12">
-                            Content of Tab Pane 3
-                            </TabPane> */}
                         </Tabs>
                     </div>
                 </div>

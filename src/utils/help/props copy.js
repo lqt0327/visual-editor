@@ -37,9 +37,7 @@ var props = {
 		title:"这里是卡片标题"
 	},
 	Collapse:{},
-	Carousel:{
-		
-	},
+	Carousel:{},
 	Cascader:{
 		options:[
 		  {
