@@ -1,10 +1,4 @@
 var props = {
-	Banner: {
-		template: 'banner1'
-	},
-	Carousel: {
-		template: 'Carousel2'
-	},
 	AutoComplete:{
 		allowClear:true,
 		placeholder:"请输入",
@@ -43,9 +37,7 @@ var props = {
 		title:"这里是卡片标题"
 	},
 	Collapse:{},
-	Carousel:{
-		
-	},
+	Carousel:{},
 	Cascader:{
 		options:[
 		  {

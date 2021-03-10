@@ -28,36 +28,33 @@ function Preview(props) {
     } = props
 
     const [data,setData] = useState([
-        [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        // // [components.Advert,{className:'test2'},''],
-        [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''],
-        [components.Tab,{changePanelStateDispatch},''],
-        [components.EntryTab,{changePanelStateDispatch},''],
-        [components.NormalList,{template:'normal1'},''],
-        [components.RowList,{},''],
-        [components.OperationList,{template:'opt1'},''],
-        [components.NewList,{template:'new1'},''],
-        [components.NewList2,{template:'cut2'},''],
-        [components.GridList,{},''],
-        [components.GridList2,{template:'grid2'},''],
-        [components.Title,{template:'dot3'},''],
-        [components.Quote,{template:"quote2"},''],
-        [components.Paragraph,{template:'parleft3'},''],
-        [components.ComImg,{template:"img1"},''],
-        [components.ComButton,{template:"btn2"},""],
-        [components.ComFAQ,{template:"faq2"},""],
-        [components.ComFooter,{},""],
-        [components.ComStep,{template:"step1"},""]
+        "Banner",
+        // // ["Advert",{className:'test2'},''],
+        "Carousel",
+        "Tab",
+        "EntryTab",
+        "NormalList",
+        "RowList",
+        "OperationList",
+        "NewList",
+        "NewList2",
+        "GridList",
+        "GridList2",
+        "Title",
+        "Quote",
+        "Paragraph",
+        "ComImg",
+        "ComButton",
+        "ComFAQ",
+        "ComFooter",
+        "ComStep"
     ])
 
     const _onClick = useCallback((e) => {
     }, [])
 
     const Dustbin = () => {
-        let json = generateInitJson("AutoComplete")
         ReactDOM.render(<React.Fragment>
-            {Compile(json)}
-            {Compile(json)}
             {/* 
                 如何传递 值，配置好各个模板的props和classname等参数
                 统一循环渲染 ？
@@ -65,15 +62,18 @@ function Preview(props) {
             {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
-            {data.map((_,i)=>{
-                console.log(_[1],_[2],'////')
+            {data.map((item,i)=>{
+                const json = generateInitJson(item)
+                json.props["changePanelStateDispatch"] = changePanelStateDispatch
+                json.props["getTopStateDispatch"] = getTopStateDispatch
+                json.props["getHeightStateDispatch"] = getHeightStateDispatch
                 return (
                     <div className="fengdie-components" key={i}>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
                         <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top');setIndex(i);console.log(i,'测试数据top')}}>+</button>
-                        {React.createElement(_[0],Object.assign(_[1],{key:i}),_[2])}
+                        {Compile(json)}
                         <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
@@ -85,32 +85,29 @@ function Preview(props) {
     }
 
     const addTemplate = (currentTemplate, i) => {
-        // 还应该使用 localstorage 做一个长期存储，
+        // 还应该使用 localstorage 做一个长期存储， X
+        // 无法使用 localstorage 存储方法， 改用服务端存储
         switch(currentTemplate) {
             case 'banner1':
-                data.splice(i,0,
-                    [components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''])
+                data.splice(i,0,"Banner")
                 setData(data)
-                console.log(data,'????1111')
-                // setData([...data,[components.Banner,{className:'test',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},'']])
                 break;
             case 'Carousel2':
-                data.splice(i,0,
-                    [components.Carousel,{className:'test3',changePanelStateDispatch,getTopStateDispatch,getHeightStateDispatch},''])
+                data.splice(i,0,"Carousel")
                 setData(data)
                 break;
             default :
         }
     }
 
-    useEffect(async () => {
+    useEffect(() => {
         setTipHeight(tipHeightRef.current.offsetHeight)
-        console.log(currentTemplate,index,'=====')
-        await addTemplate(currentTemplate,index)
+        console.log(Compile(generateInitJson("ComStep")),'=====')
+        addTemplate(currentTemplate,index)
         console.log(data,'????222')
         addTemplateDispatch('')
         Dustbin()
-    }, [tipHeight,panel,showAdd,currentTemplate])
+    }, [tipHeight,panel,showAdd,currentTemplate,data])
 
     return (
         <div className="l-preview">
