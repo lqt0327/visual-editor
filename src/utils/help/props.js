@@ -1,4 +1,10 @@
 var props = {
+	Banner: {
+		template: 'banner1'
+	},
+	Carousel: {
+		template: 'Carousel2'
+	},
 	AutoComplete:{
 		allowClear:true,
 		placeholder:"请输入",
