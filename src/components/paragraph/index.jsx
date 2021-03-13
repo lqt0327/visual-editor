@@ -43,10 +43,19 @@ const ParLeft3 = () => {
 
 function Paragraph(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             {
                 template === 'parleft3' ? 
                 <ParLeft3 /> :

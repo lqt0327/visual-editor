@@ -28,26 +28,25 @@ function Preview(props) {
     } = props
 
     const [data,setData] = useState([
-        "Banner",
-        // // ["Advert",{className:'test2'},''],
-        "Carousel",
-        "Tab",
-        "EntryTab",
-        "NormalList",
-        "RowList",
-        "OperationList",
-        "NewList",
-        "NewList2",
-        "GridList",
-        "GridList2",
-        "Title",
-        "Quote",
-        "Paragraph",
-        "ComImg",
-        "ComButton",
-        "ComFAQ",
-        "ComFooter",
-        "ComStep"
+            ["Banner",{}],
+            ["Carousel",{}],
+            ["Tab",{}],
+            ["EntryTab",{}],
+            ["NormalList",{template: 'normal3'}],
+            ["RowList",{}],
+            ["OperationList",{template: 'opt1'}],
+            ["NewList",{}],
+            ["NewList2",{template: 'cut1'}],
+            ["GridList",{}],
+            ["GridList2",{template: 'card2'}],
+            ["OperationList",{template: 'opt1'}],
+            ["Quote",{template: 'quote1'}],
+            ["Paragraph",{template: 'detail3'}],
+            ["ComImg",{template: 'img2'}],
+            ["ComButton",{template: 'btn2'}],
+            ["ComFAQ",{template: 'faq1'}],
+            ["ComFooter",{}],
+            ["ComStep",{template: 'step1'}]
     ])
 
     const _onClick = useCallback((e) => {
@@ -63,10 +62,15 @@ function Preview(props) {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
             {data.map((item,i)=>{
-                const json = generateInitJson(item)
-                json.props["changePanelStateDispatch"] = changePanelStateDispatch
-                json.props["getTopStateDispatch"] = getTopStateDispatch
-                json.props["getHeightStateDispatch"] = getHeightStateDispatch
+                const json = generateInitJson(item[0])
+                Object.assign(json.props,{
+                    "changePanelStateDispatch": changePanelStateDispatch,
+                    "getTopStateDispatch": getTopStateDispatch,
+                    "getHeightStateDispatch": getHeightStateDispatch
+                },item[1])
+                // json.props["changePanelStateDispatch"] = changePanelStateDispatch
+                // json.props["getTopStateDispatch"] = getTopStateDispatch
+                // json.props["getHeightStateDispatch"] = getHeightStateDispatch
                 return (
                     <div className="fengdie-components" key={i}>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
@@ -89,11 +93,11 @@ function Preview(props) {
         // 无法使用 localstorage 存储方法， 改用服务端存储
         switch(currentTemplate) {
             case 'banner1':
-                data.splice(i,0,"Banner")
+                data.splice(i,0,["Banner"])
                 setData(data)
                 break;
             case 'Carousel2':
-                data.splice(i,0,"Carousel")
+                data.splice(i,0,["Carousel"])
                 setData(data)
                 break;
             default :

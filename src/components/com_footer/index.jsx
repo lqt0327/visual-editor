@@ -11,9 +11,21 @@ const Footer = styled.div`
     } 
 `
 
-function ComFooter() {
+function ComFooter(props) {
+
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
+    
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             <Footer>
                 <img src="https://gw.alipayobjects.com/zos/rmsportal/XtMFIqbtszjfPnrtQnIe.png" alt="" className="comp_footer_img_1-img" style={{width:"65px",height:"23px"}} />
             </Footer>

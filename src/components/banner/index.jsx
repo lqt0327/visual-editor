@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 function Banner(props) {
     
     const { changePanelStateDispatch, getTopStateDispatch, getHeightStateDispatch } = props
-    
+    console.log(props,'banner_props')
     return (
         <div className={cx("banner",props.className)} onClick={()=>{
             changePanelStateDispatch(['banner','static']);

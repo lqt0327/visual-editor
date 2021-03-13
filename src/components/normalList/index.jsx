@@ -9,10 +9,19 @@ const ListContent = styled.div`
 
 function NormalList(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             <div>
                 <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
                     <div className={cx("fd-subject-cover",{"hide": template === 'normal1' ? true : false})} style={{backgroundImage:'url("https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png")'}}></div>

@@ -1,9 +1,21 @@
 import React from 'react'
 import './style.sass'
 
-function RowList() {
+function RowList(props) {
+
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
+
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             <div className="fd-grid comp_list_v_1">
                 {
                     new Array(4).fill(null).map((_,i)=>{

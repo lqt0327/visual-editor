@@ -38,10 +38,19 @@ const Quote2 = () => {
 
 function Quote(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <div className="use-tag" style={{position: "relative"}}>
+        <div className="use-tag" style={{position: "relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             {
                 template === 'quote1' ? 
                 <Quote1 /> : 

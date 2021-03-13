@@ -4,10 +4,19 @@ import './style.sass'
 
 function OpertaionList(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <div className="use-tag">
+        <div className="use-tag" style={{position:'relative'}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">
                     <div className={cx({"fd-subject-cover":template === 'opt1' ? false : true})} style={{backgroundImage:"url('https://gw.alipayobjects.com/zos/rmsportal/qnMZzTAViDGQHHjgyICm.png')"}}></div>

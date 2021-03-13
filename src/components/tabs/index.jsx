@@ -10,10 +10,19 @@ function callback(key) {
 
 function Tab(props) {
 
-    const { changePanelStateDispatch } = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <Tabs defaultActiveKey="1" onChange={callback} onClick={()=>{changePanelStateDispatch(['tab','normal'])}}>
+        <Tabs defaultActiveKey="1" onChange={callback} onClick={()=>{
+            changePanelStateDispatch(['tab','normal']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             {
                 new Array(4).fill(null).map((_,i)=>{
                     return (

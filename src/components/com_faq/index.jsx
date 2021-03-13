@@ -3,10 +3,19 @@ import './style.sass'
 
 function ComFAQ(props){
 
-    const { template } = props 
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static']);
+            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
+            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+        }}>
             <div className="comp_faq_normal_1">
                 <section className="fd-desc-sect has-side">
                     <div className="fd-desc-sect-side">

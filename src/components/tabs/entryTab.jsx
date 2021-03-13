@@ -34,7 +34,12 @@ const EnteryNormal = styled.div`
 
 function EntryTab(props) {
 
-    const {changePanelStateDispatch} = props
+    const { 
+        changePanelStateDispatch,
+        getTopStateDispatch, 
+        getHeightStateDispatch,
+        template
+    } = props
 
     return (
         <EnteryNormal onClick={()=>{changePanelStateDispatch(['tab','entry'])}}>
