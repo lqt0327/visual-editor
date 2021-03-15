@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { changePanel, getTop, getHeight, addTemplate } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
+import config from './config.json'
 import * as components from 'components'
 import './style.sass'
 
@@ -27,26 +28,13 @@ function Preview(props) {
         addTemplateDispatch
     } = props
 
-    const [data,setData] = useState([
-            ["Banner",{}],
-            ["Carousel",{}],
-            ["Tab",{}],
-            ["EntryTab",{}],
-            ["NormalList",{template: 'normal3'}],
-            ["RowList",{}],
-            ["OperationList",{template: 'opt1'}],
-            ["NewList",{}],
-            ["NewList2",{template: 'cut1'}],
-            ["GridList",{}],
-            ["GridList2",{template: 'card2'}],
-            ["OperationList",{template: 'opt1'}],
-            ["Quote",{template: 'quote1'}],
-            ["Paragraph",{template: 'detail3'}],
-            ["ComImg",{template: 'img2'}],
-            ["ComButton",{template: 'btn2'}],
-            ["ComFAQ",{template: 'faq1'}],
-            ["ComFooter",{}],
-            ["ComStep",{template: 'step1'}]
+    const data = useRef([
+        {
+            comp: "Banner",
+            template: "banner1",
+            link_address: "www.baidu.com",
+            img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
+        }
     ])
 
     const _onClick = useCallback((e) => {
@@ -61,16 +49,15 @@ function Preview(props) {
             {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
-            {data.map((item,i)=>{
-                const json = generateInitJson(item[0])
+            {data.current.map((item,i)=>{
+                const json = generateInitJson(item["comp"])
+                console.log(json,'json----')
+                // 需要的方法 应该在这里统一传递给组件  或  直接写在组件之中
                 Object.assign(json.props,{
                     "changePanelStateDispatch": changePanelStateDispatch,
                     "getTopStateDispatch": getTopStateDispatch,
                     "getHeightStateDispatch": getHeightStateDispatch
-                },item[1])
-                // json.props["changePanelStateDispatch"] = changePanelStateDispatch
-                // json.props["getTopStateDispatch"] = getTopStateDispatch
-                // json.props["getHeightStateDispatch"] = getHeightStateDispatch
+                },item)
                 return (
                     <div className="fengdie-components" key={i}>
                         <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
@@ -88,27 +75,15 @@ function Preview(props) {
         </React.Fragment>, document.getElementById("stage"))
     }
 
-    const addTemplate = (currentTemplate, i) => {
-        // 还应该使用 localstorage 做一个长期存储， X
-        // 无法使用 localstorage 存储方法， 改用服务端存储
-        switch(currentTemplate) {
-            case 'banner1':
-                data.splice(i,0,["Banner"])
-                setData(data)
-                break;
-            case 'Carousel2':
-                data.splice(i,0,["Carousel"])
-                setData(data)
-                break;
-            default :
-        }
+    const addTemplate = (currentTpl, i) => {
+        currentTpl && data.current.splice(i,0, config[currentTpl])
     }
 
     useEffect(() => {
+        console.log(data.current[0].comp,'????222')
         setTipHeight(tipHeightRef.current.offsetHeight)
         console.log(Compile(generateInitJson("ComStep")),'=====')
         addTemplate(currentTemplate,index)
-        console.log(data,'????222')
         addTemplateDispatch('')
         Dustbin()
     }, [tipHeight,panel,showAdd,currentTemplate,data])

@@ -10,7 +10,7 @@ const getJsxClass = (name) => {
 }
 
 const getDefaultProps = (name) => {
-    // console.log(comp[name],"defaultProps123")
+    // console.log([comp[name]],"defaultProps123")
     return comp[name].defaultProps
 }
 

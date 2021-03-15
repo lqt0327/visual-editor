@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const EnteryNormal = styled.div`
@@ -34,37 +35,45 @@ const EnteryNormal = styled.div`
 
 function EntryTab(props) {
 
-    const { 
+    const {
         changePanelStateDispatch,
-        getTopStateDispatch, 
+        getTopStateDispatch,
         getHeightStateDispatch,
-        template
+        template,
+        id,
+        children
     } = props
 
     return (
-        <EnteryNormal onClick={()=>{changePanelStateDispatch(['tab','entry'])}}>
-            <div className="use-tag" style={{position:"relative"}}>
+        <EnteryNormal onClick={() => { changePanelStateDispatch(['tab', 'entry']) }}>
+            <div className="use-tag" style={{ position: "relative" }} id={id}>
                 <section className="comp_entry_normal_1">
-                    <a className="comp_entry_normal_1-item" style={{width:"25%"}}>
-                        <img src="https://gw.alipayobjects.com/zos/rmsportal/AOtWvDPAJgtZPFMXHKNm.png" alt=""/>
-                        <p>境外汇款</p>
-                    </a>
-                    <a href="" className="comp_entry_normal_1-item" style={{width:"25%"}}>
-                        <img src="https://gw.alipayobjects.com/zos/rmsportal/RgGGnFTIqGzkLIZyMFej.png" alt=""/>
-                        <p>外汇结汇</p>
-                    </a>
-                    <a href="" className="comp_entry_normal_1-item" style={{width:"25%"}}>
-                        <img src="https://gw.alipayobjects.com/zos/rmsportal/ycOPKaiWZFtKyhDCxRAY.png" alt=""/>
-                        <p>代理签证</p>
-                    </a>
-                    <a href="" className="comp_entry_normal_1-item" style={{width:"25%"}}>
-                        <img src="https://gw.alipayobjects.com/zos/rmsportal/oOhXrdlcKBHAPiEatqNR.png" alt=""/>
-                        <p>国际机票</p>
-                    </a>
+                    {
+                        children.map((item, i) => {
+                            return (
+                                <a className="comp_entry_normal_1-item" style={{ width: "25%" }} key={i}>
+                                    <img src={item["img_address"]} alt="" />
+                                    <p>{item["label"]}</p>
+                                </a>
+                            )
+                        })
+                    }
                 </section>
             </div>
         </EnteryNormal>
     )
+}
+
+EntryTab.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    getTopStateDispatch: PropTypes.func,
+    getHeightStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    children: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string,
+        img_address: PropTypes.string,
+        link_address: PropTypes.string
+    }))
 }
 
 export default React.memo(EntryTab);
