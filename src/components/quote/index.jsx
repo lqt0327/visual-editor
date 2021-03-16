@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './style.sass'
 
-const Quote1 = () => {
+const Quote1 = (props) => {
     return (
         <div className="comp_quote_1">
             <div className="fd-foreword has-left">
@@ -13,7 +14,7 @@ const Quote1 = () => {
                 </div>
                 <div className="fd-foreword-body">
                     <div className="comp_quote_1-text">
-                        云凤蝶的文化：客户第一，追求极致，勇于创新，开放共赢 / 云凤蝶的品牌定位：丰富、简单、个性、开放。
+                        {props.text}
                     </div>
                 </div>
             </div>
@@ -21,7 +22,7 @@ const Quote1 = () => {
     )
 }
 
-const Quote2 = () => {
+const Quote2 = (props) => {
     return (
         <div className="comp_quote_4">
             <div className="fd-foreword has-left">
@@ -29,7 +30,7 @@ const Quote2 = () => {
                     <svg viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" className="comp_quote_4-left"><g id="通用组件（113）" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="详情（32）" transform="translate(-503.000000, -105.000000)"><g id="Group-10" transform="translate(487.000000, 94.000000)"><g id="Group-7" transform="translate(16.000000, 11.114583)"><ellipse id="Oval" fill="#333333" cx="10" cy="10.1041667" rx="10" ry="10.1041667"></ellipse><text id="“" fontFamily="PingFangSC-Medium, PingFang SC" fontSize="20" fontWeight="400" fill="#FFFFFF"><tspan x="4" y="23.1666667">“</tspan></text></g></g></g></g></svg>
                 </div>
                 <div className="fd-foreword-body">
-                    <div className="comp_quote_4-text">云凤蝶的文化：客户第一，追求极致，勇于创新，开放共赢 / 云凤蝶的品牌定位：丰富、简单、个性、开放。</div>
+                    <div className="comp_quote_4-text">{props.text}</div>
                 </div>
             </div>
         </div>
@@ -42,23 +43,33 @@ function Quote(props) {
         changePanelStateDispatch,
         getTopStateDispatch, 
         getHeightStateDispatch,
-        template
+        template,
+        id,
+        text
     } = props
 
     return (
-        <div className="use-tag" style={{position: "relative"}} onClick={()=>{
+        <div className="use-tag" id={id} style={{position: "relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static']);
             // getTopStateDispatch(document.querySelector('.banner').offsetTop);
             // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
         }}>
             {
                 template === 'quote1' ? 
-                <Quote1 /> : 
+                <Quote1 text={text} /> : 
                 template === 'quote2' ?
-                <Quote2 /> : ""
+                <Quote2 text={text} /> : ""
             }
         </div>
     )
+}
+
+Quote.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    getTopStateDispatch: PropTypes.func,
+    getHeightStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string
 }
 
 export default React.memo(Quote)

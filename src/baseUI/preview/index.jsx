@@ -5,7 +5,6 @@ import { changePanel, getTop, getHeight, addTemplate } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import config from './config.json'
-import * as components from 'components'
 import './style.sass'
 
 

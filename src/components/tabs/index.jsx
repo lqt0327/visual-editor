@@ -38,7 +38,7 @@ function Tab(props) {
     } = props
 
     return (
-        <Tabs defaultActiveKey="1" onChange={callback} onClick={()=>{
+        <Tabs defaultActiveKey="1" id={id} onChange={callback} onClick={()=>{
             changePanelStateDispatch(['tab','normal']);
             // getTopStateDispatch(document.querySelector('.banner').offsetTop);
             // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)

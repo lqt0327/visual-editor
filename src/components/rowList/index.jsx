@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './style.sass'
 
 function RowList(props) {
@@ -7,18 +8,20 @@ function RowList(props) {
         changePanelStateDispatch,
         getTopStateDispatch, 
         getHeightStateDispatch,
-        template
+        template,
+        id,
+        children
     } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static']);
             // getTopStateDispatch(document.querySelector('.banner').offsetTop);
             // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
         }}>
             <div className="fd-grid comp_list_v_1">
                 {
-                    new Array(4).fill(null).map((_,i)=>{
+                    children.map((_,i)=>{
                         return (
                             <div className="fd-grid-row" key={i}>
                                 <div className="fd-grid-col">
@@ -26,13 +29,13 @@ function RowList(props) {
                                         <a 
                                             href="" 
                                             className="fd-link fd-cover fd-jumbo-cover"
-                                            style={{backgroundImage:'url("https://gw.alipayobjects.com/zos/rmsportal/qnMZzTAViDGQHHjgyICm.png")'}}
+                                            style={{backgroundImage:'url('+_.img_address+')'}}
                                         >
                                         </a>
                                         <div className="fd-jumbo-mask"></div>
-                                        <div className="fd-jumbo-content">银行存款证明</div>
+                                        <div className="fd-jumbo-content">{_.title}</div>
                                         <div className="fd-jumbo-tag">
-                                            <label htmlFor="">金融</label>
+                                            <label htmlFor="">{_.tag}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -43,6 +46,19 @@ function RowList(props) {
             </div>
         </div>
     )
+}
+
+RowList.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    getTopStateDispatch: PropTypes.func,
+    getHeightStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    children: PropTypes.arrayOf(PropTypes.shape({
+        link_address: PropTypes.string,
+        img_address: PropTypes.string,
+        title: PropTypes.string,
+        tag: PropTypes.string
+    }))
 }
 
 export default React.memo(RowList)

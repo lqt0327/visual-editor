@@ -1,17 +1,35 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import marked from 'marked'
+import hljs from "highlight.js"
+import 'highlight.js/styles/tomorrow-night-bright.css';
 import './style.sass'
 
 function ComFAQ(props){
+
+    const renderer = new marked.Renderer()
+
+    marked.setOptions({
+        renderer: renderer,
+        gfm: true,
+        smartLists: true,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
+    });
 
     const { 
         changePanelStateDispatch,
         getTopStateDispatch, 
         getHeightStateDispatch,
-        template
+        template,
+        id,
+        title,
+        content
     } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static']);
             // getTopStateDispatch(document.querySelector('.banner').offsetTop);
             // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
@@ -28,11 +46,11 @@ function ComFAQ(props){
                     </div>
                     <div className="fd-desc-sect-content">
                         <div className="comp_faq_normal_1-body">
-                            <h1 className="fd-title">什么是云凤蝶？</h1>
-                            <div className="comp_faq_normal_1-body-content">
-                                <div>
-                                    无需搭建开发环境和部署服务器，基于开发者工具，使用丰富的 UI 组件和行业模板研发 H5 站点，2 分钟完成站点部署。
-                                </div>
+                            <h1 className="fd-title">{title}</h1>
+                            <div 
+                                className="comp_faq_normal_1-body-content"
+                                dangerouslySetInnerHTML={{__html:marked(content)}}
+                            >
                             </div>
                         </div>
                     </div>
@@ -40,6 +58,15 @@ function ComFAQ(props){
             </div>
         </div>
     )
+}
+
+ComFAQ.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    getTopStateDispatch: PropTypes.func,
+    getHeightStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    title: PropTypes.string
 }
 
 export default React.memo(ComFAQ)
