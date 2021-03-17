@@ -7,8 +7,6 @@ function NewList2(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         title,
@@ -18,9 +16,10 @@ function NewList2(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <div>
                 <a href="" className="fd-link comp_list_news_h_6">
@@ -51,8 +50,6 @@ function NewList2(props) {
 
 NewList2.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     img_address: PropTypes.string,

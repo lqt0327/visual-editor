@@ -8,7 +8,6 @@ import './style.sass'
 // 根据传入 参数 判断 使用 折叠面板 ｜ 直接展示 ？
 
 function LeftPanelBanner(props) {
-    console.log(props,'leftbanner')
     const {panel} = props
     return (
         <React.Fragment>

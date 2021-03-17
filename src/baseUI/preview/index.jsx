@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel, getTop, getHeight, addTemplate } from 'store/actions'
+import { changePanel, addTemplate } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import config from './config.json'
@@ -10,16 +10,16 @@ import './style.sass'
 
 function Preview(props) {
     const tipHeightRef = useRef(null)
-    console.log(props, '------')
 
     const [index, setIndex] = useState(0)
     const [tipHeight,setTipHeight] = useState(0)
     const [showAdd,setShowAdd] = useState('')
+    const [atipTop, setaTipTop] = useState(0)
+    const [atipHeight, setaTipHeight] = useState(0)
 
     const {
-        aTipTop,
-        aTipHeight,
         panel,
+        curId,
         currentTemplate,
         changePanelStateDispatch,
         getTopStateDispatch,
@@ -50,7 +50,6 @@ function Preview(props) {
             }
             {data.current.map((item,i)=>{
                 const json = generateInitJson(item["comp"])
-                console.log(json,'json----')
                 // 需要的方法 应该在这里统一传递给组件  或  直接写在组件之中
                 Object.assign(json.props,{
                     "changePanelStateDispatch": changePanelStateDispatch,
@@ -59,13 +58,13 @@ function Preview(props) {
                 },item)
                 return (
                     <div className="fengdie-components" key={i}>
-                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
+                        <div id="fengdie-components-drop-placeholder-top" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top');setIndex(i);console.log(i,'测试数据top')}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch({currentPanel:['addComponents'],currentId:"fengdie-components-drop-placeholder-top"});setShowAdd(i+'top');setIndex(i)}}>+</button>
                         {Compile(json)}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
-                        <div id="fengdie-components-drop-placeholder" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch({currentPanel:['addComponents'],currentId:"fengdie-components-drop-placeholder-bottom"});setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
+                        <div id="fengdie-components-drop-placeholder-bottom" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
                     </div>
@@ -79,13 +78,14 @@ function Preview(props) {
     }
 
     useEffect(() => {
-        console.log(data.current[0].comp,'????222')
         setTipHeight(tipHeightRef.current.offsetHeight)
-        console.log(Compile(generateInitJson("ComStep")),'=====')
+        document.getElementById(curId) ? setaTipTop(document.getElementById(curId).offsetTop) : setaTipTop(0)
+        document.getElementById(curId) ? setaTipHeight(document.getElementById(curId).offsetHeight) : setaTipHeight(0)
+        
         addTemplate(currentTemplate,index)
         addTemplateDispatch('')
         Dustbin()
-    }, [tipHeight,panel,showAdd,currentTemplate,data])
+    }, [tipHeight,panel,showAdd,currentTemplate,data,curId,atipHeight,atipTop])
 
     return (
         <div className="l-preview">
@@ -109,10 +109,10 @@ function Preview(props) {
                     </div>
                 </div>
                 <div className="l-preview-container">
-                    <div className="l-preview-tips" style={{ height: tipHeight + 'px' }} onClick={()=>console.log([document.querySelector('.l-preview-iframe').offsetHeight])}>
+                    <div className="l-preview-tips" style={{ height: tipHeight + 'px' }} >
                         <div className="l-view-hover-tip" style={{ top: '0px', height: '0px' }}></div>
-                        <div className="l-view-active-tip" style={{ top: aTipTop + 'px', height: aTipHeight + 'px' }}></div>
-                        <div className="l-view-tools" style={{ top: '8px' }}>
+                        <div className="l-view-active-tip" style={{ top: atipTop + 'px', height: atipHeight + 'px' }}></div>
+                        <div className="l-view-tools" style={{ top: atipTop+"px" }}>
                             {/* <div className="l-tools-move l-tools-move-single"> */}
                             <div className="l-tools-move">
                                 <i className="icon iconfont">&#xe703;</i>
@@ -133,8 +133,9 @@ function Preview(props) {
 }
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels', 'currentPanel']),
-    currentTemplate: state.getIn(['template', 'currentTemplate']),
+    panel: state.getIn(['panels','currentPanel']),
+    curId: state.getIn(['panels', 'currentId']),
+    currentTemplate: state.getIn(['template', 'currentTemplate']),  // 左侧添加面板中 选中的模版
     aTipTop: state.getIn(['activeTip','currentTop']),
     aTipHeight: state.getIn(['activeTip','currentHeight'])
 })
@@ -143,12 +144,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changePanelStateDispatch(data) {
             dispatch(changePanel(data))
-        },
-        getTopStateDispatch(data) {
-            dispatch(getTop(data))
-        },
-        getHeightStateDispatch(data) {
-            dispatch(getHeight(data))
         },
         addTemplateDispatch(data) {
             dispatch(addTemplate(data))

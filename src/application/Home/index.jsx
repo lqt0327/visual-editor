@@ -10,6 +10,7 @@ import "./style.sass";
 function Home(props) {
 
     const { panel } = props
+
     const [arr,setArr] = useState([components.Header,components.LouCengBiaoTi,components.LouCengJianGe,components.LinkAddress,components.Upload,components.Carousel])
     
     return (

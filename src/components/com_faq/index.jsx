@@ -20,8 +20,6 @@ function ComFAQ(props){
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         title,
@@ -30,9 +28,10 @@ function ComFAQ(props){
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <div className="comp_faq_normal_1">
                 <section className="fd-desc-sect has-side">
@@ -62,8 +61,6 @@ function ComFAQ(props){
 
 ComFAQ.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     content: PropTypes.string,
     title: PropTypes.string

@@ -30,8 +30,6 @@ function Tab(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         children
@@ -39,9 +37,10 @@ function Tab(props) {
 
     return (
         <Tabs defaultActiveKey="1" id={id} onChange={callback} onClick={()=>{
-            changePanelStateDispatch(['tab','normal']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             {
                 children.map((item,i)=>{
@@ -60,8 +59,6 @@ function Tab(props) {
 
 Tab.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     type: PropTypes.string,
     id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({

@@ -97,8 +97,6 @@ function GridList2(props) {
 
     const {
         changePanelStateDispatch,
-        getTopStateDispatch,
-        getHeightStateDispatch,
         template,
         id,
         children,
@@ -110,9 +108,10 @@ function GridList2(props) {
 
     return (
         <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch(['banner', 'static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             {
                 template === 'cardlist2' ?
@@ -172,8 +171,6 @@ function GridList2(props) {
 
 GridList2.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,

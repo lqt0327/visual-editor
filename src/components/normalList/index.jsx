@@ -11,9 +11,7 @@ const ListContent = styled.div`
 function NormalList(props) {
 
     const { 
-        changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
+        changePanelStateDispatch,       
         template,
         id,
         link_address,
@@ -21,13 +19,13 @@ function NormalList(props) {
         img_address,
         tag
     } = props
-    console.log(props, "NormalList----")
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <div>
                 <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
@@ -56,8 +54,6 @@ function NormalList(props) {
 
 NormalList.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     link_address: PropTypes.string,
     title: PropTypes.string,

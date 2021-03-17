@@ -16,8 +16,6 @@ function ComFooter(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         img_address
@@ -25,9 +23,10 @@ function ComFooter(props) {
     
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <Footer>
                 <img src={img_address} alt="" className="comp_footer_img_1-img" style={{width:"65px",height:"23px"}} />
@@ -38,8 +37,6 @@ function ComFooter(props) {
 
 ComFooter.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     img_address: PropTypes.string
 }

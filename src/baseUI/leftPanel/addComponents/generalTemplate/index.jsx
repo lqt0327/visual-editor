@@ -7,8 +7,6 @@ function GeneralTemplate(props) {
 
     const { imgs, template, addTemplateDispatch } = props
 
-    console.log(template,'testlqtlqt')
-
     return (
         <div>
             <div className="l-resource-item">
@@ -16,7 +14,7 @@ function GeneralTemplate(props) {
                     {
                         imgs.map((item,i)=>{
                             return (
-                            <div className="ser-module-item smooth-dnd-draggable-wrapper" key={i} onClick={()=>{console.log(item[2],'test++++------');addTemplateDispatch(item[2])}}>
+                            <div className="ser-module-item smooth-dnd-draggable-wrapper" key={i} onClick={()=>{addTemplateDispatch(item[2])}}>
                                     <div>
                                         <span className="ser-module-item-image">
                                             <img width="280" src={item[0]} alt=""/>

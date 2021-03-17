@@ -75,8 +75,6 @@ function Title(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         title
@@ -84,9 +82,10 @@ function Title(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['tab','normal']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             {
                 template === 'normal2' ? 
@@ -108,8 +107,6 @@ function Title(props) {
 
 Title.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     title: PropTypes.string
 }

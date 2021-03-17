@@ -58,8 +58,6 @@ function ComStep(props) {
 
     const {
         changePanelStateDispatch,
-        getTopStateDispatch,
-        getHeightStateDispatch,
         template,
         id,
         children
@@ -67,9 +65,10 @@ function ComStep(props) {
 
     return (
         <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch(['banner', 'static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             {
                 template === 'step1' ?
@@ -87,8 +86,6 @@ function ComStep(props) {
 
 ComStep.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         step: PropTypes.string,

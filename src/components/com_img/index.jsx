@@ -5,9 +5,7 @@ import './style.sass';
 function ComponentImg(props) {
 
     const { 
-        changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
+        changePanelStateDispatch,       
         template,
         id,
         img_address,
@@ -16,9 +14,10 @@ function ComponentImg(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <div className="comp_img_2">
                 <img src={img_address} alt="" className="comp_img_2-img"/>
@@ -34,8 +33,6 @@ function ComponentImg(props) {
 
 ComponentImg.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     img_address: PropTypes.string,
     desc: PropTypes.string

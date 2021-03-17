@@ -37,15 +37,18 @@ function EntryTab(props) {
 
     const {
         changePanelStateDispatch,
-        getTopStateDispatch,
-        getHeightStateDispatch,
         template,
         id,
         children
     } = props
 
     return (
-        <EnteryNormal onClick={() => { changePanelStateDispatch(['tab', 'entry']) }}>
+        <EnteryNormal onClick={() => { 
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
+         }}>
             <div className="use-tag" style={{ position: "relative" }} id={id}>
                 <section className="comp_entry_normal_1">
                     {
@@ -66,8 +69,6 @@ function EntryTab(props) {
 
 EntryTab.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.string,

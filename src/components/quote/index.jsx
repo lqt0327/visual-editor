@@ -41,8 +41,6 @@ function Quote(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         text
@@ -50,9 +48,10 @@ function Quote(props) {
 
     return (
         <div className="use-tag" id={id} style={{position: "relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             {
                 template === 'quote1' ? 
@@ -66,8 +65,6 @@ function Quote(props) {
 
 Quote.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     text: PropTypes.string
 }

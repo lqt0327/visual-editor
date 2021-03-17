@@ -7,8 +7,6 @@ function OperationList(props) {
 
     const { 
         changePanelStateDispatch,
-        getTopStateDispatch, 
-        getHeightStateDispatch,
         template,
         id,
         title,
@@ -21,9 +19,10 @@ function OperationList(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:'relative'}} onClick={()=>{
-            changePanelStateDispatch(['banner','static']);
-            // getTopStateDispatch(document.querySelector('.banner').offsetTop);
-            // getHeightStateDispatch(document.querySelector('.banner').offsetHeight)
+            changePanelStateDispatch({
+                currentPanel: ['banner','static'],
+                currentId: id
+            })
         }}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">
@@ -56,8 +55,6 @@ function OperationList(props) {
 
 OperationList.propTypes = {
     changePanelStateDispatch: PropTypes.func,
-    getTopStateDispatch: PropTypes.func,
-    getHeightStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     tag: PropTypes.array,
