@@ -22,10 +22,7 @@ function NormalList(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div>
                 <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>

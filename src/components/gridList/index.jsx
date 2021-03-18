@@ -37,10 +37,7 @@ function GridList(props) {
 
     return (
         <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div className="fd-grid comp_list_grid_5">
                 {

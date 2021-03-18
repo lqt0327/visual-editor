@@ -13,10 +13,7 @@ function Banner(props) {
     } = props
     return (
         <div className={cx("banner",props.className)} id={id} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            });
+            changePanelStateDispatch(['banner','static']);
         }}>
             {/* <a href={link_address} target="_blank"> */}
             <a>

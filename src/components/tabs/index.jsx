@@ -11,11 +11,11 @@ function callback(key) {
 
 const CompList = (arr) => {
     return (
-        arr.map((item2,j)=>{
+        arr.map((item2, j) => {
             return (
                 <div key={j}>
                     <a className="fd-link fd-subject">
-                        <div className="fd-subject-cover" style={{backgroundImage:'url('+ item2["img_address"] +')'}}></div>
+                        <div className="fd-subject-cover" style={{ backgroundImage: 'url(' + item2["img_address"] + ')' }}></div>
                         <div className="fd-subject-content">
                             <h1 className="fd-title line-cut-2">{item2["title"]}</h1>
                         </div>
@@ -28,7 +28,7 @@ const CompList = (arr) => {
 
 function Tab(props) {
 
-    const { 
+    const {
         changePanelStateDispatch,
         template,
         id,
@@ -36,24 +36,24 @@ function Tab(props) {
     } = props
 
     return (
-        <Tabs defaultActiveKey="1" id={id} onChange={callback} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
-        }}>
-            {
-                children.map((item,i)=>{
-                    return (
-                        <TabPane tab={item["label"]} key={i+1}>
-                            {
-                                CompList(item["children"])
-                            }
-                        </TabPane>
-                    )
-                })
-            }
-        </Tabs>
+        <div className="use-tag" style={{ position: "relative" }} id={id}>
+            <Tabs defaultActiveKey="1" onChange={callback} onClick={() => {
+                changePanelStateDispatch(['banner', 'static'])
+            }}>
+                {
+                    children.map((item, i) => {
+                        return (
+                            <TabPane tab={item["label"]} key={i + 1}>
+                                {
+                                    CompList(item["children"])
+                                }
+                            </TabPane>
+                        )
+                    })
+                }
+            </Tabs>
+        </div>
+
     )
 }
 

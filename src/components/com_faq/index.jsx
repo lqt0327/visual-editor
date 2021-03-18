@@ -28,10 +28,7 @@ function ComFAQ(props){
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div className="comp_faq_normal_1">
                 <section className="fd-desc-sect has-side">

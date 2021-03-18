@@ -14,10 +14,7 @@ function ComponentImg(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div className="comp_img_2">
                 <img src={img_address} alt="" className="comp_img_2-img"/>

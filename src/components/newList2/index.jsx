@@ -16,10 +16,7 @@ function NewList2(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div>
                 <a href="" className="fd-link comp_list_news_h_6">

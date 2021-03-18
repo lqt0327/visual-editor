@@ -3,7 +3,7 @@ import * as comp from 'components'
 import { props as propsTree } from './props'
 import { v4 as uuidv4 } from 'uuid';
 
-const generateUUID = () => `astx${uuidv4()}`
+const generateUUID = () => `llscw${uuidv4()}`
 
 const getJsxClass = (name) => {
     return comp[name]
@@ -36,7 +36,13 @@ const getUuid = (ele) => {
     while(!ele.id) {
         ele = ele.parentNode
     }
-    return ele.id
+    if(ele.id === 'stage') return;
+    if(ele.id) {
+        if(ele.id.indexOf("llscw") === -1){
+            return getUuid(ele.parentNode)
+        }
+    }
+    return ele.id;
 }
 
 export {

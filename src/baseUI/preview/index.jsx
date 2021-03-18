@@ -16,10 +16,10 @@ function Preview(props) {
     const [showAdd,setShowAdd] = useState('')
     const [atipTop, setaTipTop] = useState(0)
     const [atipHeight, setaTipHeight] = useState(0)
+    const [activeId, setActiveId] = useState()
 
     const {
         panel,
-        curId,
         currentTemplate,
         changePanelStateDispatch,
         getTopStateDispatch,
@@ -35,9 +35,6 @@ function Preview(props) {
             img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
         }
     ])
-
-    const _onClick = useCallback((e) => {
-    }, [])
 
     const Dustbin = () => {
         ReactDOM.render(<React.Fragment>
@@ -61,9 +58,9 @@ function Preview(props) {
                         <div id="fengdie-components-drop-placeholder-top" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch({currentPanel:['addComponents'],currentId:"fengdie-components-drop-placeholder-top"});setShowAdd(i+'top');setIndex(i)}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top');setIndex(i)}}>+</button>
                         {Compile(json)}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch({currentPanel:['addComponents'],currentId:"fengdie-components-drop-placeholder-bottom"});setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
                         <div id="fengdie-components-drop-placeholder-bottom" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
@@ -73,19 +70,46 @@ function Preview(props) {
         </React.Fragment>, document.getElementById("stage"))
     }
 
-    const addTemplate = (currentTpl, i) => {
+    const addTemplate = useCallback((currentTpl, i) => {
         currentTpl && data.current.splice(i,0, config[currentTpl])
-    }
+    },[])
 
     useEffect(() => {
+        // console.log([tipHeightRef.current],'测试数据')
         setTipHeight(tipHeightRef.current.offsetHeight)
-        document.getElementById(curId) ? setaTipTop(document.getElementById(curId).offsetTop) : setaTipTop(0)
-        document.getElementById(curId) ? setaTipHeight(document.getElementById(curId).offsetHeight) : setaTipHeight(0)
+        document.getElementById(activeId) ? setaTipTop(document.getElementById(activeId).offsetTop) : setaTipTop(0)
+        document.getElementById(activeId) ? setaTipHeight(document.getElementById(activeId).offsetHeight) : setaTipHeight(0)
         
         addTemplate(currentTemplate,index)
         addTemplateDispatch('')
+        
+    }, [tipHeight,currentTemplate,activeId])
+
+    useEffect(()=>{
         Dustbin()
-    }, [tipHeight,panel,showAdd,currentTemplate,data,curId,atipHeight,atipTop])
+    },[currentTemplate,showAdd])
+
+    // 获取 点击模块的 id
+    const clickHandler = useCallback((e) => {
+        const id = getUuid(e.target)
+        if(id) {
+            setActiveId(id)
+        } else {
+            console.warn("请检查当前组件是否具有id属性（属性值特征：llscw+....）")
+        }
+    },[])
+
+    const deleteComp = useCallback((id) => {
+        try{
+            const self = document.getElementById(id)
+            const parent = self.parentElement
+            parent.removeChild(self)
+            setaTipTop(0)
+            setaTipHeight(0)
+        }catch(err){
+            console.log('楼层id为空')
+        }
+    },[])
 
     return (
         <div className="l-preview">
@@ -97,11 +121,11 @@ function Preview(props) {
                 </div>
             </div>
             <div className="l-prevew-box">
-                <div className="l-preview-iframe" ref={tipHeightRef}>
+                <div className="l-preview-iframe">
                     <div className="l-preview-scroll">
-                        <div className="lAnt-spin-nested-loading">
+                        <div className="lAnt-spin-nested-loading" ref={tipHeightRef}>
                             <div className="lAnt-spin__main" style={{ background: "rgb(255,255,255)" }}>
-                                <div className="lAnt-spin__main-inner" onClick={_onClick} style={{ paddingBottom: "0px" }} id="stage">
+                                <div className="lAnt-spin__main-inner" onClick={clickHandler} style={{ paddingBottom: "0px" }} id="stage">
                                     {/* <div className="lAnt-spin__main-first-screen-line"></div> */}
                                 </div>
                             </div>
@@ -121,7 +145,7 @@ function Preview(props) {
                             <div className="l-tools-copy">
                                 <i className="icon iconfont">&#xe767;</i>
                             </div>
-                            <div className="l-tools-delete">
+                            <div className="l-tools-delete" onClick={()=>{deleteComp(activeId)}}>
                                 <i className="icon iconfont">&#xe74e;</i>
                             </div>
                         </div>
@@ -134,7 +158,6 @@ function Preview(props) {
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
     panel: state.getIn(['panels','currentPanel']),
-    curId: state.getIn(['panels', 'currentId']),
     currentTemplate: state.getIn(['template', 'currentTemplate']),  // 左侧添加面板中 选中的模版
     aTipTop: state.getIn(['activeTip','currentTop']),
     aTipHeight: state.getIn(['activeTip','currentHeight'])

@@ -19,10 +19,7 @@ function OperationList(props) {
 
     return (
         <div className="use-tag" id={id} style={{position:'relative'}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">

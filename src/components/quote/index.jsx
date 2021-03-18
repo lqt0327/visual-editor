@@ -48,10 +48,7 @@ function Quote(props) {
 
     return (
         <div className="use-tag" id={id} style={{position: "relative"}} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','static'],
-                currentId: id
-            })
+            changePanelStateDispatch(['banner','static'])
         }}>
             {
                 template === 'quote1' ? 

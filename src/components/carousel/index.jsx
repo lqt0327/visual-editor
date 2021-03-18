@@ -21,10 +21,7 @@ function carousel(props) {
 
     return (
         <div className="carousel-content" id={id} onClick={()=>{
-            changePanelStateDispatch({
-                currentPanel: ['banner','dynamic'],
-                currentId: id
-            });
+            changePanelStateDispatch(['banner','dynamic']);
         }}>
             <Carousel autoplay>
                 {
