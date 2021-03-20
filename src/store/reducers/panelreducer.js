@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
-    currentPanel: 'page'
+    currentPanel: ['page']
 })
 
 export default (state = defaultState, action) => {

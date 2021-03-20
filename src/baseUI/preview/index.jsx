@@ -32,6 +32,7 @@ function Preview(props) {
             comp: "Banner",
             template: "banner1",
             link_address: "www.baidu.com",
+            left_editor: "LeftPanelBanner",
             img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
         }
     ])
@@ -58,9 +59,9 @@ function Preview(props) {
                         <div id="fengdie-components-drop-placeholder-top" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'top');setIndex(i)}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(i+'top');setIndex(i)}}>+</button>
                         {Compile(json)}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['addComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
+                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
                         <div id="fengdie-components-drop-placeholder-bottom" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>

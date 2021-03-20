@@ -38,13 +38,14 @@ function EntryTab(props) {
     const {
         changePanelStateDispatch,
         template,
+        left_editor,
         id,
         children
     } = props
 
     return (
         <EnteryNormal onClick={() => { 
-            changePanelStateDispatch(['banner','static'])
+            changePanelStateDispatch([left_editor,template])
          }}>
             <div className="use-tag" style={{ position: "relative" }} id={id}>
                 <section className="comp_entry_normal_1">

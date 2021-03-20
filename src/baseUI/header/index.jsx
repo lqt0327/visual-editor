@@ -17,7 +17,7 @@ function Header(props) {
                         <div style={{width:"40px",height:"40px",backgroundColor:"#efefef"}}></div>
                     </div>
                     <div className="header-left-tabbar" onClick={()=>{
-                        changePanelStateDispatch(['page']);
+                        changePanelStateDispatch(['LeftPanelPage']);
                     }}>
                         <span className="header-left-tabbar__icon">
                             <i className="icon iconfont">&#xe75d;</i>

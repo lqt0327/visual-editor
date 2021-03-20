@@ -2,12 +2,14 @@
     "banner1": {
         "comp": "Banner",
         "template": "banner1",
+        "left_editor": "LeftPanelBanner",
         "link_address": "www.baidu.com",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
     },
     "carousel2": {
         "comp": "Carousel",
         "template": "carousel2",
+        "left_editor": "LeftPanelBanner",
         "children": [
             {
                 "link_address": "www.baidu.com",
@@ -30,6 +32,7 @@
     "tab1": {
         "comp": "Tab",
         "template": "tab1",
+        "left_editor": "TabPanel",
         "children": [
             {
                 "label": "Tab 1",
@@ -96,6 +99,7 @@
     "tab2": {
         "comp": "EntryTab",
         "template": "tab2",
+        "left_editor": "TabPanel",
         "children": [
             {
                 "label": "境外汇款",

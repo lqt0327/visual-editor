@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux'
-// import { changePanel } from 'store/actions'
 import BannerStatic from './bannerStatic';
 import BannerDynamic from './bannerDynamic';
 import './style.sass'
@@ -9,6 +7,7 @@ import './style.sass'
 
 function LeftPanelBanner(props) {
     const {panel} = props
+    console.log(props,'leftBanner')
     return (
         <React.Fragment>
             <div className="l-panel" style={{width:"490px"}}>
@@ -18,10 +17,10 @@ function LeftPanelBanner(props) {
                             <h2>Banner</h2>
                             <div className="schema-editor-scroll">
                                 {
-                                    panel[1] === 'dynamic' && <BannerDynamic />
+                                    panel === 'carousel2' && <BannerDynamic />
                                 }
                                 {
-                                    panel[1] === 'static' && <BannerStatic />
+                                    panel === 'banner1' && <BannerStatic />
                                 }
                             </div>
                         </div>
@@ -33,18 +32,4 @@ function LeftPanelBanner(props) {
     )
 }
 
-// 映射Redux全局的state到组件到props上
-
-const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels', 'currentPanel'])
-})
-// 映射dispatch到props上
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // getPreviewDataDispatch(data) {
-        //     dispatch(changePanel(data))
-        // }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(LeftPanelBanner))
+export default React.memo(LeftPanelBanner)
