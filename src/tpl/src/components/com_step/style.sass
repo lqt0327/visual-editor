@@ -1,0 +1,119 @@
+.comp_step_3
+    padding: 8px 32px
+    background: #fff
+
+    &-row
+        position: relative
+        padding-bottom: 32px
+        text-align: center
+
+        &::before
+            content: ""
+            position: absolute
+            top: 21px
+            bottom: -4px
+            left: 6px
+            width: 1px
+            background-color: #e9eaee
+
+        &-step
+            position: relative
+            line-height: 20px
+            padding-left: 27px
+            color: #999
+            font-size: 14px
+            text-align: left
+
+            &::before
+                content: ""
+                position: absolute
+                top: 3px
+                left: 0
+                width: 14px
+                height: 14px
+                background-color: rgba(24,144,255,.3)
+                box-sizing: border-box
+                border-radius: 50%
+
+            &::after
+                content: ""
+                position: absolute
+                top: 6px
+                left: 3px
+                width: 8px
+                height: 8px
+                border: 2px solid #1890ff
+                background-color: #fff
+                box-sizing: border-box
+                border-radius: 50%
+
+        &-content
+            display: flex
+            align-items: center
+            padding-left: 27px
+            margin-top: 3px
+
+            &-main
+                flex: 1
+                max-width: 192px
+                text-align: left
+
+                h1
+                    margin-bottom: 8px
+                    font-size: 15px
+                    color: #333
+                    font-weight: 700
+
+                p
+                    font-size: 13px
+                    color: #666
+
+            &-icon
+                display: block
+                width: 72px
+                height: 72px
+                margin-left: 20px
+
+.comp_step_1
+    padding: 8px 0
+    background: #fff
+
+    &-row
+        padding: 0 64px 48px
+        text-align: center
+
+        &-step
+            display: inline-block
+            padding: 0 25px
+            border-radius: 500px
+            font-size: 14px
+            line-height: 20px
+            color: #666
+            background: #e9eaee
+
+        &-content
+            display: flex
+            margin-top: 32px
+            align-items: center
+            font-size: 0
+
+            &-icon
+                display: block
+                margin-right: 20px
+                width: 72px
+                height: 72px
+                border-radius: 4px
+
+            &-main
+                flex: 1
+                text-align: left
+
+                h1
+                    margin-bottom: 8px
+                    font-size: 15px
+                    color: #333
+                    font-weight: 700
+
+                p
+                    font-size: 14px
+                    color: #666

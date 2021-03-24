@@ -22,8 +22,6 @@ function Preview(props) {
         panel,
         currentTemplate,
         changePanelStateDispatch,
-        getTopStateDispatch,
-        getHeightStateDispatch,
         addTemplateDispatch
     } = props
 
@@ -46,13 +44,14 @@ function Preview(props) {
             {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
+            {
+                localStorage.setItem("data",JSON.stringify(data.current))
+            }
             {data.current.map((item,i)=>{
                 const json = generateInitJson(item["comp"])
                 // 需要的方法 应该在这里统一传递给组件  或  直接写在组件之中
                 Object.assign(json.props,{
-                    "changePanelStateDispatch": changePanelStateDispatch,
-                    "getTopStateDispatch": getTopStateDispatch,
-                    "getHeightStateDispatch": getHeightStateDispatch
+                    "changePanelStateDispatch": changePanelStateDispatch
                 },item)
                 return (
                     <div className="fengdie-components" key={i}>

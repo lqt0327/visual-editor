@@ -23,6 +23,7 @@
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
+    "concurrently": "^6.0.0",
     "css-loader": "4.3.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
@@ -88,7 +89,9 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start:main": "node scripts/start.js",
+    "start:child": "cd ./src/tpl && npm run start",
+    "start": "concurrently \"npm run start:main\" \"npm run start:child\"",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
