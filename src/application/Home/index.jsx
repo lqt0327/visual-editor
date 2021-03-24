@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Header, LeftPanelPage, Preview, LeftPanelBanner, AddComponents, TabPanel } from "baseUI";
-import * as components from "components";
+import { Header, Preview } from "baseUI";
+import * as LeftPanel from "baseUI/leftPanel";
 import { connect } from 'react-redux';
 import cx from "classnames";
 import "./style.sass";
@@ -10,22 +10,22 @@ import "./style.sass";
 function Home(props) {
 
     const { panel } = props
-    const [arr,setArr] = useState([components.Header,components.LouCengBiaoTi,components.LouCengJianGe,components.LinkAddress,components.Upload,components.Carousel])
-    
+
+    console.log(panel, '????????')
     return (
         <div className="l-eidtor">
             <Header />
             <main>
                 {
-                    panel[0] === 'addComponents' ? <AddComponents /> :
-                    panel[0] === 'page' ? <LeftPanelPage /> :
-                    panel[0] === 'banner' ? <LeftPanelBanner /> :
-                    panel[0] === 'tab' ? <TabPanel /> :
-                    <LeftPanelPage />
+                    // panel[0] === 'addComponents' ? <AddComponents /> :
+                    // panel[0] === 'page' ? <LeftPanelPage /> :
+                    // panel[0] === 'banner' ? <LeftPanelBanner /> :
+                    // panel[0] === 'tab' ? <TabPanel /> :
+                    // <LeftPanelPage />
+                    panel[0] ? React.createElement(LeftPanel[panel[0]],{panel: panel[1]},'') :
+                    <LeftPanel.LeftPanelPage />
                 }
-                <Preview
-                    arr={arr}
-                />
+                <Preview />
             </main>
         </div>
     )

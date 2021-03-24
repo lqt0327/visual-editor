@@ -1,41 +1,55 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import marked from 'marked'
+import hljs from "highlight.js"
+import 'highlight.js/styles/tomorrow-night-bright.css';
 import './style.sass'
 
-const Detail3 = ()=>{
+const Detail3 = (props)=>{
+    const { title, tag } = props
     return (
         <section className="comp_detail_3">
             <h1 className="fd-title comp_detail_3-title">
-                体验技术部云凤蝶产品专家
+                {title}
             </h1>
             <div className="comp_detail_3-desc">
                 <span className="fd-tag-list comp_detail_3-desc-tags">
-                    <label htmlFor="">
-                        <p className="fd-desc" style={{color:"rgb(252, 101, 101)"}}>10K/每月</p>
-                    </label>
-                    <label htmlFor="">
-                        <p className="fd-desc" style={{color:"rgb(153, 153, 153)"}}>月结</p>
-                    </label>
+                    {
+                        tag.map((item,i)=>{
+                            return (
+                                <label htmlFor="" key={i}>
+                                    <p className="fd-desc" style={{color:"rgb(252, 101, 101)"}}>{item}</p>
+                                </label>
+                            )
+                        })
+                    }
                 </span>
             </div>
         </section>
     )
 }
 
-const ParLeft3 = () => {
+const ParLeft3 = (props) => {
+    const { title, content } = props
+    const renderer = new marked.Renderer()
+
+    marked.setOptions({
+        renderer: renderer,
+        gfm: true,
+        smartLists: true,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
+    });
     return (
         <div className="comp_detail_par_left_3">
             <h1 className="fd-title-dot comp_detail_par_left_3-header">
                 <span className="fd-title-dot-marker">
                     <i className="comp_detail_par_left_3-header-marker" style={{backgroundColor:"rgb(98, 96, 225)"}}></i>
                 </span>
-                <span className="fd-title-dot-txt">标题</span>
+                <span className="fd-title-dot-txt">{title}</span>
             </h1>
-            <div className="comp_detail_par_left_3-content">
-                <div>
-                    1. 负责部门的产品规划、设计和产品生命周期管理；
-                    <br />
-                    2. 基于用户体验设计理念，结合用户需求和产品技术架构，完成产品/功能的概念设计和原型展示；
-                </div>
+            <div className="comp_detail_par_left_3-content" dangerouslySetInnerHTML={{__html:marked(content)}}>
             </div>
         </div>
     )
@@ -43,18 +57,42 @@ const ParLeft3 = () => {
 
 function Paragraph(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        template,
+        id,
+        title,
+        content,
+        tag
+    } = props
 
     return (
-        <div className="use-tag" style={{position:"relative"}}>
+        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch(['banner','static'])
+        }}>
             {
                 template === 'parleft3' ? 
-                <ParLeft3 /> :
+                <ParLeft3
+                    title={title}
+                    content={content}
+                /> :
                 template === 'detail3' ? 
-                <Detail3 /> : ''
+                <Detail3 
+                    title={title}
+                    content={content}
+                    tag={tag}
+                /> : ''
             }
         </div>
     )
+}
+
+Paragraph.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    tag: PropTypes.array
 }
 
 export default React.memo(Paragraph)

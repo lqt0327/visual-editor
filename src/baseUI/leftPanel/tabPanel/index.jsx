@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Collapse, Input } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress} from "components";
-import { connect } from 'react-redux'
 import './style.sass'
 import linkAddress from '../../../components/link_address';
 
@@ -137,8 +136,8 @@ function TabPanel(props) {
                             <h2>Tab</h2>
                             <div className="schema-editor-scroll">
                                 {
-                                    panel[1] === 'normal' ? <EditorContainer /> :
-                                    panel[1] === 'entry' ? <EditorContainer2 /> :
+                                    panel === 'tab1' ? <EditorContainer /> :
+                                    panel === 'tab2' ? <EditorContainer2 /> :
                                     ''
                                 }
                             </div>
@@ -151,18 +150,5 @@ function TabPanel(props) {
     )
 }
 
-// 映射Redux全局的state到组件到props上
 
-const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels', 'currentPanel'])
-})
-// 映射dispatch到props上
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // getPreviewDataDispatch(data) {
-        //     dispatch(changePanel(data))
-        // }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(TabPanel))
+export default React.memo(TabPanel)

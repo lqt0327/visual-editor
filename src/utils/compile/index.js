@@ -12,7 +12,7 @@ const Compile = (json) => {
     let props = {
         ...json.props,
         id,
-        tag
+        // tag
     }
     let children = []
 

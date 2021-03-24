@@ -2,8 +2,8 @@
     "BANNER": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh10g7/0993e70d-7d4f-4e65-86d6-dfbb14a7da05.cms/images/0178ff2a-35ba-4c8c-9b54-29df6688b0c4.png?x-oss-process=image/resize,w_560/crop,h_560","非通栏 Banner - 1","banner1"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh10g7/0993e70d-7d4f-4e65-86d6-dfbb14a7da05.cms/images/0178ff2a-35ba-4c8c-9b54-29df6688b0c4.png?x-oss-process=image/resize,w_560/crop,h_560","普通 Banner","banner2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0p9c/91cfa04c-a80c-4bff-a96d-e3f9c1059c25.cms/images/5011f344-4655-4c57-bd8e-68b0258e05bc.png?x-oss-process=image/resize,w_560/crop,h_560","手动轮播 Banner","Carousel1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0hqm/4582999c-1330-49e8-b809-8f459410ed9e.cms/images/785bb68f-d5b0-44c1-967d-7b2e6cfeead9.png?x-oss-process=image/resize,w_560/crop,h_560","自动轮播 Banner","Carousel2"]
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0p9c/91cfa04c-a80c-4bff-a96d-e3f9c1059c25.cms/images/5011f344-4655-4c57-bd8e-68b0258e05bc.png?x-oss-process=image/resize,w_560/crop,h_560","手动轮播 Banner","carousel1"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0hqm/4582999c-1330-49e8-b809-8f459410ed9e.cms/images/785bb68f-d5b0-44c1-967d-7b2e6cfeead9.png?x-oss-process=image/resize,w_560/crop,h_560","自动轮播 Banner","carousel2"]
     ],
     "TAB": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh9q9y/42f681a0-2e6d-40eb-a373-768e51093777.cms/images/9737488e-61a6-4aa6-821d-5428074f3f4e.png?x-oss-process=image/resize,w_560/crop,h_560","tab","tab1"],
@@ -15,14 +15,14 @@
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh7zmx/bfdef3f6-7b6f-4281-ade5-0f43a85114f4.cms/images/3aeab569-de05-4e46-b72a-550d93e3f0f2.png?x-oss-process=image/resize,w_560/crop,h_560","纵向列表 - 1","rowlist1"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh7gwu/59d8daab-be02-410a-903e-43bbf5738f41.cms/images/27225eb0-cc09-4725-9616-6fa8dda0535f.png?x-oss-process=image/resize,w_560/crop,h_560","带操作列表 - 2","operationlist2"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh7bgo/5d729e58-e043-4b79-b5ac-33f7b7d584c7.cms/images/22fb70c6-2398-4f23-abf3-de7171ba2aba.png?x-oss-process=image/resize,w_560/crop,h_560","带操作列表 - 1","operationlist1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh6w1a/44fae90e-0deb-4cda-9fd4-ae1101a5d5a4.cms/images/6b9396fa-89bc-4a38-ae6c-cb66623925e1.png?x-oss-process=image/resize,w_560/crop,h_560","普通列表 - 1","normallist2"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh6w1a/44fae90e-0deb-4cda-9fd4-ae1101a5d5a4.cms/images/6b9396fa-89bc-4a38-ae6c-cb66623925e1.png?x-oss-process=image/resize,w_560/crop,h_560","普通列表 - 1","normallist1"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh6qdz/9a432797-f310-4175-8d29-51514e36e65e.cms/images/3755bb4e-4d50-460f-8ab3-6459c0485746.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 上下布局 - 3","newlist3"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh6jtc/3ff87dad-e99b-4857-bab6-010260b50311.cms/images/9fa39892-8b39-4034-a867-3794eed325b0.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 上下布局 - 2","newlist2"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh6c97/5fd29f96-6d9f-4106-af98-616cf6960634.cms/images/0a0616c7-4060-4292-aace-851f6e38022e.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 上下布局 - 1","newlist1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh661z/38295ac3-63f7-4f95-9521-fd76dd6bdd75.cms/images/c17f33cd-571c-4f73-8a52-f1c20f978d96.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 左右布局 - 6 (带摘要)","cutlist1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh60cy/47fd2134-7b64-4d67-8d95-79dd76613b3a.cms/images/96d369ec-145c-417a-9d3e-e2b8bd65a627.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 左右布局 - 3","cutlist2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh5ptr/9410bcde-26c5-4c52-bb2a-e71b776a69bc.cms/images/1e2285c0-bba5-4d88-931f-5961f16fc4cf.png?x-oss-process=image/resize,w_560/crop,h_560","网格列表 - 5","gridlist3"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh5ixz/e2875c2b-8f5d-4762-a37d-b889c3e8cdff.cms/images/aed431e7-48a6-4e38-8f7a-0bc3208fcc78.png?x-oss-process=image/resize,w_560/crop,h_560","网格列表 - 3","gridlist2"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh661z/38295ac3-63f7-4f95-9521-fd76dd6bdd75.cms/images/c17f33cd-571c-4f73-8a52-f1c20f978d96.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 左右布局 - 1 (带摘要)","cutlist1"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh60cy/47fd2134-7b64-4d67-8d95-79dd76613b3a.cms/images/96d369ec-145c-417a-9d3e-e2b8bd65a627.png?x-oss-process=image/resize,w_560/crop,h_560","资讯列表 - 左右布局 - 2","cutlist2"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh5ptr/9410bcde-26c5-4c52-bb2a-e71b776a69bc.cms/images/1e2285c0-bba5-4d88-931f-5961f16fc4cf.png?x-oss-process=image/resize,w_560/crop,h_560","网格列表 - 3","gridlist3"],
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh5ixz/e2875c2b-8f5d-4762-a37d-b889c3e8cdff.cms/images/aed431e7-48a6-4e38-8f7a-0bc3208fcc78.png?x-oss-process=image/resize,w_560/crop,h_560","网格列表 - 2","gridlist2"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh5cm0/1892522c-1b8a-4fdb-b58d-5360162422f1.cms/images/71531400-4d61-48c6-8b63-193a81b1fdf7.png?x-oss-process=image/resize,w_560/crop,h_560","网格列表 - 1","gridlist1"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh56kl/95765c17-d8b5-4e82-af96-f501ef35bacb.cms/images/5029657b-8a4d-48ba-bccd-55daa3c6d5a2.png?x-oss-process=image/resize,w_560/crop,h_560","卡片列表 - 2","cardlist2"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh50bf/4fa1bbec-5e3c-40c8-ab08-86bc22c5b3ce.cms/images/52ac904d-90b7-4afe-ba57-0ac1c8329060.png?x-oss-process=image/resize,w_560/crop,h_560","卡片列表 - 1","cardlist1"]

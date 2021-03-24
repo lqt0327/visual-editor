@@ -1,26 +1,28 @@
 import React from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 import './style.sass'
 
-const Card1 = () => {
+const Card1 = (props) => {
+    const { tag, img_address, title, subtitle } = props
     return (
         <a href="" className="fd-link fd-card shadowMode comp_list_card_1">
             <div className="fd-card-inner">
                 <div className="fd-card-inner-head">
                     <a href="" className="fd-link fd-jumbo size-lg">
-                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{backgroundImage:"url('https://gw.alipayobjects.com/zos/rmsportal/uEzOwVPOgaIuMJUACDIg.png')"}}></a>
+                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
                         <div className="fd-jumbo-mask"></div>
                         <div className="fd-jumbo-content"></div>
                         <div className="fd-jumbo-tag">
-                            <label htmlFor="">旅行</label>
+                            <label htmlFor="">{tag}</label>
                         </div>
                     </a>
                 </div>
                 <div className="fd-card-inner-body">
-                    <h1 className="fd-title">海外旅行</h1>
+                    <h1 className="fd-title">{title}</h1>
                 </div>
                 <div className="fd-card-inner-tail">
-                    <p className="fd-desc">多国特色签证</p>
+                    <p className="fd-desc">{subtitle}</p>
                 </div>
             </div>
         </a>
@@ -28,25 +30,26 @@ const Card1 = () => {
 }
 
 const Card2 = (props) => {
+    const { tag, img_address, title, subtitle } = props
     return (
         <a href="" className="fd-link fd-card comp_list_card_2">
             <div className="fd-card-inner">
                 <div className="fd-card-inner-head">
                     <a href="" className="fd-link fd-jumbo size-lg">
-                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url('https://gw.alipayobjects.com/zos/rmsportal/oJkYKPiBOAQUkFnyhFfW.png')" }}></a>
+                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
                         <div className="fd-jumbo-mask"></div>
                         <div className="fd-jumbo-content">
                         </div>
                         <div className="fd-jumbo-tag">
-                            <label htmlFor="">商务</label>
+                            <label htmlFor="">{tag}</label>
                         </div>
                     </a>
                 </div>
                 <div className="fd-card-inner-body">
-                    <h1 className="fd-title">商务出行</h1>
+                    <h1 className="fd-title">{title}</h1>
                 </div>
                 <div className="fd-card-inner-tail">
-                    <p className="fd-desc">出国工作安心无忧</p>
+                    <p className="fd-desc">{subtitle}</p>
                 </div>
             </div>
         </a>
@@ -92,95 +95,90 @@ const Grid1 = (props) => {
 
 function GridList2(props) {
 
-    const { template } = props
+    const {
+        changePanelStateDispatch,
+        template,
+        id,
+        children,
+        tag,
+        img_address,
+        title,
+        subtitle
+    } = props
 
     return (
-        <div className="use-tag" style={{ position: "relative" }}>
+        <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
+            changePanelStateDispatch(['banner','static'])
+        }}>
             {
-                template === 'card2' ? 
-                <Card2 /> :
-                template === 'card1' ?
-                <Card1 /> :
+                template === 'cardlist2' ?
+                <Card2
+                    tag={tag}
+                    img_address={img_address}
+                    title={title}
+                    subtitle={subtitle}
+                /> :
+                template === 'cardlist1' ?
+                <Card1 
+                    tag={tag}
+                    img_address={img_address}
+                    title={title}
+                    subtitle={subtitle}
+                /> :
                 <div className={cx("fd-grid", {
-                    "comp_list_grid_3": template === 'grid2' ? true : false,
-                    "comp_list_grid_1": template === 'grid1' ? true : false
+                    "comp_list_grid_3": template === 'gridlist2' ? true : false,
+                    "comp_list_grid_1": template === 'gridlist1' ? true : false
                 })}>
-                    <div className="fd-grid-row">
-                        <div className="fd-grid-col">
-                            {
-                                template === 'grid2' ?
-                                    <Grid2
-                                        imgUrl="https://gw.alipayobjects.com/zos/rmsportal/ZnGdPxoHrVXmGUqXouiU.png"
-                                        tag="旅行"
-                                        title="海外旅行"
-                                        desc="多国特色签证"
-                                    /> :
-                                    template === 'grid1' ?
-                                        <Grid1
-                                            imgUrl="https://gw.alipayobjects.com/zos/rmsportal/ZnGdPxoHrVXmGUqXouiU.png"
-                                            title="俄罗斯"
-                                            desc="世界杯免签办理"
-                                        /> : ''
-                            }
-                        </div>
-                        <div className="fd-grid-col">
-                            {
-                                template === 'grid2' ?
-                                    <Grid2
-                                        imgUrl="https://gw.alipayobjects.com/zos/rmsportal/FpAKgrtDMKTXhIVdVfIj.png"
-                                        tag="留学"
-                                        title="出国留学"
-                                        desc="全方位留学服务"
-                                    /> :
-                                    template === 'grid1' ?
-                                        <Grid1
-                                            imgUrl="https://gw.alipayobjects.com/zos/rmsportal/rnLarHmjMpKasWVMFVnZ.png"
-                                            title="新西兰"
-                                            desc="家庭签证"
-                                        /> : ''
-                            }
-                        </div>
-                    </div>
-                    <div className="fd-grid-row">
-                        <div className="fd-grid-col">
-                            {
-                                template === 'grid2' ?
-                                    <Grid2
-                                        imgUrl="https://gw.alipayobjects.com/zos/rmsportal/KmzovGuElReNFnhykhMf.png"
-                                        tag="商务"
-                                        title="商务出行"
-                                        desc="出国工作安心无忧"
-                                    /> :
-                                    template === 'grid1' ?
-                                        <Grid1
-                                            imgUrl="https://gw.alipayobjects.com/zos/rmsportal/ifSqazvXgwLdBYrWNFQk.png"
-                                            title="马来西亚"
-                                            desc="旅游电子签证"
-                                        /> : ''
-                            }
-                        </div>
-                        <div className="fd-grid-col">
-                            {
-                                template === 'grid2' ?
-                                    <Grid2
-                                        imgUrl="https://gw.alipayobjects.com/zos/rmsportal/RfVtHjHOpezICADhNcxh.png"
-                                        tag="资产"
-                                        title="资产配置"
-                                        desc="沪港深基金连接境内外"
-                                    /> :
-                                    template === 'grid1' ?
-                                        <Grid1
-                                            imgUrl="https://gw.alipayobjects.com/zos/rmsportal/vXNwQdxjBZPdAMNaHiKy.png"
-                                            title="日本"
-                                            desc="签证快捷办理"
-                                        /> : ''
-                            }
-                        </div>
-                    </div>
+                    {
+                        children.map((item, i) => {
+                            return (
+                                <div className="fd-grid-row" key={i}>
+                                    {
+                                        item.map((item2, j) => {
+                                            return (
+                                                <div className="fd-grid-col" key={j}>
+                                                    {
+                                                        template === 'gridlist2' ?
+                                                            <Grid2
+                                                                imgUrl={item2.img_address}
+                                                                tag={item2.tag}
+                                                                title={item2.title}
+                                                                desc={item2.subtitle}
+                                                            /> :
+                                                            template === 'gridlist1' ?
+                                                            <Grid1
+                                                                imgUrl={item2.img_address}
+                                                                title={item2.title}
+                                                                desc={item2.subtitle}
+                                                            /> : ''
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             }
         </div>
     )
+}
+
+GridList2.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        tag: PropTypes.string,
+        img_address: PropTypes.string
+    }))),
+    tag: PropTypes.string,
+    title: PropTypes.string,
+    img_address: PropTypes.string,
+    subtitle: PropTypes.string
 }
 
 export default React.memo(GridList2)

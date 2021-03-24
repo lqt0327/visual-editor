@@ -102,12 +102,10 @@
 
             .l-preview-tips
                 position: relative
-                z-index: auto
                 width: 100%
 
                 .l-view-hover-tip, .l-view-active-tip
                     position: absolute
-                    z-index: auto
                     left: 0
                     right: 0
 
@@ -119,7 +117,7 @@
 
                 .l-view-tools
                     position: absolute
-                    z-index: 3
+                    z-index: 99
                     right: 0
                     left: 50%
                     transform: translateX(208px)
@@ -196,7 +194,7 @@
     .add-components
         visibility: inherit
 
-#fengdie-components-drop-placeholder
+#fengdie-components-drop-placeholder-top, #fengdie-components-drop-placeholder-bottom
     position: relative
     height: 135px
     width: 100%

@@ -1,32 +1,48 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import './style.sass'
 
-function OpertaionList(props) {
+function OperationList(props) {
 
-    const { template } = props
+    const { 
+        changePanelStateDispatch,
+        template,
+        id,
+        title,
+        tag,
+        area,
+        img_address,
+        link_address,
+        btn
+    } = props
 
     return (
-        <div className="use-tag">
+        <div className="use-tag" id={id} style={{position:'relative'}} onClick={()=>{
+            changePanelStateDispatch(['banner','static'])
+        }}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">
-                    <div className={cx({"fd-subject-cover":template === 'opt1' ? false : true})} style={{backgroundImage:"url('https://gw.alipayobjects.com/zos/rmsportal/qnMZzTAViDGQHHjgyICm.png')"}}></div>
+                    <div className={cx({"fd-subject-cover":template === 'opt1' ? false : true})} style={{backgroundImage:"url("+img_address+")"}}></div>
                     <div className="fd-subject-content">
                         <div>
-                            <h1 className="fd-title title">云凤蝶全栈工程师兼职</h1>
+                            <h1 className="fd-title title">{title}</h1>
                             <span className="fd-tag-list tag-list">
-                                <label>
-                                    <p className="fd-desc" style={{color:"rgb(252,101,101)"}}>180元/小时</p>
-                                </label>
-                                <label>
-                                    <p className="fd-desc">日结</p>
-                                </label>
+                                {
+                                    tag.map((item,i)=>{
+                                        return (
+                                            <label key={i}>
+                                                <p className="fd-desc" style={{color:"rgb(252,101,101)"}}>{item}</p>
+                                            </label>
+                                        )
+                                    })
+                                }
                             </span>
-                            <p className="fd-desc desc">上城-区政府</p>
+                            <p className="fd-desc desc">{area}</p>
                         </div>
                     </div>
                     <div className="fd-subject-action">
-                        <button className="fd-button">报名</button>
+                        <button className="fd-button">{btn}</button>
                     </div>
                 </a>
             </div>
@@ -34,4 +50,14 @@ function OpertaionList(props) {
     )
 }
 
-export default React.memo(OpertaionList)
+OperationList.propTypes = {
+    changePanelStateDispatch: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    tag: PropTypes.array,
+    area: PropTypes.string,
+    img_address: PropTypes.string,
+    btn: PropTypes.string
+}
+
+export default React.memo(OperationList)
