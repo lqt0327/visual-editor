@@ -3,37 +3,51 @@ import { Exclude, Expose } from 'class-transformer';
 import * as jwt from 'jsonwebtoken';
 import { ObjectType } from '@src/types';
 
-@Entity('tp_admin')
+@Entity('gd_user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar',{
+    nullable:false,
+    length:255,
+    name: 'username',
+    comment: '用户名'
+  })
   username: string;
 
   @Column('varchar', {
 		nullable: false,
-		length: 100,
+		length: 255,
 		name: 'password',
 		comment: '密码'
 	})
   password: string;
 
-  @Column()
-  email: string;
+  @Column('varchar',{
+    nullable:true,
+    length:255,
+    name: 'love',
+    comment: '感兴趣的标签'
+  })
+  love: string;
 
-  @Column()
-  ugroup: number;
+  @Column('varchar',{
+    nullable:true,
+    length:255,
+    name: 'collect',
+    comment: '收藏'
+  })
+  collect: string;
 
   @Expose()
 	private get token() {
-		const { id, username, ugroup } = this;
+		const { id, username } = this;
 		// 生成签名
 		return jwt.sign(
 			{
 				id,
 				username,
-				ugroup,
 			},
 			process.env.SECRET, // 加盐
 			{

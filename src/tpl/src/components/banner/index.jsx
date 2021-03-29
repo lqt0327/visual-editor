@@ -6,15 +6,12 @@ import PropTypes from 'prop-types'
 function Banner(props) {
     
     const {         
-        id,
         img_address,
-        link_address,
-        left_editor,
-        template
+        link_address
     } = props
 
     return (
-        <div className={cx("banner",props.className)} id={id}>
+        <div className={cx("banner",props.className)}>
             {/* <a href={link_address} target="_blank"> */}
             <a>
                 <img src={img_address} alt=""/>
@@ -24,11 +21,9 @@ function Banner(props) {
 }
 
 Banner.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
     type: PropTypes.string,
     img_address: PropTypes.string.isRequired,
-    link_address: PropTypes.string,
-    id: PropTypes.string.isRequired
+    link_address: PropTypes.string
 }
 
 Banner.defaultProps = {

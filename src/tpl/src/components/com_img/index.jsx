@@ -4,15 +4,14 @@ import './style.sass';
 
 function ComponentImg(props) {
 
-    const {                
+    const {
         template,
-        id,
         img_address,
         desc
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             <div className="comp_img_2">
                 <img src={img_address} alt="" className="comp_img_2-img"/>
                 {
@@ -26,8 +25,6 @@ function ComponentImg(props) {
 }
 
 ComponentImg.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     img_address: PropTypes.string,
     desc: PropTypes.string
 }

@@ -31,12 +31,11 @@ function Tab(props) {
     const {
         template,
         left_editor,
-        id,
         children
     } = props
 
     return (
-        <div className="use-tag" style={{ position: "relative" }} id={id}>
+        <div className="use-tag" style={{ position: "relative" }}>
             <Tabs defaultActiveKey="1" onChange={callback}>
                 {
                     children.map((item, i) => {
@@ -56,9 +55,7 @@ function Tab(props) {
 }
 
 Tab.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
     type: PropTypes.string,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.string,
         children: PropTypes.arrayOf(PropTypes.shape({

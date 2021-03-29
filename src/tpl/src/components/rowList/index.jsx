@@ -6,12 +6,11 @@ function RowList(props) {
 
     const {
         template,
-        id,
         children
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             <div className="fd-grid comp_list_v_1">
                 {
                     children.map((_,i)=>{
@@ -42,8 +41,6 @@ function RowList(props) {
 }
 
 RowList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         link_address: PropTypes.string,
         img_address: PropTypes.string,

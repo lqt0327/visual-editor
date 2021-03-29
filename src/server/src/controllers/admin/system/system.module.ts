@@ -1,13 +1,9 @@
 import { Module, CacheModule } from '@nestjs/common';
 import { ServicesModule } from '@src/services/services.module';
 import { UsersController } from './users/users.controller'
-import { LinksController} from './links/links.controller'
-import { LoginController } from './login/login.controller'
-import { CommentsController } from './comments/comments.controller'
-import { ReplyController } from './reply/reply.controller'
-import { ArticleController } from './article/article.controller'
-import { CateController } from './cate/cate.controller'
-import { ArchiveController } from './archive/archive.controller';
+// import { LoginController } from './login/login.controller'
+import { TagController } from './tag/tag.controller'
+import { TplController } from './tpl/tpl.controller'
 
 @Module({
   imports: [
@@ -16,13 +12,9 @@ import { ArchiveController } from './archive/archive.controller';
   ],
   controllers: [
     UsersController,
-    LinksController,
-    LoginController,
-    CommentsController,
-    ReplyController,
-    ArticleController,
-    CateController,
-    ArchiveController
+    // LoginController,
+    TagController,
+    TplController
   ],
 })
 export class SystemModule { }

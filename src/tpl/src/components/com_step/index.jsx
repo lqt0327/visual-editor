@@ -58,12 +58,11 @@ function ComStep(props) {
 
     const {        
         template,
-        id,
         children
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }}>
+        <div className="use-tag" style={{ position: "relative" }}>
             {
                 template === 'step1' ?
                     <Step1
@@ -79,8 +78,6 @@ function ComStep(props) {
 }
 
 ComStep.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         step: PropTypes.string,
         title: PropTypes.string,

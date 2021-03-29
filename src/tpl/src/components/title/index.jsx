@@ -75,12 +75,11 @@ function Title(props) {
 
     const {
         template,
-        id,
         title
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             {
                 template === 'normal2' ? 
                 <Normal2 title={title} /> : 
@@ -100,8 +99,6 @@ function Title(props) {
 }
 
 Title.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     title: PropTypes.string
 }
 

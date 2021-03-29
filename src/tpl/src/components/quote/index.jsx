@@ -41,12 +41,11 @@ function Quote(props) {
 
     const {
         template,
-        id,
         text
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position: "relative"}}>
+        <div className="use-tag" style={{position: "relative"}}>
             {
                 template === 'quote1' ? 
                 <Quote1 text={text} /> : 
@@ -58,8 +57,6 @@ function Quote(props) {
 }
 
 Quote.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     text: PropTypes.string
 }
 

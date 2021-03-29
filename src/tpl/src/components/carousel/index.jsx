@@ -5,8 +5,7 @@ import React from 'react'
 function carousel(props) {
 
     const {         
-        children,
-        id
+        children
     } = props
 
     const contentStyle = {
@@ -19,7 +18,7 @@ function carousel(props) {
     };
 
     return (
-        <div className="carousel-content" id={id}>
+        <div className="carousel-content">
             <Carousel autoplay>
                 {
                     children.map((item,i)=>{
@@ -38,12 +37,10 @@ function carousel(props) {
 }
 
 carousel.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
     children: PropTypes.arrayOf(PropTypes.shape({
         img_address: PropTypes.string.isRequired,
         link_address: PropTypes.string,
-    })),
-    id: PropTypes.string.isRequired
+    }))
 }
 
 export default React.memo(carousel);

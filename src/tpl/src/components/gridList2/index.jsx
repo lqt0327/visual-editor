@@ -97,7 +97,6 @@ function GridList2(props) {
 
     const {
         template,
-        id,
         children,
         tag,
         img_address,
@@ -106,7 +105,7 @@ function GridList2(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }}>
+        <div className="use-tag" style={{ position: "relative" }}>
             {
                 template === 'cardlist2' ?
                 <Card2
@@ -164,8 +163,6 @@ function GridList2(props) {
 }
 
 GridList2.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         subtitle: PropTypes.string,

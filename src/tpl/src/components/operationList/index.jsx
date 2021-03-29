@@ -7,7 +7,6 @@ function OperationList(props) {
 
     const {
         template,
-        id,
         title,
         tag,
         area,
@@ -17,7 +16,7 @@ function OperationList(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:'relative'}}>
+        <div className="use-tag" style={{position:'relative'}}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">
                     <div className={cx({"fd-subject-cover":template === 'opt1' ? false : true})} style={{backgroundImage:"url("+img_address+")"}}></div>
@@ -48,8 +47,6 @@ function OperationList(props) {
 }
 
 OperationList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     title: PropTypes.string,
     tag: PropTypes.array,
     area: PropTypes.string,

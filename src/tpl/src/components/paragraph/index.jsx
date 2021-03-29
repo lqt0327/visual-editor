@@ -59,14 +59,13 @@ function Paragraph(props) {
 
     const {
         template,
-        id,
         title,
         content,
         tag
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             {
                 template === 'parleft3' ? 
                 <ParLeft3
@@ -85,8 +84,6 @@ function Paragraph(props) {
 }
 
 Paragraph.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     title: PropTypes.string,
     content: PropTypes.string,
     tag: PropTypes.array

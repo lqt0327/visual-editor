@@ -12,7 +12,6 @@ function NormalList(props) {
 
     const {  
         template,
-        id,
         link_address,
         title,
         img_address,
@@ -20,7 +19,7 @@ function NormalList(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             <div>
                 <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
                     <div className={cx("fd-subject-cover",{"hide": template === 'normal1' ? true : false})} style={{backgroundImage:'url('+img_address+')'}}></div>
@@ -47,8 +46,6 @@ function NormalList(props) {
 }
 
 NormalList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     link_address: PropTypes.string,
     title: PropTypes.string,
     tag: PropTypes.array,

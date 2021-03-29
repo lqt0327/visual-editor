@@ -38,13 +38,12 @@ function EntryTab(props) {
     const {
         template,
         left_editor,
-        id,
         children
     } = props
 
     return (
         <EnteryNormal>
-            <div className="use-tag" style={{ position: "relative" }} id={id}>
+            <div className="use-tag" style={{ position: "relative" }}>
                 <section className="comp_entry_normal_1">
                     {
                         children.map((item, i) => {
@@ -63,8 +62,6 @@ function EntryTab(props) {
 }
 
 EntryTab.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.string,
         img_address: PropTypes.string,

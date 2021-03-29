@@ -18,15 +18,14 @@ function ComFAQ(props){
         }
     });
 
-    const {         
-        template,
-        id,
+    const {    
+        template,     
         title,
         content
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             <div className="comp_faq_normal_1">
                 <section className="fd-desc-sect has-side">
                     <div className="fd-desc-sect-side">
@@ -54,8 +53,6 @@ function ComFAQ(props){
 }
 
 ComFAQ.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     content: PropTypes.string,
     title: PropTypes.string
 }

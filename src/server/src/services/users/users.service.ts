@@ -15,8 +15,8 @@ export class UsersService {
     const user = new UserEntity();
     user.username = createUserDto.username;
     user.password = createUserDto.password;
-    user.email = createUserDto.email;
-    user.ugroup = createUserDto.ugroup;
+    user.love = createUserDto.love;
+    user.collect = createUserDto.collect;
 
     return this.usersRepository.save(user);
   }

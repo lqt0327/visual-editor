@@ -7,14 +7,13 @@ function NewList(props) {
 
     const {
         template,
-        id,
         title,
         img_address,
         tag
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }}>
+        <div className="use-tag" style={{ position: "relative" }}>
             <div>
                 <div className="fd-link fd-card comp_list_news_v_3">
                     <div className="fd-card-inner">
@@ -63,8 +62,6 @@ function NewList(props) {
 }
 
 NewList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     title: PropTypes.string,
     img_address: PropTypes.array,
     tag: PropTypes.array

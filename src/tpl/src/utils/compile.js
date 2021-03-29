@@ -8,7 +8,7 @@ const getJsxClass = (name) => {
 const Compile = (json) => {
     let jsxClass = getJsxClass(json.comp)
     let props = {
-        ...json.props
+        ...json
     }
     let children = []
 

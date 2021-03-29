@@ -33,12 +33,11 @@ const Btn2 = (props) => {
 function ComButton(props) {
     const {         
         template,
-        id,
         text
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }}>
+        <div className="use-tag" style={{ position: "relative" }}>
             {
                 template === 'btn3' ? 
                 <Btn3
@@ -54,8 +53,6 @@ function ComButton(props) {
 }
 
 ComButton.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     text: PropTypes.string
 }
 

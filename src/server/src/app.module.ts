@@ -10,7 +10,7 @@ import { ControllersModule } from './controllers/controllers.module';
       port: 3306,
       username: 'root',
       password: 'lqt03271315',
-      database: 'mytest',
+      database: 'grad',
       autoLoadEntities: true,
       synchronize: true,
     }),

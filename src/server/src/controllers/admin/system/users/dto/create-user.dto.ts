@@ -13,7 +13,7 @@ export class CreateUserDto {
   @IsNotEmpty({ message: '密码不能为空' })
   readonly password: string;
   
-  readonly email: string;
+  readonly love: string;
 
-  readonly ugroup: number;
+  readonly collect: string;
 }

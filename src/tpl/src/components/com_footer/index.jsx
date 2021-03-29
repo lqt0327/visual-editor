@@ -15,13 +15,11 @@ const Footer = styled.div`
 function ComFooter(props) {
 
     const {         
-        template,
-        id,
         img_address
     } = props
     
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}}>
+        <div className="use-tag" style={{position:"relative"}}>
             <Footer>
                 <img src={img_address} alt="" className="comp_footer_img_1-img" style={{width:"65px",height:"23px"}} />
             </Footer>
@@ -30,8 +28,6 @@ function ComFooter(props) {
 }
 
 ComFooter.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     img_address: PropTypes.string
 }
 
