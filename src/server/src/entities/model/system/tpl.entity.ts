@@ -14,7 +14,7 @@ export class TplEntity {
       name: 'tplData',
       comment: '模版数据'
   })
-  tplData: object;
+  tplData: string;
 
   @Column('int',{
     nullable:false,

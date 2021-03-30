@@ -45,7 +45,7 @@ function Preview(props) {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
             {
-                localStorage.setItem("data",JSON.stringify(data.current))
+                localStorage.setItem("tpldata",JSON.stringify(data.current))
             }
             {data.current.map((item,i)=>{
                 const json = generateInitJson(item["comp"])

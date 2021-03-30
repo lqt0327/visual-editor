@@ -1,12 +1,19 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import { connect } from 'react-redux';
 import { changePanel } from 'store/actions'
+import { addTplRequest } from 'src/api/request'
 import cx from "classnames";
 import "./style.sass";
 
 function Header(props) {
 
     const { changePanelStateDispatch } = props
+
+    const addTpl = useCallback(async () => {
+        const tpl = await JSON.parse(localStorage.getItem('tpldata'))
+        console.log(tpl,'发布测试数据')
+        addTplRequest(tpl,1,1)
+    },[]) 
 
     return (
         <header className="l-header">
@@ -31,7 +38,10 @@ function Header(props) {
                     <span className="header-right-preview"><i className="icon iconfont">&#xe752;</i>&nbsp;预览</span>
                     <span className="header-right-save"><i className="icon iconfont">&#xe7c8;</i>&nbsp;保存</span>
                     <div className="header-right-publish">
-                        <button type="button" className="header-right-publish-btn"><i className="icon iconfont">&#xe6a9;</i>发布</button>
+                        <button type="button"
+                        className="header-right-publish-btn"
+                        onClick={addTpl}
+                        ><i className="icon iconfont">&#xe6a9;</i>发布</button>
                     </div>
                 </div>
             </nav>
