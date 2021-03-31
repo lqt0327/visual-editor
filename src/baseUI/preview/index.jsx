@@ -70,7 +70,7 @@ function Preview(props) {
         </React.Fragment>, document.getElementById("stage"))
     }
 
-    const addTemplate = useCallback((currentTpl, i) => {
+    const addTemplate2 = useCallback((currentTpl, i) => {
         currentTpl && data.current.splice(i,0, config[currentTpl])
     },[])
 
@@ -80,7 +80,7 @@ function Preview(props) {
         document.getElementById(activeId) ? setaTipTop(document.getElementById(activeId).offsetTop) : setaTipTop(0)
         document.getElementById(activeId) ? setaTipHeight(document.getElementById(activeId).offsetHeight) : setaTipHeight(0)
         
-        addTemplate(currentTemplate,index)
+        addTemplate2(currentTemplate,index)
         addTemplateDispatch('')
         
     }, [tipHeight,currentTemplate,activeId])

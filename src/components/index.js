@@ -27,3 +27,4 @@ export { default as ComFooter } from './com_footer'
 export { default as ComStep } from './com_step'
 // 轮播图
 export { default as Carousel } from './carousel'
+export { default as EditableTagGroup } from './tags'

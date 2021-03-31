@@ -7,7 +7,9 @@ function carousel(props) {
     const { 
         changePanelStateDispatch, 
         children,
-        id
+        id,
+        template,
+        left_editor
     } = props
 
     const contentStyle = {
@@ -21,7 +23,7 @@ function carousel(props) {
 
     return (
         <div className="carousel-content" id={id} onClick={()=>{
-            changePanelStateDispatch(['banner','dynamic']);
+            changePanelStateDispatch([left_editor,template]);
         }}>
             <Carousel autoplay>
                 {
@@ -46,7 +48,9 @@ carousel.propTypes = {
         img_address: PropTypes.string.isRequired,
         link_address: PropTypes.string,
     })),
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    template: PropTypes.string.isRequired,
+    left_editor: PropTypes.string.isRequired
 }
 
 export default React.memo(carousel);

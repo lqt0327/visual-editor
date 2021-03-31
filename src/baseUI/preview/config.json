@@ -126,6 +126,7 @@
     "normallist3": {
         "comp": "NormalList",
         "template": "normal3",
+        "left_editor": "ListPanel",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png",
@@ -134,6 +135,7 @@
     "normallist2": {
         "comp": "NormalList",
         "template": "normal2",
+        "left_editor": "ListPanel",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png",
@@ -142,6 +144,7 @@
     "normallist1": {
         "comp": "NormalList",
         "template": "normal1",
+        "left_editor": "ListPanel",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "tag": ["市场", "第一财经"]
