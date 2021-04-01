@@ -9,9 +9,9 @@ function carousel(props) {
         children,
         id,
         template,
-        left_editor
+        left_editor,
+        index
     } = props
-
     const contentStyle = {
         // height: '160px',
         // color: '#fff',
@@ -23,7 +23,7 @@ function carousel(props) {
 
     return (
         <div className="carousel-content" id={id} onClick={()=>{
-            changePanelStateDispatch([left_editor,template]);
+            changePanelStateDispatch([left_editor,template,index]);
         }}>
             <Carousel autoplay>
                 {

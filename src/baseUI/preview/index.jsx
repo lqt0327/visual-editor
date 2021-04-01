@@ -44,10 +44,9 @@ function Preview(props) {
             {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
-            {
-                localStorage.setItem("tpldata",JSON.stringify(data.current))
-            }
             {data.current.map((item,i)=>{
+                // 增加数组索引，以便localstorage数据更新时，可以准确定位相关模块
+                item["index"] = i
                 const json = generateInitJson(item["comp"])
                 // 需要的方法 应该在这里统一传递给组件  或  直接写在组件之中
                 Object.assign(json.props,{
@@ -67,6 +66,10 @@ function Preview(props) {
                     </div>
                 )
             })}
+            {
+                // 通过localstorage 存储页面数据，点击 发布 将其中的数据统一发送至数据库
+                localStorage.setItem("tpldata",JSON.stringify(data.current))
+            }
         </React.Fragment>, document.getElementById("stage"))
     }
 

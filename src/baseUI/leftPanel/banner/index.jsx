@@ -6,7 +6,7 @@ import './style.sass'
 // 根据传入 参数 判断 使用 折叠面板 ｜ 直接展示 ？
 
 function LeftPanelBanner(props) {
-    const {panel} = props
+    const {panel,comp_i} = props
     console.log(props,'leftBanner')
     return (
         <React.Fragment>
@@ -17,10 +17,14 @@ function LeftPanelBanner(props) {
                             <h2>Banner</h2>
                             <div className="schema-editor-scroll">
                                 {
-                                    panel === 'carousel2' && <BannerDynamic />
+                                    panel === 'carousel2' && <BannerDynamic
+                                    comp_i={comp_i}
+                                    />
                                 }
                                 {
-                                    panel === 'banner1' && <BannerStatic />
+                                    panel === 'banner1' && <BannerStatic
+                                    comp_i={comp_i}
+                                    />
                                 }
                             </div>
                         </div>

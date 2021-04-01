@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect } from 'react';
 import { Collapse } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress } from "components";
@@ -14,16 +15,29 @@ const genExtra = () => (
     />
 );
 
-function BannerDynamic() {
+function BannerDynamic(props) {
+    const {comp_i} = props
+    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+
+    // const _deep = (tpldata,i) => {
+    //     tpldata[i]
+    // }
+
+    const link_ref = useRef()
+        console.log(link_ref,'??????')
+
     return (
         <div className="schema-editor-container">
             <Collapse accordion>
                 <Panel header="This is panel header 1" key="1" extra={genExtra()}>
+                    {
+                        // tpldata[comp_i].children[1] .img_address or .link_address
+                    }
                     <Upload 
                         imgWidth={750}
                         imgHeight={280}
                     />
-                    <LinkAddress />
+                    <LinkAddress ref={link_ref} />
                 </Panel>
                 <Panel header="This is panel header 2" key="2" extra={genExtra()}>
                     <Upload 

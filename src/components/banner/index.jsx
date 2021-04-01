@@ -11,12 +11,13 @@ function Banner(props) {
         img_address,
         link_address,
         left_editor,
-        template
+        template,
+        index
     } = props
-
+    console.log(JSON.parse(localStorage.getItem("tpldata")),'测试数据')
     return (
         <div className={cx("banner",props.className)} id={id} onClick={()=>{
-            changePanelStateDispatch([left_editor,template]);
+            changePanelStateDispatch([left_editor,template,index]);
         }}>
             {/* <a href={link_address} target="_blank"> */}
             <a>

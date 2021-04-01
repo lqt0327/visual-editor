@@ -11,7 +11,6 @@ function Home(props) {
 
     const { panel } = props
 
-    console.log(panel, '????????')
     return (
         <div className="l-eidtor">
             <Header />
@@ -22,7 +21,7 @@ function Home(props) {
                     // panel[0] === 'banner' ? <LeftPanelBanner /> :
                     // panel[0] === 'tab' ? <TabPanel /> :
                     // <LeftPanelPage />
-                    panel[0] ? React.createElement(LeftPanel[panel[0]],{panel: panel[1]},'') :
+                    panel[0] ? React.createElement(LeftPanel[panel[0]],{panel: panel[1],comp_i:panel[2]},'') :
                     <LeftPanel.LeftPanelPage />
                 }
                 <Preview />
