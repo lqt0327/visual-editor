@@ -12,19 +12,19 @@
         "left_editor": "LeftPanelBanner",
         "children": [
             {
-                "link_address": "www.baidu.com",
+                "link_address": "www.baidu.com1",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
             },
             {
-                "link_address": "www.baidu.com",
+                "link_address": "www.baidu.com2",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png"
             },
             {
-                "link_address": "www.baidu.com",
+                "link_address": "www.baidu.com3",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
             },
             {
-                "link_address": "www.baidu.com",
+                "link_address": "www.baidu.com4",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png"
             }
         ]

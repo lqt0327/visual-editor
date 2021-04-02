@@ -33,13 +33,14 @@ function Tab(props) {
         template,
         left_editor,
         id,
-        children
+        children,
+        index
     } = props
 
     return (
         <div className="use-tag" style={{ position: "relative" }} id={id}>
             <Tabs defaultActiveKey="1" onChange={callback} onClick={() => {
-                changePanelStateDispatch([left_editor, template])
+                changePanelStateDispatch([left_editor, template, index])
             }}>
                 {
                     children.map((item, i) => {
