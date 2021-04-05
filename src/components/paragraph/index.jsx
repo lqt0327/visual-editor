@@ -61,13 +61,14 @@ function Paragraph(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         title,
         content,
         tag
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             {

@@ -18,11 +18,12 @@ function ComFooter(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         img_address
     } = props
     
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             <Footer>

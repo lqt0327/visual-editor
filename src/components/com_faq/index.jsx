@@ -22,12 +22,13 @@ function ComFAQ(props){
         changePanelStateDispatch,
         template,
         id,
+        index,
         title,
         content
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             <div className="comp_faq_normal_1">

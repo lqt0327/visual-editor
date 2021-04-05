@@ -35,11 +35,12 @@ function ComButton(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         text
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             {

@@ -99,6 +99,7 @@ function GridList2(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         children,
         tag,
         img_address,
@@ -107,7 +108,7 @@ function GridList2(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
+        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
             changePanelStateDispatch(['banner','static'])
         }}>
             {

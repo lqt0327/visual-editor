@@ -22,7 +22,7 @@ function carousel(props) {
     };
 
     return (
-        <div className="carousel-content" id={id} onClick={()=>{
+        <div className="carousel-content" id={id} data-index={index} data-index={index} onClick={()=>{
             changePanelStateDispatch([left_editor,template,index]);
         }}>
             <Carousel autoplay>

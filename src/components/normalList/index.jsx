@@ -14,6 +14,7 @@ function NormalList(props) {
         changePanelStateDispatch,       
         template,
         id,
+        index,
         link_address,
         left_editor,
         title,
@@ -22,7 +23,7 @@ function NormalList(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch([left_editor,template])
         }}>
             <div>

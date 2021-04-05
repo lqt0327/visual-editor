@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel, addTemplate } from 'store/actions'
+import { changePanel, addTemplate, changePage } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import config from './config.json'
@@ -20,10 +20,14 @@ function Preview(props) {
 
     const {
         panel,
+        pageData:page,
         currentTemplate,
         changePanelStateDispatch,
-        addTemplateDispatch
+        addTemplateDispatch,
+        changePageDataDispatch
     } = props
+
+    let pageData = page ? page.toJS() : []
 
     const data = useRef([
         {
@@ -44,7 +48,7 @@ function Preview(props) {
             {
                 React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
             }
-            {data.current.map((item,i)=>{
+            {pageData.map((item,i)=>{
                 // 增加数组索引，以便localstorage数据更新时，可以准确定位相关模块
                 item["index"] = i
                 const json = generateInitJson(item["comp"])
@@ -68,13 +72,19 @@ function Preview(props) {
             })}
             {
                 // 通过localstorage 存储页面数据，点击 发布 将其中的数据统一发送至数据库
-                localStorage.setItem("tpldata",JSON.stringify(data.current))
+                localStorage.setItem("tpldata",JSON.stringify(pageData))
+            }
+            {
+                console.log(props,'entryTab77777')
             }
         </React.Fragment>, document.getElementById("stage"))
     }
 
     const addTemplate2 = useCallback((currentTpl, i) => {
-        currentTpl && data.current.splice(i,0, config[currentTpl])
+        if(currentTpl) {
+            pageData.splice(i,0, config[currentTpl])
+            changePageDataDispatch(pageData)
+        }
     },[])
 
     useEffect(() => {
@@ -90,7 +100,7 @@ function Preview(props) {
 
     useEffect(()=>{
         Dustbin()
-    },[currentTemplate,showAdd])
+    },[currentTemplate,showAdd,pageData])
 
     // 获取 点击模块的 id
     const clickHandler = useCallback((e) => {
@@ -105,8 +115,12 @@ function Preview(props) {
     const deleteComp = useCallback((id) => {
         try{
             const self = document.getElementById(id)
-            const parent = self.parentElement
-            parent.removeChild(self)
+            const index = self.dataset.index
+            // data.current.splice(index,1)
+            // changePageDataDispatch(data.current)
+            pageData.splice(index,1)
+            changePageDataDispatch(pageData)
+            Dustbin()
             setaTipTop(0)
             setaTipHeight(0)
         }catch(err){
@@ -162,8 +176,7 @@ function Preview(props) {
 const mapStateToProps = (state) => ({
     panel: state.getIn(['panels','currentPanel']),
     currentTemplate: state.getIn(['template', 'currentTemplate']),  // 左侧添加面板中 选中的模版
-    aTipTop: state.getIn(['activeTip','currentTop']),
-    aTipHeight: state.getIn(['activeTip','currentHeight'])
+    pageData: state.getIn(['page','pageData'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
@@ -173,6 +186,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         addTemplateDispatch(data) {
             dispatch(addTemplate(data))
+        },
+        changePageDataDispatch(data) {
+            dispatch(changePage(data))
         }
     }
 }

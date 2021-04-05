@@ -9,6 +9,7 @@ function OperationList(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         title,
         tag,
         area,
@@ -18,7 +19,7 @@ function OperationList(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:'relative'}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:'relative'}} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             <div>

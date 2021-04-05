@@ -8,11 +8,12 @@ function RowList(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         children
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch(['banner','static'])
         }}>
             <div className="fd-grid comp_list_v_1">

@@ -16,7 +16,7 @@ function Banner(props) {
     } = props
     console.log(JSON.parse(localStorage.getItem("tpldata")),'测试数据')
     return (
-        <div className={cx("banner",props.className)} id={id} onClick={()=>{
+        <div className={cx("banner",props.className)} id={id} data-index={index} onClick={()=>{
             changePanelStateDispatch([left_editor,template,index]);
         }}>
             {/* <a href={link_address} target="_blank"> */}

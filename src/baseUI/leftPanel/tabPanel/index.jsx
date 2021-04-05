@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Collapse, Input } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress } from "components";
+import { connect } from 'react-redux'
+import { changePage } from 'store/actions'
 import _ from 'lodash'
 import './style.sass'
 
@@ -60,26 +62,33 @@ const EditorContainer3 = () => {
 }
 
 const EditorContainer2 = (props) => {
-    const { comp_i } = props
-    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    const { 
+        comp_i, 
+        pageData, 
+        changePageDataDispatch 
+    } = props
+    // const tpldata = JSON.parse(localStorage.getItem('tpldata'))
 
     const [linkVal, setLinkVal] = useState('')
     const [textVal, setTextVal] = useState('')
     const path = useRef([])
 
     useEffect(()=>{
-        const tpl = tpldata[comp_i]
+        const tpl = pageData[comp_i]
         const tmp = path.current.reduce((pre,cur)=>{
             return tpl.children[cur]
         },0)
         if(linkVal !== '') {
             tmp["link_address"] = linkVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
+            changePageDataDispatch(pageData)
+            localStorage.setItem('tpldata',JSON.stringify(pageData))
         }
         if(textVal !== '') {
             tmp["label"] = textVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
+            changePageDataDispatch(pageData)
+            localStorage.setItem('tpldata',JSON.stringify(pageData))
         }
+        console.log(pageData,'999999')
     },[linkVal,textVal])
 
     return (
@@ -88,7 +97,7 @@ const EditorContainer2 = (props) => {
                 path.current = [e]
             }}>
                 {
-                    tpldata[comp_i].children.map((item, i) => {
+                    pageData[comp_i].children.map((item, i) => {
                         return (
                             <Panel header={`Tab ${i + 1}`} key={i} extra={genExtra()}>
                                 <h3>文案</h3>
@@ -188,7 +197,14 @@ const EditorContainer = (props) => {
 
 function TabPanel(props) {
 
-    const { panel, comp_i } = props
+    const { 
+        panel, 
+        comp_i, 
+        pageData:page, 
+        changePageDataDispatch 
+    } = props
+
+    let pageData = page ? page.toJS() : []
 
     return (
         <React.Fragment>
@@ -199,8 +215,18 @@ function TabPanel(props) {
                             <h2>Tab</h2>
                             <div className="schema-editor-scroll">
                                 {
-                                    panel === 'tab1' ? <EditorContainer comp_i={comp_i} /> :
-                                        panel === 'tab2' ? <EditorContainer2 comp_i={comp_i} /> :
+                                    panel === 'tab1' ? 
+                                    <EditorContainer 
+                                    comp_i={comp_i} 
+                                    pageData={pageData}
+                                    changePageDataDispatch={changePageDataDispatch}
+                                    /> :
+                                        panel === 'tab2' ? 
+                                        <EditorContainer2 
+                                        comp_i={comp_i} 
+                                        pageData={pageData}
+                                        changePageDataDispatch={changePageDataDispatch}
+                                        /> :
                                             ''
                                 }
                             </div>
@@ -212,6 +238,17 @@ function TabPanel(props) {
         </React.Fragment>
     )
 }
+// 映射Redux全局的state到组件到props上
+const mapStateToProps = (state) => ({
+    pageData: state.getIn(['page','pageData'])
+})
+// 映射dispatch到props上
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changePageDataDispatch(data) {
+            dispatch(changePage(data))
+        }
+    }
+}
 
-
-export default React.memo(TabPanel)
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(TabPanel))
