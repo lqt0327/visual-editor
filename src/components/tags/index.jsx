@@ -4,13 +4,12 @@ import { PlusOutlined } from '@ant-design/icons';
 
 const EditableTagGroup = React.forwardRef((props, ref) => {
     return (
-        <EditableTag ref={ref} />
+        <EditableTag ref={ref} {...props} />
     )
 })
 
 class EditableTag extends React.Component {
   state = {
-    tags: ['Unremovable', 'Tag 2', 'Tag 3'],
     inputVisible: false,
     inputValue: '',
     editInputIndex: -1,
@@ -18,9 +17,9 @@ class EditableTag extends React.Component {
   };
 
   handleClose = removedTag => {
-    const tags = this.state.tags.filter(tag => tag !== removedTag);
+    const tags = this.props.tags.filter(tag => tag !== removedTag);
     console.log(tags);
-    this.setState({ tags });
+    this.props.setTags(tags);
   };
 
   showInput = () => {
@@ -33,15 +32,15 @@ class EditableTag extends React.Component {
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
-    let { tags } = this.state;
+    let { tags, setTags } = this.props;
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
     this.setState({
-      tags,
       inputVisible: false,
       inputValue: '',
     });
+    setTags(tags)
   };
 
   handleEditInputChange = e => {
@@ -49,12 +48,13 @@ class EditableTag extends React.Component {
   };
 
   handleEditInputConfirm = () => {
-    this.setState(({ tags, editInputIndex, editInputValue }) => {
+    this.setState(({ editInputIndex, editInputValue }) => {
+      let { tags, setTags } = this.props;
       const newTags = [...tags];
       newTags[editInputIndex] = editInputValue;
-
+      setTags(newTags)
       return {
-        tags: newTags,
+        // tags: newTags,
         editInputIndex: -1,
         editInputValue: '',
       };
@@ -70,7 +70,8 @@ class EditableTag extends React.Component {
   };
 
   render() {
-    const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
+    const { inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
+    const { tags } = this.props;
     return (
       <>
         {tags.map((tag, index) => {
@@ -95,17 +96,17 @@ class EditableTag extends React.Component {
             <Tag
               className="edit-tag"
               key={tag}
-              closable={index !== 0}
+              closable={true}
               onClose={() => this.handleClose(tag)}
             >
               <span
                 onDoubleClick={e => {
-                  if (index !== 0) {
+                  // if (index !== 0) {
                     this.setState({ editInputIndex: index, editInputValue: tag }, () => {
                       this.editInput.focus();
                     });
                     e.preventDefault();
-                  }
+                  // }
                 }}
               >
                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}

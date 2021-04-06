@@ -6,7 +6,7 @@ import _ from 'lodash'
 const { Option } = Select
 
 const LinkAddress = (props) => {
-    const { setLinkVal } = props
+    const { setLinkVal, linkVal } = props
     return (
         <div className="link-address-container">
             <div className="ui-form-item item-url-input">
@@ -17,7 +17,7 @@ const LinkAddress = (props) => {
                         <Option value="lucy">外部链接</Option>
                     </Select>
                     <div className="item-type-url" >
-                        <Input placeholder="Basic usage" defaultValue="1231231"
+                        <Input placeholder="Basic usage" defaultValue={linkVal}
                         onChange={_.debounce((e)=>setLinkVal(e.target.value),250)} 
                         />
                     </div>

@@ -14,7 +14,6 @@ function Banner(props) {
         template,
         index
     } = props
-    console.log(JSON.parse(localStorage.getItem("tpldata")),'测试数据')
     return (
         <div className={cx("banner",props.className)} id={id} data-index={index} onClick={()=>{
             changePanelStateDispatch([left_editor,template,index]);

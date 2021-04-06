@@ -67,28 +67,25 @@ const EditorContainer2 = (props) => {
         pageData, 
         changePageDataDispatch 
     } = props
-    // const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+
+    const tpl = pageData[comp_i]
 
     const [linkVal, setLinkVal] = useState('')
     const [textVal, setTextVal] = useState('')
     const path = useRef([])
 
     useEffect(()=>{
-        const tpl = pageData[comp_i]
         const tmp = path.current.reduce((pre,cur)=>{
             return tpl.children[cur]
         },0)
         if(linkVal !== '') {
             tmp["link_address"] = linkVal
             changePageDataDispatch(pageData)
-            localStorage.setItem('tpldata',JSON.stringify(pageData))
         }
         if(textVal !== '') {
             tmp["label"] = textVal
             changePageDataDispatch(pageData)
-            localStorage.setItem('tpldata',JSON.stringify(pageData))
         }
-        console.log(pageData,'999999')
     },[linkVal,textVal])
 
     return (
@@ -107,7 +104,7 @@ const EditorContainer2 = (props) => {
                                     imgHeight={56}
                                     imgWidth={56}
                                 />
-                                <LinkAddress setLinkVal={setLinkVal} />
+                                <LinkAddress linkVal={tpl.children[i]["link_address"]} setLinkVal={setLinkVal} />
                             </Panel>
                         )
                     })
@@ -119,38 +116,42 @@ const EditorContainer2 = (props) => {
 }
 
 const EditorContainer = (props) => {
-    const { comp_i } = props
-    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    const { 
+        comp_i, 
+        pageData, 
+        changePageDataDispatch 
+    } = props
 
     const [linkVal, setLinkVal] = useState('')
     const [tagVal, setTagVal] = useState('')
     const [titleVal, setTitleVal] = useState('')
 
     const path = useRef([])
+    const tpl = pageData[comp_i]
 
     useEffect(()=>{
-        const tpl = tpldata[comp_i]
         const tmp = path.current.reduce((pre,cur)=>{
-            console.log(pre,'prepre')
             if(pre !== 0) {
                 return pre.children[cur]
             }
             return tpl.children[cur]
         },0)
-        console.log(tmp,'xxxx')
+        console.log(linkVal,tagVal,titleVal,'测试数据val')
         if(linkVal !== '') {
+            console.log('测试数据val1')
             tmp["link_address"] = linkVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
+            changePageDataDispatch(pageData)
         }
         if(tagVal !== '') {
+            console.log('测试数据val2')
             tmp["label"] = tagVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
+            changePageDataDispatch(pageData)
         }
         if(titleVal !== '') {
+            console.log('测试数据val3')
             tmp["title"] = titleVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
+            changePageDataDispatch(pageData)
         }
-        console.log(tpldata,'))))))',path)
     },[linkVal,tagVal,titleVal])
     return (
         <div className="schema-editor-container">
@@ -158,21 +159,21 @@ const EditorContainer = (props) => {
                 path.current = [e]
             }}>
                 {
-                    new Array(4).fill(null).map((item, i) => {
+                    tpl.children.map((item, i) => {
                         return (
-                            <Panel header={`Tab ${i + 1}`} key={i} extra={genExtra()}>
+                            <Panel header={item["label"]} key={i} extra={genExtra()}>
                                 <h3>标签</h3>
-                                <Input placeholder="Tab 1" onChange={_.debounce((e)=>setTagVal(e.target.value),250)} />
+                                <Input defaultValue={item["label"]} onChange={_.debounce((e)=>setTagVal(e.target.value),250)} />
                                 <h3>内容</h3>
                                 <Collapse accordion onChange={(j)=>{
                                     path.current = [i,j]
                                 }}>
                                     {
-                                        new Array(2).fill(null).map((item2, j) => {
+                                        item.children.map((item2, j) => {
                                             return (
-                                                <Panel header={`${j + 1}.为什么`} key={j} extra={genExtra()}>
+                                                <Panel header={item2["title"]} key={j} extra={genExtra()}>
                                                     <h3>标题</h3>
-                                                    <Input defaultValue={`${j + 1}.为什么`} onChange={_.debounce((e)=>setTitleVal(e.target.value),250)} />
+                                                    <Input defaultValue={item2["title"]} onChange={_.debounce((e)=>setTitleVal(e.target.value),250)} />
                                                     <h3>封面</h3>
                                                     <Upload
                                                         imgHeight={144}
@@ -204,7 +205,10 @@ function TabPanel(props) {
         changePageDataDispatch 
     } = props
 
-    let pageData = page ? page.toJS() : []
+    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    console.log(tpldata,'测试数据')
+    let pageData = page.size !== 0 ? page.toJS() :
+        tpldata ? tpldata :  []
 
     return (
         <React.Fragment>

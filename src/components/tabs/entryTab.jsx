@@ -44,8 +44,6 @@ function EntryTab(props) {
         index
     } = props
 
-    console.log(props,'entryTab9999')
-
     return (
         <EnteryNormal onClick={() => { 
             changePanelStateDispatch([left_editor,template,index])

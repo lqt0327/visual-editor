@@ -1,19 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Collapse, Input } from 'antd';
 import { Upload, LinkAddress, EditableTagGroup } from "components";
+import { connect } from 'react-redux'
+import { changePage } from 'store/actions'
 
 const { Panel } = Collapse;
 
 const NormalPanel = (props) => {
-    const { panel } = props
-    // console.log(panel,'listpanel-panel')
+    const { 
+        panel, 
+        comp_i, 
+        pageData, 
+        changePageDataDispatch 
+    } = props
+
+    const tpl = pageData[comp_i]
+    console.log(tpl,';;;;;;;',pageData)
     const tagsref = useRef()
     const [tags,setTags] = useState([])
+
+    const [linkVal, setLinkVal] = useState('')
+    const [textVal, setTextVal] = useState('')
+
     useEffect(()=>{
-        tagsref.current && setTags(tagsref.current.state.tags)
-        // console.log(tagsref,'测试数据')
-        return ()=>{
-            // console.log(tags,'离开组建时')
+        if(tags.length !== 0) {
+            console.log('tetttt')
+            tpl["tag"] = tags
+            changePageDataDispatch(pageData)
         }
     },[tags])
     
@@ -24,6 +37,8 @@ const NormalPanel = (props) => {
             <h3>标签</h3>
             <EditableTagGroup
                 ref={tagsref}
+                setTags={setTags}
+                tags={tpl["tag"]}
             />
             <p>{tags}</p>
             <h3>图片</h3>
@@ -37,7 +52,16 @@ const NormalPanel = (props) => {
 }
 
 function ListPanel(props) {
-    const { panel } = props
+    const { 
+        panel, 
+        comp_i, 
+        pageData:page, 
+        changePageDataDispatch 
+    } = props
+
+    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    let pageData = page.size !== 0 ? page.toJS() :
+        tpldata ? tpldata :  []
 
     return (
         <React.Fragment>
@@ -51,6 +75,9 @@ function ListPanel(props) {
                                     panel.indexOf("normal") !== -1 ? 
                                     <NormalPanel 
                                         panel={panel}
+                                        comp_i={comp_i} 
+                                        pageData={pageData}
+                                        changePageDataDispatch={changePageDataDispatch}
                                     /> : ""
                                 }
                             </div>
@@ -62,5 +89,17 @@ function ListPanel(props) {
         </React.Fragment>
     )
 }
+// 映射Redux全局的state到组件到props上
+const mapStateToProps = (state) => ({
+    pageData: state.getIn(['page','pageData'])
+})
+// 映射dispatch到props上
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changePageDataDispatch(data) {
+            dispatch(changePage(data))
+        }
+    }
+}
 
-export default ListPanel;
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ListPanel));

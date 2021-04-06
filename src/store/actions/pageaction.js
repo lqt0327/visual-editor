@@ -1,6 +1,8 @@
 import { fromJS } from 'immutable'
 
-export const changePage = (data) => ({
-    type: 'CHANGE_PAGE',
-    data: fromJS(data)
-})
+export const changePage = (data) => {
+    return ({
+        type: 'CHANGE_PAGE',
+        data: fromJS(data)
+    })
+}

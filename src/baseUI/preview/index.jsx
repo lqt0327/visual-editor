@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { changePanel, addTemplate, changePage } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
+import { Button } from 'antd';
 import config from './config.json'
 import './style.sass'
 
@@ -27,7 +28,10 @@ function Preview(props) {
         changePageDataDispatch
     } = props
 
-    let pageData = page ? page.toJS() : []
+    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    let pageData = page.size !== 0 ? page.toJS() :
+        tpldata ? tpldata :  []
+
 
     const data = useRef([
         {
@@ -46,7 +50,14 @@ function Preview(props) {
                 统一循环渲染 ？
             */}
             {
-                React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
+                // React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
+                pageData.length === 0 ?
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <Button type="dashed" block  onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(0+'top');setIndex(0)}}>
+                        添加组件
+                    </Button>
+                </div>
+                : ''
             }
             {pageData.map((item,i)=>{
                 // 增加数组索引，以便localstorage数据更新时，可以准确定位相关模块
@@ -70,19 +81,13 @@ function Preview(props) {
                     </div>
                 )
             })}
-            {
-                // 通过localstorage 存储页面数据，点击 发布 将其中的数据统一发送至数据库
-                localStorage.setItem("tpldata",JSON.stringify(pageData))
-            }
-            {
-                console.log(props,'entryTab77777')
-            }
         </React.Fragment>, document.getElementById("stage"))
     }
 
     const addTemplate2 = useCallback((currentTpl, i) => {
         if(currentTpl) {
             pageData.splice(i,0, config[currentTpl])
+            console.log(pageData,'添加测试数据')
             changePageDataDispatch(pageData)
         }
     },[])
@@ -188,6 +193,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addTemplate(data))
         },
         changePageDataDispatch(data) {
+            localStorage.setItem('tpldata',JSON.stringify(data))
             dispatch(changePage(data))
         }
     }

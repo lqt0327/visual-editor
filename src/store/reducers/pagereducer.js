@@ -2,13 +2,13 @@ import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
     pageData: [
-        {
-            comp: "Banner",
-            template: "banner1",
-            link_address: "www.baidu.com",
-            left_editor: "LeftPanelBanner",
-            img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
-        }
+        // {
+        //     comp: "Banner",
+        //     template: "banner1",
+        //     link_address: "www.baidu.com",
+        //     left_editor: "LeftPanelBanner",
+        //     img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
+        // }
     ]
 })
 
