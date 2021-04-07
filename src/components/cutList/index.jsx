@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
 import './style.sass'
 
-function NewList2(props) {
+function CutList(props) {
 
     const { 
         changePanelStateDispatch,
@@ -12,22 +11,23 @@ function NewList2(props) {
         index,
         title,
         img_address,
+        left_editor,
         desc
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static'])
+            changePanelStateDispatch([left_editor,template,index])
         }}>
             <div>
-                <a href="" className="fd-link comp_list_news_h_6">
+                <a className="fd-link comp_list_news_h_6">
                     {
                         template === 'cutlist1' ? 
                         <h1 className="fd-title sub line-cut-1 comp_list_news_h_6-title">
                             {title}
                         </h1> : ''
                     }
-                    <a href="" className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
+                    <a className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
                         <div className="fd-subject-cover" style={{backgroundImage:"url("+img_address+")"}}></div>
                         <div className="fd-subject-content">
                             {
@@ -46,7 +46,7 @@ function NewList2(props) {
     )
 }
 
-NewList2.propTypes = {
+CutList.propTypes = {
     changePanelStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
@@ -54,4 +54,4 @@ NewList2.propTypes = {
     desc: PropTypes.string
 }
 
-export default React.memo(NewList2)
+export default React.memo(CutList)

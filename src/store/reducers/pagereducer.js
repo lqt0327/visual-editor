@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable'
 
+// 预览页面的 页面数据
 const defaultState = fromJS({
     pageData: [
         // {

@@ -2,13 +2,14 @@ import React from 'react';
 import { Tag, Input, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-const EditableTagGroup = React.forwardRef((props, ref) => {
-    return (
-        <EditableTag ref={ref} {...props} />
-    )
-})
+// const EditableTagGroup = React.forwardRef((props, ref) => {
+//     return (
+//         <EditableTag ref={ref} {...props} />
+//     )
+// })
 
-class EditableTag extends React.Component {
+export default class EditableTag extends React.Component {
+
   state = {
     inputVisible: false,
     inputValue: '',
@@ -17,9 +18,9 @@ class EditableTag extends React.Component {
   };
 
   handleClose = removedTag => {
-    const tags = this.props.tags.filter(tag => tag !== removedTag);
-    console.log(tags);
-    this.props.setTags(tags);
+    const { tagVal, path, changeVal } = this.props
+    const tags = tagVal.filter(tag => tag !== removedTag);
+    changeVal(path.current, tags, "tag");
   };
 
   showInput = () => {
@@ -32,15 +33,15 @@ class EditableTag extends React.Component {
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
-    let { tags, setTags } = this.props;
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue];
+    const { tagVal, path, changeVal } = this.props
+    if (inputValue && tagVal.indexOf(inputValue) === -1) {
+      changeVal(path.current, [...tagVal, inputValue], "tag");
     }
     this.setState({
       inputVisible: false,
       inputValue: '',
     });
-    setTags(tags)
+    
   };
 
   handleEditInputChange = e => {
@@ -49,12 +50,11 @@ class EditableTag extends React.Component {
 
   handleEditInputConfirm = () => {
     this.setState(({ editInputIndex, editInputValue }) => {
-      let { tags, setTags } = this.props;
-      const newTags = [...tags];
+    const { tagVal, path, changeVal } = this.props
+      const newTags = [...tagVal];
       newTags[editInputIndex] = editInputValue;
-      setTags(newTags)
+    changeVal(path.current, newTags, "tag");
       return {
-        // tags: newTags,
         editInputIndex: -1,
         editInputValue: '',
       };
@@ -71,10 +71,10 @@ class EditableTag extends React.Component {
 
   render() {
     const { inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
-    const { tags } = this.props;
+    const { tagVal } = this.props
     return (
       <>
-        {tags.map((tag, index) => {
+        {tagVal.map((tag, index) => {
           if (editInputIndex === index) {
             return (
               <Input
@@ -143,4 +143,4 @@ class EditableTag extends React.Component {
   }
 }
 
-export default EditableTagGroup;
+// export default EditableTagGroup;

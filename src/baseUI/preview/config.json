@@ -1,7 +1,7 @@
 {
     "banner1": {
         "comp": "Banner",
-        "template": "banner1",
+        "template": "banner",
         "left_editor": "LeftPanelBanner",
         "link_address": "www.baidu.com",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
@@ -9,22 +9,22 @@
     "carousel2": {
         "comp": "Carousel",
         "template": "carousel2",
-        "left_editor": "LeftPanelBanner",
+        "left_editor": "LeftPanelCarousel",
         "children": [
             {
-                "link_address": "www.baidu.com1",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
             },
             {
-                "link_address": "www.baidu.com2",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png"
             },
             {
-                "link_address": "www.baidu.com3",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
             },
             {
-                "link_address": "www.baidu.com4",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png"
             }
         ]
@@ -32,7 +32,7 @@
     "tab1": {
         "comp": "Tab",
         "template": "tab1",
-        "left_editor": "TabPanel",
+        "left_editor": "LeftPanelTab1",
         "children": [
             {
                 "label": "Tab 1",
@@ -99,7 +99,7 @@
     "tab2": {
         "comp": "EntryTab",
         "template": "tab2",
-        "left_editor": "TabPanel",
+        "left_editor": "LeftPanelTab2",
         "children": [
             {
                 "label": "境外汇款",
@@ -126,7 +126,7 @@
     "normallist3": {
         "comp": "NormalList",
         "template": "normal3",
-        "left_editor": "ListPanel",
+        "left_editor": "LeftPanelNormalList",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png",
@@ -135,7 +135,7 @@
     "normallist2": {
         "comp": "NormalList",
         "template": "normal2",
-        "left_editor": "ListPanel",
+        "left_editor": "LeftPanelNormalList",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png",
@@ -144,13 +144,14 @@
     "normallist1": {
         "comp": "NormalList",
         "template": "normal1",
-        "left_editor": "ListPanel",
+        "left_editor": "LeftPanelNormalList",
         "link_address": "www.baidu.com",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "tag": ["市场", "第一财经"]
     },
     "rowlist1": {
         "comp": "RowList",
+        "left_editor": "LeftPanelRowList",
         "template": "rowlist1",
         "children": [
             {
@@ -169,6 +170,7 @@
     },
     "operationlist2": {
         "comp": "OperationList",
+        "left_editor": "LeftPanelOperationList",
         "template": "opt2",
         "title": "云凤蝶全栈工程师兼职",
         "tag": ["180元/小时", "日结"],
@@ -179,6 +181,7 @@
     },
     "operationlist1": {
         "comp": "OperationList",
+        "left_editor": "LeftPanelOperationList",
         "template": "opt1",
         "title": "云凤蝶全栈工程师兼职",
         "tag": ["180元/小时", "日结"],
@@ -188,6 +191,7 @@
     },
     "newlist3": {
         "comp": "NewList",
+        "left_editor": "LeftPanelNewList",
         "template": "newlist3",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": [
@@ -198,51 +202,71 @@
             "https://gw.alipayobjects.com/zos/rmsportal/gWYqjqJFBRTNhRNYrQkE.png",
             "https://gw.alipayobjects.com/zos/rmsportal/lKDrgTiyERvYSeMvdirE.png"]
         ],
+        "link_address": "www.baidu.com",
         "tag": [
             "市场", "第一财经"
         ]
     },
     "cutlist1": {
-        "comp": "NewList2",
+        "comp": "CutList",
+        "left_editor": "LeftPanelCutList",
         "template": "cutlist1",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png",
+        "link_address": "www.baidu.com",
         "desc": "无需搭建开发环境和部署服务器，基于开发者工具，使用丰富的 UI 组件和行业模板研发 H5"
     },
     "cutlist2": {
-        "comp": "NewList2",
+        "comp": "CutList",
+        "left_editor": "LeftPanelCutList",
         "template": "cutlist2",
         "title": "为什么这么多大企业都是云凤蝶的忠实用户？",
+        "link_address": "www.baidu.com",
         "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png"
     },
     "gridlist3": {
         "comp": "GridList",
+        "left_editor": "LeftPanelGridList",
         "template": "gridlist3",
         "children": [
-            [{
-                "tag": "海外旅行",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/wWQZevyGptOADcEhscIp.png"
+            {
+                "children": [
+                    {
+                        "tag": "海外旅行",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/wWQZevyGptOADcEhscIp.png"
+                    },
+                    {
+                        "tag": "出国留学",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/YVtEOLbGeJXCFrOARpLS.png"
+                    },
+                    {
+                        "tag": "留学快汇",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/iHEPGHUfgKMuIJhnmYCk.png"
+                    }
+                ]
             },
             {
-                "tag": "出国留学",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/YVtEOLbGeJXCFrOARpLS.png"
-            },
-            {
-                "tag": "留学快汇",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/iHEPGHUfgKMuIJhnmYCk.png"
-            }],
-            [{
-                "tag": "商务出行",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/VJeIDTUhhgZbEOAZcXeE.png"
-            },
-            {
-                "tag": "资产配置",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/MsBVFalmPzPZWnovieJz.png"
-            },
-            {
-                "tag": "代办签证",
-                "img_address": "https://gw.alipayobjects.com/zos/rmsportal/IJPHFytoWJjCBrKTQxhx.png"
-            }]
+                "children": [
+                    {
+                        "tag": "商务出行",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/VJeIDTUhhgZbEOAZcXeE.png"
+                    },
+                    {
+                        "tag": "资产配置",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/MsBVFalmPzPZWnovieJz.png"
+                    },
+                    {
+                        "tag": "代办签证",
+                        "link_address": "www.baidu.com",
+                        "img_address": "https://gw.alipayobjects.com/zos/rmsportal/IJPHFytoWJjCBrKTQxhx.png"
+                    }
+                ]
+            }   
         ]
     },
     "gridlist2": {
@@ -253,24 +277,28 @@
                 "title": "海外旅行",
                 "subtitle": "多国特色签证",
                 "tag": "旅行",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ZnGdPxoHrVXmGUqXouiU.png"
             },
             {
                 "title": "出国留学",
                 "subtitle": "全方位留学服务",
                 "tag": "留学",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/FpAKgrtDMKTXhIVdVfIj.png"
             }],
             [{
                 "title": "商务出行",
                 "subtitle": "出国工作安心无忧",
                 "tag": "商务",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/KmzovGuElReNFnhykhMf.png"
             },
             {
                 "title": "资产配置",
                 "subtitle": "沪港深基金连接境内外",
                 "tag": "资产",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/RfVtHjHOpezICADhNcxh.png"
             }]
         ]
@@ -282,21 +310,25 @@
             [{
                 "title": "俄罗斯",
                 "subtitle": "世界杯免签办理",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/dGUxUULyLhgGvkwoNsHn.png"
             },
             {
                 "title": "新西兰",
                 "subtitle": "家庭签证",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/rnLarHmjMpKasWVMFVnZ.png"
             }],
             [{
                 "title": "马来西亚",
                 "subtitle": "旅游电子签证",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/ifSqazvXgwLdBYrWNFQk.png"
             },
             {
                 "title": "日本",
                 "subtitle": "签证快捷办理",
+                "link_address": "www.baidu.com",
                 "img_address": "https://gw.alipayobjects.com/zos/rmsportal/vXNwQdxjBZPdAMNaHiKy.png"
             }]
         ]

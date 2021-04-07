@@ -12,12 +12,14 @@ function NewList(props) {
         index,
         title,
         img_address,
+        link_address,
+        left_editor,
         tag
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch(['banner','static'])
+            changePanelStateDispatch([left_editor, template, index])
         }}>
             <div>
                 <div className="fd-link fd-card comp_list_news_v_3">

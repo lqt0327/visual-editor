@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Collapse } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress } from "components";
@@ -15,23 +15,34 @@ const genExtra = () => (
     />
 );
 
-function BannerDynamic(props) {
-    const {comp_i} = props
-    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+function CarouselPanel(props) {
+    const {
+        comp_i,
+        pageData,
+        changePageDataDispatch
+    } = props
 
-    const [linkVal, setLinkVal] = useState('')
     const path = useRef([])
+    const tpl = pageData[comp_i]
 
-    useEffect(()=>{
-        const tpl = tpldata[comp_i]
-        const tmp = path.current.reduce((pre,cur)=>{
-            return tpl.children[cur]
-        },0)
-        if(linkVal !== '') {
-            tmp["link_address"] = linkVal
-            localStorage.setItem('tpldata',JSON.stringify(tpldata))
-        }
-    },[linkVal])
+    const tplData = (path) => {
+        if(path.length !== 0) {
+            return path.reduce((pre,cur)=>{
+                if(pre !== 0) {
+                    return pre.children[cur]
+                }
+                return tpl.children[cur]
+            },0)
+        }else {
+            return tpl
+        } 
+    }
+
+    const changeVal = (path,newVal,type) => {
+        const tmp = tplData(path)
+        tmp[type] = newVal
+        changePageDataDispatch(pageData)
+    }
         
     return (
         <div className="schema-editor-container">
@@ -39,14 +50,14 @@ function BannerDynamic(props) {
                 path.current = [key]
             }}>
                 {
-                    tpldata[comp_i].children.map((_,i)=>{
+                    tpl.children.map((item,i)=>{
                         return (
                             <Panel header={`This is panel header ${i+1}`} key={i} extra={genExtra()}>
                                 <Upload 
                                     imgWidth={750}
                                     imgHeight={280}
                                 />
-                                <LinkAddress setLinkVal={setLinkVal} />
+                                <LinkAddress linkVal={item["link_address"]} path={path} changeVal={changeVal} />
                             </Panel>
                         )
                     })
@@ -57,4 +68,4 @@ function BannerDynamic(props) {
     )
 }
 
-export default BannerDynamic;
+export default React.memo(CarouselPanel);

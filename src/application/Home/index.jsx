@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Header, Preview } from "baseUI";
-import * as LeftPanel from "baseUI/leftPanel";
+import { AddComponents, LeftPanelPage, EditComponents } from "baseUI/leftPanel";
 import { connect } from 'react-redux';
 import cx from "classnames";
 import "./style.sass";
@@ -9,20 +9,17 @@ import "./style.sass";
 
 function Home(props) {
 
-    const { panel } = props
+    const { panel: p } = props
+    const panel = p ? p.toJS() : []
 
     return (
         <div className="l-eidtor">
             <Header />
             <main>
                 {
-                    // panel[0] === 'addComponents' ? <AddComponents /> :
-                    // panel[0] === 'page' ? <LeftPanelPage /> :
-                    // panel[0] === 'banner' ? <LeftPanelBanner /> :
-                    // panel[0] === 'tab' ? <TabPanel /> :
-                    // <LeftPanelPage />
-                    panel[0] ? React.createElement(LeftPanel[panel[0]],{panel: panel[1],comp_i:panel[2]},'') :
-                    <LeftPanel.LeftPanelPage />
+                    panel[0] === 'AddComponents' ? <AddComponents /> :
+                    panel[0] === 'page' ? <LeftPanelPage /> : 
+                    <EditComponents panel={panel[0]} comp_i={panel[2]} template={panel[1]} />
                 }
                 <Preview />
             </main>

@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable'
 
+// 左侧面板 指定当前操作的面板是哪个
 const defaultState = fromJS({
     currentPanel: ['page']
 })

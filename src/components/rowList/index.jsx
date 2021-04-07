@@ -9,16 +9,17 @@ function RowList(props) {
         template,
         id,
         index,
-        children
+        children,
+        left_editor
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static'])
+            changePanelStateDispatch([left_editor,template,index])
         }}>
             <div className="fd-grid comp_list_v_1">
                 {
-                    children.map((_,i)=>{
+                    children.map((item,i)=>{
                         return (
                             <div className="fd-grid-row" key={i}>
                                 <div className="fd-grid-col">
@@ -26,13 +27,13 @@ function RowList(props) {
                                         <a 
                                             href="" 
                                             className="fd-link fd-cover fd-jumbo-cover"
-                                            style={{backgroundImage:'url('+_.img_address+')'}}
+                                            style={{backgroundImage:'url('+item.img_address+')'}}
                                         >
                                         </a>
                                         <div className="fd-jumbo-mask"></div>
-                                        <div className="fd-jumbo-content">{_.title}</div>
+                                        <div className="fd-jumbo-content">{item.title}</div>
                                         <div className="fd-jumbo-tag">
-                                            <label htmlFor="">{_.tag}</label>
+                                            <label htmlFor="">{item.tag}</label>
                                         </div>
                                     </div>
                                 </div>
