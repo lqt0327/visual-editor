@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Collapse, Input } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import { Upload, LinkAddress } from "components";
+import { Uploads, LinkAddress } from "components";
 import _ from 'lodash'
 
 const { Panel } = Collapse;
@@ -20,6 +20,7 @@ function CarouselPanel(props) {
     const {
         comp_i,
         pageData,
+        template,
         changePageDataDispatch
     } = props
 
@@ -60,12 +61,27 @@ function CarouselPanel(props) {
                                     {
                                         item.children.map((item2,j)=>{
                                             return (
-                                                <Panel header={item2["tag"]} key={j} extra={genExtra()}>
-                                                    <h3>标签</h3>
-                                                    <Input defaultValue={item2["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
-                                                    <Upload 
+                                                <Panel header={item2["title"]} key={j} extra={genExtra()}>
+                                                    <h3>标题</h3>
+                                                    <Input defaultValue={item2["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+                                                    {
+                                                        template === 'gridlist3' ? "" :
+                                                        <React.Fragment>
+                                                            <h3>副标题</h3>
+                                                            <Input defaultValue={item2["subtitle"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "subtitle"), 250)} />
+                                                        </React.Fragment>
+                                                    }
+                                                    {
+                                                        template === 'gridlist2' ? 
+                                                        <React.Fragment>
+                                                            <h3>标签</h3>
+                                                            <Input defaultValue={item2["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
+                                                        </React.Fragment> : ""
+                                                    }
+                                                    <Uploads 
                                                         imgWidth={750}
                                                         imgHeight={280}
+                                                        maxlist={item.children.length}
                                                     />
                                                     <LinkAddress linkVal={item2["link_address"]} path={path} changeVal={changeVal} />
                                                 </Panel>    

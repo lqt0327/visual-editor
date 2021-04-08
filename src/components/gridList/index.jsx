@@ -15,7 +15,7 @@ const GridCol = (props) => {
                             <div className="fd-jumbo-mask"></div>
                             <div className="fd-jumbo-content">
                                 <h1 className="fd-title line-cut-1 comp_list_grid_5-item-title">
-                                    {item2.tag}
+                                    {item2.title}
                                 </h1>
                             </div>
                         </a>
@@ -36,6 +36,8 @@ function GridList(props) {
         index,
         children
     } = props
+
+    console.log(children)
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
@@ -61,10 +63,10 @@ function GridList(props) {
 GridList.propTypes = {
     changePanelStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
-        tag: PropTypes.string,
-        img_address: PropTypes.string
-    })))
+    // children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
+    //     tag: PropTypes.string,
+    //     img_address: PropTypes.string
+    // })))
 }
 
 export default React.memo(GridList)

@@ -10,12 +10,13 @@ function ComponentImg(props) {
         id,
         index,
         img_address,
+        left_editor,
         desc
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static'])
+            changePanelStateDispatch([left_editor,template,index])
         }}>
             <div className="comp_img_2">
                 <img src={img_address} alt="" className="comp_img_2-img"/>

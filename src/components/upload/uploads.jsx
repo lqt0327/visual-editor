@@ -39,12 +39,12 @@ export default class MyUpload extends React.Component {
             onChange: this.handleChange,
             multiple: true,
         };
-        const { imgWidth, imgHeight } = this.props
+        const { imgWidth, imgHeight, maxlist=6 } = this.props
         const { fileList } = this.state
         return (
             <Upload {...props} fileList={this.state.fileList}>
                 {
-                    fileList >= 6 ? null :
+                    fileList >= maxlist ? null :
                         <React.Fragment>
                             <Button icon={<UploadOutlined />}>选择图片</Button>
                             &nbsp;（建议尺寸：{imgWidth}*{imgHeight}）
