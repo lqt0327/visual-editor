@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import marked from 'marked'
 import hljs from "highlight.js"
 import 'highlight.js/styles/tomorrow-night-bright.css';
@@ -57,7 +56,7 @@ const ParLeft3 = (props) => {
 
 function Paragraph(props) {
 
-    const {
+    const { 
         template,
         title,
         content,
@@ -81,12 +80,6 @@ function Paragraph(props) {
             }
         </div>
     )
-}
-
-Paragraph.propTypes = {
-    title: PropTypes.string,
-    content: PropTypes.string,
-    tag: PropTypes.array
 }
 
 export default React.memo(Paragraph)

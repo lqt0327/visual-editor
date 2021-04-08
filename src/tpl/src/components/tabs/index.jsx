@@ -1,6 +1,5 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import PropTypes from 'prop-types'
 import './style.sass';
 
 const { TabPane } = Tabs;
@@ -14,7 +13,7 @@ const CompList = (arr) => {
         arr.map((item2, j) => {
             return (
                 <div key={j}>
-                    <a className="fd-link fd-subject">
+                    <a href={item2["link_address"]} className="fd-link fd-subject">
                         <div className="fd-subject-cover" style={{ backgroundImage: 'url(' + item2["img_address"] + ')' }}></div>
                         <div className="fd-subject-content">
                             <h1 className="fd-title line-cut-2">{item2["title"]}</h1>
@@ -29,14 +28,12 @@ const CompList = (arr) => {
 function Tab(props) {
 
     const {
-        template,
-        left_editor,
         children
     } = props
 
     return (
         <div className="use-tag" style={{ position: "relative" }}>
-            <Tabs defaultActiveKey="1" onChange={callback}>
+            <Tabs defaultActiveKey="1" onChange={callback} centered>
                 {
                     children.map((item, i) => {
                         return (
@@ -54,19 +51,4 @@ function Tab(props) {
     )
 }
 
-Tab.propTypes = {
-    type: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        children: PropTypes.arrayOf(PropTypes.shape({
-            img_address: PropTypes.string,
-            title: PropTypes.string,
-            link_address: PropTypes.string
-        }))
-    }))
-}
-
-Tab.defaultProps = {
-    type: "text"
-}
 export default React.memo(Tab)

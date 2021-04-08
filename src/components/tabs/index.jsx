@@ -38,7 +38,7 @@ function Tab(props) {
     } = props
 
     return (
-        <div className="use-tag" style={{ position: "relative" }} id={id}>
+        <div className="use-tag" style={{ position: "relative" }} id={id} data-index={index}>
             <Tabs defaultActiveKey="1" onChange={callback} centered onClick={() => {
                 changePanelStateDispatch([left_editor, template, index])
             }}>

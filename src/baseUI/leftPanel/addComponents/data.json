@@ -1,8 +1,6 @@
 {
     "BANNER": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh10g7/0993e70d-7d4f-4e65-86d6-dfbb14a7da05.cms/images/0178ff2a-35ba-4c8c-9b54-29df6688b0c4.png?x-oss-process=image/resize,w_560/crop,h_560","非通栏 Banner - 1","banner1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh10g7/0993e70d-7d4f-4e65-86d6-dfbb14a7da05.cms/images/0178ff2a-35ba-4c8c-9b54-29df6688b0c4.png?x-oss-process=image/resize,w_560/crop,h_560","普通 Banner","banner2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0p9c/91cfa04c-a80c-4bff-a96d-e3f9c1059c25.cms/images/5011f344-4655-4c57-bd8e-68b0258e05bc.png?x-oss-process=image/resize,w_560/crop,h_560","手动轮播 Banner","carousel1"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh0hqm/4582999c-1330-49e8-b809-8f459410ed9e.cms/images/785bb68f-d5b0-44c1-967d-7b2e6cfeead9.png?x-oss-process=image/resize,w_560/crop,h_560","自动轮播 Banner","carousel2"]
     ],
     "TAB": [
@@ -60,9 +58,7 @@
     ],
     "FAQ": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh3fkm/e0464e5e-2b33-40f4-bb36-5ef4502c2657.cms/images/82d62ca7-23ff-42e5-9abe-e473d3f9d8c1.png?x-oss-process=image/resize,w_560/crop,h_560","普通 FAQ - 2","faq2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh3ai8/3d708bd5-743a-4935-904b-a6388cee174f.cms/images/e22d93ad-8e46-44f9-90f7-d6adcd46254e.png?x-oss-process=image/resize,w_560/crop,h_560","普通 FAQ - 1","faq1"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh3508/831894e1-9205-4452-bd25-91bc92a37e01.cms/images/c5e33e2d-2c9d-49f1-a78f-c67b3ad272de.png?x-oss-process=image/resize,w_560/crop,h_560","对话式FAQ - 2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh2zrx/420047ca-f9b8-4ef4-8fb2-3b8e310be0e9.cms/images/7f383a82-7eac-4f7a-ba9c-f67855cc1387.png?x-oss-process=image/resize,w_560/crop,h_560","对话式FAQ - 1"]
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh3ai8/3d708bd5-743a-4935-904b-a6388cee174f.cms/images/e22d93ad-8e46-44f9-90f7-d6adcd46254e.png?x-oss-process=image/resize,w_560/crop,h_560","普通 FAQ - 1","faq1"]
     ],
     "规则": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh8x37/982f9a3d-11fe-405f-ad54-559559e767b2.cms/images/79ad9b90-41e5-4141-b7de-2d46a075c842.png?x-oss-process=image/resize,w_560/crop,h_560","规则 - 4"],

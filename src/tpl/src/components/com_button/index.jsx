@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import './style.sass'
 
 const Btn3 = (props) => {
@@ -31,7 +30,7 @@ const Btn2 = (props) => {
 }
 
 function ComButton(props) {
-    const {         
+    const { 
         template,
         text
     } = props
@@ -50,10 +49,6 @@ function ComButton(props) {
             }
         </div>
     )
-}
-
-ComButton.propTypes = {
-    text: PropTypes.string
 }
 
 export default React.memo(ComButton)

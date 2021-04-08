@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './style.sass'
 
 const Quote1 = (props) => {
@@ -39,7 +38,7 @@ const Quote2 = (props) => {
 
 function Quote(props) {
 
-    const {
+    const { 
         template,
         text
     } = props
@@ -56,8 +55,5 @@ function Quote(props) {
     )
 }
 
-Quote.propTypes = {
-    text: PropTypes.string
-}
 
 export default React.memo(Quote)

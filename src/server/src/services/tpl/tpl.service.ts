@@ -26,27 +26,27 @@ export class TplService {
  * @param {type}
  * @return:
  */
-  async create(createTplDto: CreateTplDto): Promise<string> {
-    try{
-      let { tplData, uid, tag } = createTplDto
-      return getManager().transaction(async (entityManager: EntityManager) => {
-        await entityManager.save(TplEntity, { tplData, uid, tag})
-      }).then(async () => {
-        return '创建成功'
-      }).catch(e => {
-        console.log('创建模版', e)
-        throw new HttpException('创建失败', HttpStatus.OK)
-      })
-    }catch(e) {
-      Logger.error(e,'tpl.service');
-      throw new HttpException(e, HttpStatus.OK)
-    }
-    // const tpl = new TplEntity();
-    // tpl.tplData = createTplDto.tplData;
-    // tpl.uid = createTplDto.uid;
-    // tpl.tag = createTplDto.tag;
+  async create(createTplDto: CreateTplDto): Promise<TplEntity> {
+    // try{
+    //   let { tplData, uid, tag } = createTplDto
+    //   return getManager().transaction(async (entityManager: EntityManager) => {
+    //     await entityManager.save(TplEntity, { tplData, uid, tag})
+    //   }).then(async () => {
+    //     return '创建成功'
+    //   }).catch(e => {
+    //     console.log('创建模版', e)
+    //     throw new HttpException('创建失败', HttpStatus.OK)
+    //   })
+    // }catch(e) {
+    //   Logger.error(e,'tpl.service');
+    //   throw new HttpException(e, HttpStatus.OK)
+    // }
+    const tpl = new TplEntity();
+    tpl.tplData = createTplDto.tplData;
+    tpl.uid = createTplDto.uid;
+    tpl.tag = createTplDto.tag;
 
-    // return this.tplRepository.save(tpl);
+    return this.tplRepository.save(tpl);
   }
 
   async findAll(): Promise<TplEntity[]> {

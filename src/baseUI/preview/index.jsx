@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 import { changePanel, addTemplate, changePage } from 'store/actions'
@@ -18,9 +18,9 @@ function Preview(props) {
     const [atipTop, setaTipTop] = useState(0)
     const [atipHeight, setaTipHeight] = useState(0)
     const [activeId, setActiveId] = useState()
+    const [activeIndex, setActiveIndex] = useState()
 
     const {
-        panel,
         pageData:page,
         currentTemplate,
         changePanelStateDispatch,
@@ -32,28 +32,16 @@ function Preview(props) {
     let pageData = page.size !== 0 ? page.toJS() :
         tpldata ? tpldata :  []
 
-
-    const data = useRef([
-        {
-            comp: "Banner",
-            template: "banner1",
-            link_address: "www.baidu.com",
-            left_editor: "LeftPanelBanner",
-            img_address: "https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png"
-        }
-    ])
-
     const Dustbin = () => {
         ReactDOM.render(<React.Fragment>
-            {/* 
-                如何传递 值，配置好各个模板的props和classname等参数
-                统一循环渲染 ？
-            */}
             {
-                // React.createElement('div',{className:'abcd',onClick:()=>{console.log('test')}},'123')
                 pageData.length === 0 ?
                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Button type="dashed" block  onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(0+'top');setIndex(0)}}>
+                    <Button type="dashed" block onClick={()=>{
+                        changePanelStateDispatch(['AddComponents']);
+                        setShowAdd(0+'top');
+                        setIndex(0)
+                    }}>
                         添加组件
                     </Button>
                 </div>
@@ -72,9 +60,25 @@ function Preview(props) {
                         <div id="fengdie-components-drop-placeholder-top" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(i+'top');setIndex(i)}}>+</button>
+                        <button 
+                            className="add-components" 
+                            type="button" 
+                            onClick={()=>{
+                                changePanelStateDispatch(['AddComponents']);
+                                setShowAdd(i+'top');
+                                setIndex(i)
+                            }
+                        }>+</button>
                         {Compile(json)}
-                        <button className="add-components" type="button" onClick={()=>{changePanelStateDispatch(['AddComponents']);setShowAdd(i+'bottom');setIndex(i+1)}}>+</button>
+                        <button 
+                            className="add-components" 
+                            type="button" 
+                            onClick={()=>{
+                                changePanelStateDispatch(['AddComponents']);
+                                setShowAdd(i+'bottom');
+                                setIndex(i+1)
+                                }
+                        }>+</button>
                         <div id="fengdie-components-drop-placeholder-bottom" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
                             "添加至此处"
                         </div>
@@ -84,54 +88,65 @@ function Preview(props) {
         </React.Fragment>, document.getElementById("stage"))
     }
 
-    const addTemplate2 = useCallback((currentTpl, i) => {
+    const addTemplate2 = (currentTpl, i) => {
         if(currentTpl) {
             pageData.splice(i,0, config[currentTpl])
             console.log(pageData,'添加测试数据')
             changePageDataDispatch(pageData)
         }
-    },[])
+    }
 
     useEffect(() => {
-        // console.log([tipHeightRef.current],'测试数据')
         setTipHeight(tipHeightRef.current.offsetHeight)
-        document.getElementById(activeId) ? setaTipTop(document.getElementById(activeId).offsetTop) : setaTipTop(0)
+        // 获取右侧工具栏 距离顶部高度
+        document.getElementById(activeId) ? setaTipTop(document.getElementById(activeId).offsetTop - tipHeightRef.current.scrollTop) : setIsShow(false)
+        // 获取点击预览页面 背景阴影的高度
         document.getElementById(activeId) ? setaTipHeight(document.getElementById(activeId).offsetHeight) : setaTipHeight(0)
         
         addTemplate2(currentTemplate,index)
         addTemplateDispatch('')
         
-    }, [tipHeight,currentTemplate,activeId])
+    }, [tipHeight,currentTemplate,activeId,showAdd])
 
     useEffect(()=>{
         Dustbin()
     },[currentTemplate,showAdd,pageData])
 
     // 获取 点击模块的 id
-    const clickHandler = useCallback((e) => {
+    const clickHandler = (e) => {
         const id = getUuid(e.target)
         if(id) {
             setActiveId(id)
+            const self = document.getElementById(id)
+            const index = self.dataset.index
+            setActiveIndex(index)
+            setIsShow(true)
+            
         } else {
             console.warn("请检查当前组件是否具有id属性（属性值特征：llscw+....）")
         }
-    },[])
+    }
 
-    const deleteComp = useCallback((id) => {
+    const deleteComp = () => {
         try{
-            const self = document.getElementById(id)
-            const index = self.dataset.index
-            // data.current.splice(index,1)
-            // changePageDataDispatch(data.current)
-            pageData.splice(index,1)
+            pageData.splice(activeIndex,1)
+            changePanelStateDispatch(["page"])
             changePageDataDispatch(pageData)
-            Dustbin()
             setaTipTop(0)
             setaTipHeight(0)
+            setActiveIndex()
         }catch(err){
             console.log('楼层id为空')
         }
-    },[])
+    }
+    const [isShow, setIsShow] = useState(false)
+
+    useEffect(()=>{
+        // 页面滚动时 隐藏右侧工具栏
+        isShow && tipHeightRef.current.addEventListener('scroll',()=>{
+            setIsShow(false)
+        })
+    })
 
     return (
         <div className="l-preview">
@@ -144,22 +159,25 @@ function Preview(props) {
             </div>
             <div className="l-prevew-box">
                 <div className="l-preview-iframe">
-                    <div className="l-preview-scroll">
-                        <div className="lAnt-spin-nested-loading" ref={tipHeightRef}>
+                    <div className="l-preview-scroll" ref={tipHeightRef}>
+                        <div className="lAnt-spin-nested-loading">
                             <div className="lAnt-spin__main" style={{ background: "rgb(255,255,255)" }}>
-                                <div className="lAnt-spin__main-inner" onClick={clickHandler} style={{ paddingBottom: "0px" }} id="stage">
-                                    {/* <div className="lAnt-spin__main-first-screen-line"></div> */}
+                                <div 
+                                    className="lAnt-spin__main-inner" 
+                                    onClick={clickHandler} 
+                                    style={{ paddingBottom: "0px" }} 
+                                    id="stage"
+                                >
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="l-preview-container">
-                    <div className="l-preview-tips" style={{ height: tipHeight + 'px' }} >
+                    <div className="l-preview-tips" style={{ height: tipHeight + 'px' ,display: isShow ? "block" : "none"}} >
                         <div className="l-view-hover-tip" style={{ top: '0px', height: '0px' }}></div>
                         <div className="l-view-active-tip" style={{ top: atipTop + 'px', height: atipHeight + 'px' }}></div>
                         <div className="l-view-tools" style={{ top: atipTop+"px" }}>
-                            {/* <div className="l-tools-move l-tools-move-single"> */}
                             <div className="l-tools-move">
                                 <i className="icon iconfont">&#xe703;</i>
                                 <i className="icon iconfont">&#xe780;</i>

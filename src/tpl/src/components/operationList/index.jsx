@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
 import './style.sass'
 
 function OperationList(props) {
 
-    const {
+    const { 
         template,
         title,
         tag,
@@ -38,20 +37,12 @@ function OperationList(props) {
                         </div>
                     </div>
                     <div className="fd-subject-action">
-                        <button className="fd-button">{btn}</button>
+                        <button className="fd-button" onClick={()=>window.open(link_address,"_self")}>{btn}</button>
                     </div>
                 </a>
             </div>
         </div>
     )
-}
-
-OperationList.propTypes = {
-    title: PropTypes.string,
-    tag: PropTypes.array,
-    area: PropTypes.string,
-    img_address: PropTypes.string,
-    btn: PropTypes.string
 }
 
 export default React.memo(OperationList)

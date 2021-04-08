@@ -9,6 +9,7 @@ import { axiosInstance } from './config'
 //     return axiosInstance.get(`/tpl/${id}`)
 // }
 
+// 新模版发布
 export const addTplRequest = (tplData, uid, tag) => {
     return axiosInstance.post(
         `/tpl`, {
@@ -16,5 +17,5 @@ export const addTplRequest = (tplData, uid, tag) => {
             uid,
             tag
         }
-    )
+    ).then(res=>res)
 }

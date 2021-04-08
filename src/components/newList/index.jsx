@@ -37,7 +37,7 @@ function NewList(props) {
                                                     _.map((item, j) => {
                                                         return (
                                                             <div className="fd-grid-col" key={j}>
-                                                                <a href="" className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
+                                                                <a className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
                                                             </div>
                                                         )
                                                     })

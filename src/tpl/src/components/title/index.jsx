@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './style.sass'
 
 const Normal2 = (props) => {
@@ -73,7 +72,7 @@ const Block1 = (props) => {
 
 function Title(props) {
 
-    const {
+    const { 
         template,
         title
     } = props
@@ -96,10 +95,6 @@ function Title(props) {
             }
         </div>
     )
-}
-
-Title.propTypes = {
-    title: PropTypes.string
 }
 
 export default React.memo(Title)

@@ -1,24 +1,18 @@
 import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { Compile } from './utils/compile';
+import { getUrlParams } from './utils/tools'
 import { useEffect, useRef } from "react";
 import { getTplRequest } from './api/request';
 import { useState } from "react";
-import { useCallback } from "react";
 
 const TplRender = (tplData) => {
   ReactDOM.render(
     <React.Fragment>
       {
-        React.createElement('div',{},'123')
-      }
-      {
-        console.log(tplData,'+++++')
-      }
-      {
         tplData.map((item,i)=>{
           return (
-            <div key={i}>
+            <div className="fengdie-components" key={i}>
               {Compile(item)}
             </div>
           )
@@ -37,13 +31,14 @@ export const PreviewComponent = () => {
 
   const safeSetTplData = res => mountedRef.current && setTplData(res);
 
-  const getTplData = useCallback((id)=>{
-    getTplRequest(1).then(data=>{
-      console.log(data,'????',JSON.parse(data.tplData))
+  const getTplData = ()=>{
+    const params = getUrlParams(document.location.search)
+    const id = params["page"]
+    getTplRequest(id).then(data=>{
       const tpl = JSON.parse(data.tplData)
       safeSetTplData(tpl)
     })
-  },[])
+  }
 
   useEffect(()=>{
     mountedRef.current = true

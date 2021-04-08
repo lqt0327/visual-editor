@@ -1,19 +1,25 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useCallback } from "react";
 import { connect } from 'react-redux';
 import { changePanel } from 'store/actions'
 import { addTplRequest } from 'src/api/request'
-import cx from "classnames";
+import { base64Time } from "src/utils/tools";
 import "./style.sass";
 
 function Header(props) {
 
     const { changePanelStateDispatch } = props
 
-    const addTpl = useCallback(async () => {
-        const tpl = await JSON.parse(localStorage.getItem('tpldata'))
-        console.log(tpl,'发布测试数据')
-        addTplRequest(tpl,1,1)
-    },[]) 
+    const addTpl = () => {
+        const tpl = localStorage.getItem('tpldata')
+        console.log(base64Time())
+        addTplRequest(tpl,1,1).then((res)=>{
+            const id = res.id
+            window.open(`http://localhost:8082/?page=${id}`)
+            console.log(res,'??????')
+        })
+        // 跳转至对应 h5 页面  要在服务端对数据存储完成后，在进行跳转 ？？？？
+        // window.open(`http://localhost:8082/pageId/`)
+    }
 
     return (
         <header className="l-header">

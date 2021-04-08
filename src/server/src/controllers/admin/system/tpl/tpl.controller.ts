@@ -19,7 +19,7 @@ export class TplController {
     @HttpCode(HttpStatus.CREATED)
     async createTpl(
       @Body() createTplDto: CreateTplDto
-    ): Promise<string> {
+    ): Promise<TplEntity> {
       return await this.tplService.create(createTplDto);
     }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import PropTypes from 'prop-types'
 
 const Footer = styled.div`
     display: flex;
@@ -14,7 +13,7 @@ const Footer = styled.div`
 
 function ComFooter(props) {
 
-    const {         
+    const { 
         img_address
     } = props
     
@@ -25,10 +24,6 @@ function ComFooter(props) {
             </Footer>
         </div>
     )
-}
-
-ComFooter.propTypes = {
-    img_address: PropTypes.string
 }
 
 export default React.memo(ComFooter)

@@ -1,27 +1,21 @@
 import React from 'react'
-import styled from 'styled-components'
 import cx from 'classnames'
-import PropTypes from 'prop-types'
 import './style.sass'
-
-const ListContent = styled.div`
-
-`
 
 function NormalList(props) {
 
-    const {  
+    const { 
         template,
-        link_address,
         title,
         img_address,
-        tag
+        tag,
+        link_address
     } = props
 
     return (
         <div className="use-tag" style={{position:"relative"}}>
             <div>
-                <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
+                <a href={link_address} className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
                     <div className={cx("fd-subject-cover",{"hide": template === 'normal1' ? true : false})} style={{backgroundImage:'url('+img_address+')'}}></div>
                     <div className="fd-subject-content">
                         <div>
@@ -43,13 +37,6 @@ function NormalList(props) {
             </div>
         </div>
     )
-}
-
-NormalList.propTypes = {
-    link_address: PropTypes.string,
-    title: PropTypes.string,
-    tag: PropTypes.array,
-    img_address:PropTypes.string
 }
 
 export default React.memo(NormalList)

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import marked from 'marked'
 import hljs from "highlight.js"
 import 'highlight.js/styles/tomorrow-night-bright.css';
@@ -18,8 +17,8 @@ function ComFAQ(props){
         }
     });
 
-    const {    
-        template,     
+    const { 
+        template,
         title,
         content
     } = props
@@ -50,11 +49,6 @@ function ComFAQ(props){
             </div>
         </div>
     )
-}
-
-ComFAQ.propTypes = {
-    content: PropTypes.string,
-    title: PropTypes.string
 }
 
 export default React.memo(ComFAQ)

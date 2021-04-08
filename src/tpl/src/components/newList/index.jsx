@@ -1,21 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
 import './style.sass'
 
 function NewList(props) {
 
     const {
-        template,
         title,
         img_address,
+        link_address,
         tag
     } = props
 
     return (
         <div className="use-tag" style={{ position: "relative" }}>
             <div>
-                <div className="fd-link fd-card comp_list_news_v_3">
+                <div className="fd-link fd-card comp_list_news_v_3" onClick={()=>window.open(link_address,"_self")}>
                     <div className="fd-card-inner">
                         <div className="fd-card-inner-head">
                             <h1 className="fd-title title">{title}</h1>
@@ -30,7 +28,7 @@ function NewList(props) {
                                                     _.map((item, j) => {
                                                         return (
                                                             <div className="fd-grid-col" key={j}>
-                                                                <a href="" className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
+                                                                <a className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
                                                             </div>
                                                         )
                                                     })
@@ -61,10 +59,5 @@ function NewList(props) {
     )
 }
 
-NewList.propTypes = {
-    title: PropTypes.string,
-    img_address: PropTypes.array,
-    tag: PropTypes.array
-}
 
 export default React.memo(NewList)

@@ -1,28 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import cx from 'classnames'
 import './style.sass'
 
-function NewList2(props) {
+function CutList(props) {
 
-    const {
+    const { 
         template,
         title,
         img_address,
+        link_address,
         desc
     } = props
 
     return (
         <div className="use-tag" style={{position:"relative"}}>
             <div>
-                <a href="" className="fd-link comp_list_news_h_6">
+                <a href={link_address} className="fd-link comp_list_news_h_6">
                     {
                         template === 'cutlist1' ? 
                         <h1 className="fd-title sub line-cut-1 comp_list_news_h_6-title">
                             {title}
                         </h1> : ''
                     }
-                    <a href="" className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
+                    <div className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
                         <div className="fd-subject-cover" style={{backgroundImage:"url("+img_address+")"}}></div>
                         <div className="fd-subject-content">
                             {
@@ -34,17 +33,12 @@ function NewList2(props) {
                                 ""
                             }
                         </div>
-                    </a>
+                    </div>
                 </a>
             </div>
         </div>
     )
 }
 
-NewList2.propTypes = {
-    title: PropTypes.string,
-    img_address: PropTypes.string,
-    desc: PropTypes.string
-}
 
-export default React.memo(NewList2)
+export default React.memo(CutList)

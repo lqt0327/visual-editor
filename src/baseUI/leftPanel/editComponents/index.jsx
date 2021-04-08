@@ -20,8 +20,6 @@ function EditComponents(props) {
         tpldata ? tpldata :  []
     const tpl = pageData[comp_i]
 
-    console.log(tpl,'000000',props,shared[panel])
-
     return (
         <React.Fragment>
             <div className="l-panel" style={{width:"490px"}}>
