@@ -5,7 +5,6 @@ import { CreateTplDto } from '@src/controllers/admin/system/tpl/dto/create-tpl.d
 import { TagEntity } from '@src/entities/model/system/tag.entity';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
 import { UserEntity } from '@src/entities/model/system/user.entity'
-import { async } from 'rxjs';
 
 @Injectable()
 export class TplService {
@@ -45,6 +44,8 @@ export class TplService {
     tpl.tplData = createTplDto.tplData;
     tpl.uid = createTplDto.uid;
     tpl.tag = createTplDto.tag;
+    tpl.title = createTplDto.title;
+    tpl.homePage = createTplDto.homePage;
 
     return this.tplRepository.save(tpl);
   }
@@ -63,7 +64,7 @@ export class TplService {
     const tplList = await getConnection().createQueryBuilder(TplEntity,'tpl')
       .innerJoin(TagEntity, 'tag', 'tag.id=tpl.tag')
       // .innerJoin(UserEntity, 'user', )
-      .select(['tpl.id','tpl.tplData','tpl.uid','tag.tagname'])
+      .select(['tpl.id','tpl.tplData','tpl.uid','tpl.title','tpl.homePage','tag.tagname'])
       .where('tpl.uid=:id',{id})
       .getRawMany()
     return tplList;

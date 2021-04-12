@@ -1,3 +1,3 @@
 export { changePanel } from './panelaction'
 export { addTemplate } from './templateaction'
-export { changePage } from './pageaction'
+export { changePage, changePid } from './pageaction'

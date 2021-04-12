@@ -37,6 +37,7 @@ export const PreviewComponent = () => {
     getTplRequest(id).then(data=>{
       const tpl = JSON.parse(data.tplData)
       safeSetTplData(tpl)
+      document.title = data.title
     })
   }
 

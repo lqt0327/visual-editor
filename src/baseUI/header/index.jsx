@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { connect } from 'react-redux';
 import { changePanel } from 'store/actions'
 import { addTplRequest } from 'src/api/request'

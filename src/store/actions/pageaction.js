@@ -6,3 +6,10 @@ export const changePage = (data) => {
         data: fromJS(data)
     })
 }
+
+export const changePid = (data) => {
+    return ({
+        type: 'CHANGE_PID',
+        data: fromJS(data)
+    })
+}

@@ -32,4 +32,20 @@ export class TplEntity {
     comment: '标签'
   })
   tag: number;
+
+  @Column('varchar',{
+    nullable:false,
+    length:255,
+    name: 'title',
+    comment: '页面标题'
+  })
+  title: string;
+
+  @Column('int', {
+    nullable: false,
+    default: () => 0,
+    name: 'homePage',
+    comment: '是否是首页'
+  })
+  homePage: number
 }

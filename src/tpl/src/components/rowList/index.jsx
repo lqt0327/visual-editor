@@ -14,7 +14,7 @@ function RowList(props) {
                     children.map((item,i)=>{
                         return (
                             <div className="fd-grid-row" key={i}>
-                                <div className="fd-grid-col">
+                                <div className="fd-grid-col" onClick={()=>window.open(item["link_address"],"_self")}>
                                     <div className="fd-link fd-jumbo size-mdx comp_list_v_1-jumbo">
                                         <a 
                                             href={item["link_address"]} 

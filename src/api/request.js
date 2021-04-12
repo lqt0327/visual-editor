@@ -10,12 +10,19 @@ import { axiosInstance } from './config'
 // }
 
 // 新模版发布
-export const addTplRequest = (tplData, uid, tag) => {
+export const addTplRequest = (tplData, uid, tag, title="未命名页面", homePage=0) => {
     return axiosInstance.post(
         `/tpl`, {
             tplData,
             uid,
-            tag
+            tag,
+            title,
+            homePage
         }
     ).then(res=>res)
+}
+
+// 获取全部模版信息   分类处理
+export const getAllTplRequest = () => {
+    return axiosInstance.get(`/tpl`)
 }
