@@ -13,3 +13,10 @@ export const changePid = (data) => {
         data: fromJS(data)
     })
 }
+
+export const changePageTitle = (data) => {
+    return ({
+        type: 'CHANGE_PAEG_TITLE',
+        data: fromJS(data)
+    })
+}

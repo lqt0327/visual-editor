@@ -2,6 +2,7 @@ import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection, Repository, getManager, EntityManager } from 'typeorm';
 import { CreateTplDto } from '@src/controllers/admin/system/tpl/dto/create-tpl.dto';
+import { UpdateTplDto } from '@src/controllers/admin/system/tpl/dto/update-tpl.dto';
 import { TagEntity } from '@src/entities/model/system/tag.entity';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
 import { UserEntity } from '@src/entities/model/system/user.entity'
@@ -48,6 +49,18 @@ export class TplService {
     tpl.homePage = createTplDto.homePage;
 
     return this.tplRepository.save(tpl);
+  }
+
+  async update(id: number, data: UpdateTplDto): Promise<string> {
+    // const tpl = new TplEntity();
+    const { raw: { affectedRows } } = await this.tplRepository.update({ id }, data);
+    console.log(affectedRows,'??????xxxxx')
+    if (affectedRows) {
+      return '修改成功';
+    } else {
+      throw new HttpException(`传递的id:${id},修改数据失败`, HttpStatus.OK);
+    }
+
   }
 
   async findAll(): Promise<TplEntity[]> {

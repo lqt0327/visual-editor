@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import * as shared from './shared'
 import { changePage } from 'store/actions'
+import _ from 'lodash'
 import './style.sass'
 
 // 根据传入 参数 判断 使用 折叠面板 ｜ 直接展示 ？
@@ -12,13 +13,16 @@ function EditComponents(props) {
         comp_i,
         pageData:page, 
         template,
+        pid,
         changePageDataDispatch 
     } = props
 
-    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`))
     let pageData = page.size !== 0 ? page.toJS() :
         tpldata ? tpldata :  []
     const tpl = pageData[comp_i]
+
+    const changePageData = _.curry(changePageDataDispatch)
 
     return (
         <React.Fragment>
@@ -33,7 +37,7 @@ function EditComponents(props) {
                                         comp_i: comp_i,
                                         pageData: pageData,
                                         template: template,
-                                        changePageDataDispatch: changePageDataDispatch
+                                        changePageDataDispatch: changePageData(pid)
                                     },'')
                                 }
                             </div>
@@ -47,13 +51,15 @@ function EditComponents(props) {
 }
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
+    pid: state.getIn(['page', 'pid']),
     pageData: state.getIn(['page','pageData'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
     return {
-        changePageDataDispatch(data) {
-            localStorage.setItem('tpldata',JSON.stringify(data))
+        changePageDataDispatch(id,data) {
+            console.log(id,'ppppp',data)
+            localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
             dispatch(changePage(data))
         }
     }

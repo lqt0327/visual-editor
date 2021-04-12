@@ -26,3 +26,13 @@ export const addTplRequest = (tplData, uid, tag, title="未命名页面", homePa
 export const getAllTplRequest = () => {
     return axiosInstance.get(`/tpl`)
 }
+
+// 更新模版
+export const updateTplRequest = (id, tplData, tag, title, homePage) => {
+    return axiosInstance.patch(`/tpl/${id}`, {
+        tplData,
+        tag,
+        title,
+        homePage
+    })
+}

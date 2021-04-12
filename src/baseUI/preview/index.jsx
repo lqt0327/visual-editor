@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel, addTemplate, changePage } from 'store/actions'
+import { changePanel, addTemplate, changePage, changePid } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import { Button } from 'antd';
@@ -23,19 +23,20 @@ function Preview(props) {
     const {
         pageData:page,
         currentTemplate,
+        pid,
         changePanelStateDispatch,
         addTemplateDispatch,
         changePageDataDispatch
     } = props
 
-    const tpldata = JSON.parse(localStorage.getItem('tpldata'))
+    const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`))
     let pageData = page.size !== 0 ? page.toJS() :
         tpldata ? tpldata :  []
 
     const Dustbin = () => {
         ReactDOM.render(<React.Fragment>
             {
-                pageData.length === 0 ?
+                pid !== 0 && pageData.length === 0 ?
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Button type="dashed" block onClick={()=>{
                         changePanelStateDispatch(['AddComponents']);
@@ -91,8 +92,7 @@ function Preview(props) {
     const addTemplate2 = (currentTpl, i) => {
         if(currentTpl) {
             pageData.splice(i,0, config[currentTpl])
-            console.log(pageData,'添加测试数据')
-            changePageDataDispatch(pageData)
+            changePageDataDispatch(pageData,pid)
         }
     }
 
@@ -131,7 +131,7 @@ function Preview(props) {
         try{
             pageData.splice(activeIndex,1)
             changePanelStateDispatch(["page"])
-            changePageDataDispatch(pageData)
+            changePageDataDispatch(pageData,pid)
             setaTipTop(0)
             setaTipHeight(0)
             setActiveIndex()
@@ -199,6 +199,7 @@ function Preview(props) {
 const mapStateToProps = (state) => ({
     panel: state.getIn(['panels','currentPanel']),
     currentTemplate: state.getIn(['template', 'currentTemplate']),  // 左侧添加面板中 选中的模版
+    pid: state.getIn(['page', 'pid']),
     pageData: state.getIn(['page','pageData'])
 })
 // 映射dispatch到props上
@@ -210,9 +211,12 @@ const mapDispatchToProps = (dispatch) => {
         addTemplateDispatch(data) {
             dispatch(addTemplate(data))
         },
-        changePageDataDispatch(data) {
-            localStorage.setItem('tpldata',JSON.stringify(data))
+        changePageDataDispatch(data,id) {
+            localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
             dispatch(changePage(data))
+        },
+        changePidStateDispatch(data) {
+            dispatch(changePid(data))
         }
     }
 }

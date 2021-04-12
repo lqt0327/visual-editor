@@ -1,8 +1,9 @@
-import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body } from '@nestjs/common';
+import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body, Patch, ParseIntPipe } from '@nestjs/common';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
 import { TplService } from '@src/services/tpl/tpl.service';
 import { ApiOperation, ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
 import { CreateTplDto } from './dto/create-tpl.dto'
+import { UpdateTplDto } from './dto/update-tpl.dto';
 
 @ApiTags('模版')
 @Controller('tpl')
@@ -35,5 +36,15 @@ export class TplController {
     @HttpCode(HttpStatus.OK)
     async getTpl(@Param('id') id: string): Promise<TplEntity> {
         return await this.tplService.findOne(id);
+    }
+
+    @ApiOperation({ summary: '更新模版信息', description: '更新模版信息'})
+    @Patch(':id')
+    @HttpCode(HttpStatus.OK)
+    async updateById(
+      @Param('id', new ParseIntPipe()) id: number,
+      @Body() data: UpdateTplDto
+    ): Promise<any> {
+      return await this.tplService.update(id,data)
     }
 }

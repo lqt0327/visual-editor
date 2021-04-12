@@ -1,24 +1,22 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { changePanel } from 'store/actions'
-import { addTplRequest } from 'src/api/request'
-import { base64Time } from "src/utils/tools";
+import { updateTplRequest } from 'src/api/request'
 import "./style.sass";
 
 function Header(props) {
 
-    const { changePanelStateDispatch } = props
+    const { 
+        changePanelStateDispatch, 
+        pid,
+        pTitle
+    } = props
 
-    const addTpl = () => {
-        const tpl = localStorage.getItem('tpldata')
-        console.log(base64Time())
-        addTplRequest(tpl,1,1).then((res)=>{
-            const id = res.id
-            window.open(`http://localhost:8082/?page=${id}`)
-            console.log(res,'??????')
+    const updateTpl = (pid) => {
+        const tpl = localStorage.getItem(`tpl_${pid}`)
+        updateTplRequest(pid, tpl).then(()=>{
+            window.open(`http://localhost:8082/?page=${pid}`)
         })
-        // 跳转至对应 h5 页面  要在服务端对数据存储完成后，在进行跳转 ？？？？
-        // window.open(`http://localhost:8082/pageId/`)
     }
 
     return (
@@ -36,7 +34,7 @@ function Header(props) {
                             <i className="icon iconfont">&#xe75d;</i>
                         </span>
                         <span className="header-left-tabbar__text">
-                            页面：专题 - 5
+                            页面：{pTitle}
                         </span>
                     </div>
                 </div>
@@ -46,7 +44,7 @@ function Header(props) {
                     <div className="header-right-publish">
                         <button type="button"
                         className="header-right-publish-btn"
-                        onClick={addTpl}
+                        onClick={()=>updateTpl(pid)}
                         ><i className="icon iconfont">&#xe6a9;</i>发布</button>
                     </div>
                 </div>
@@ -57,7 +55,9 @@ function Header(props) {
 
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
-    panel: state.getIn(['panels', 'currentPanel'])
+    pid: state.getIn(['page', 'pid']),
+    panel: state.getIn(['panels', 'currentPanel']),
+    pTitle: state.getIn(['page', 'pTitle'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
