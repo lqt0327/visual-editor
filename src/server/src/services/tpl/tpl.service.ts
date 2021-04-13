@@ -1,21 +1,16 @@
-import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getConnection, Repository, getManager, EntityManager } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { CreateTplDto } from '@src/controllers/admin/system/tpl/dto/create-tpl.dto';
 import { UpdateTplDto } from '@src/controllers/admin/system/tpl/dto/update-tpl.dto';
 import { TagEntity } from '@src/entities/model/system/tag.entity';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
-import { UserEntity } from '@src/entities/model/system/user.entity'
 
 @Injectable()
 export class TplService {
   constructor(
-    @InjectRepository(TagEntity)
-    private readonly tagRepository: Repository<TagEntity>,
     @InjectRepository(TplEntity)
     private readonly tplRepository: Repository<TplEntity>,
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
   ) {}
   
 /**
@@ -52,9 +47,7 @@ export class TplService {
   }
 
   async update(id: number, data: UpdateTplDto): Promise<string> {
-    // const tpl = new TplEntity();
     const { raw: { affectedRows } } = await this.tplRepository.update({ id }, data);
-    console.log(affectedRows,'??????xxxxx')
     if (affectedRows) {
       return '修改成功';
     } else {
@@ -83,7 +76,12 @@ export class TplService {
     return tplList;
   }
 
-  async remove(id: string): Promise<void> {
-    await this.tplRepository.delete(id);
+  async remove(id: number): Promise<string> {
+    const { raw: { affectedRows } } = await this.tplRepository.delete(id);
+    if (affectedRows) {
+      return '删除成功';
+    } else {
+      return '删除失败';
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body, Patch, ParseIntPipe } from '@nestjs/common';
+import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body, Patch, ParseIntPipe, Delete } from '@nestjs/common';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
 import { TplService } from '@src/services/tpl/tpl.service';
 import { ApiOperation, ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
@@ -44,7 +44,16 @@ export class TplController {
     async updateById(
       @Param('id', new ParseIntPipe()) id: number,
       @Body() data: UpdateTplDto
-    ): Promise<any> {
+    ): Promise<string> {
       return await this.tplService.update(id,data)
+    }
+
+    @ApiOperation({ summary: '删除模版', description: '根据id删除模版' })
+    @Delete(':id')
+    @HttpCode(HttpStatus.OK)
+    async destroy(
+      @Param('id', new ParseIntPipe()) id: number
+    ): Promise<string> {
+      return await this.tplService.remove(id);
     }
 }

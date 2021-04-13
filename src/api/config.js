@@ -7,13 +7,25 @@ export const baseUrl = process.env.NODE_ENV === 'development' ?
 const axiosInstance = axios.create({
     baseURL: baseUrl
   });
+
+  axiosInstance.interceptors.request.use(
+    config => {
+      return config
+    },
+    err => {
+      return Promise.reject(err)
+    }
+  )
   
   axiosInstance.interceptors.response.use(
     res => {
       return res.data;
     },
     err => {
-      console.log(err, "网络错误");
+      if(err.response.data.message) {
+        return err.response.data.message
+      }
+      console.log(err.response, "网络错误");
     }
   );
   

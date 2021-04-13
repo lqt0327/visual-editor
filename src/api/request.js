@@ -28,11 +28,22 @@ export const getAllTplRequest = () => {
 }
 
 // 更新模版
-export const updateTplRequest = (id, tplData, tag, title, homePage) => {
+export const updateTplRequest = (id, {tplData, tag, title, homePage}) => {
     return axiosInstance.patch(`/tpl/${id}`, {
         tplData,
         tag,
         title,
         homePage
     })
+}
+
+// 删除模版
+export const deleteTplRequest = (id) => {
+    console.log(id,'???????')
+    return axiosInstance.delete(`/tpl/${id}`)
+}
+
+// 获取全部推荐模版信息
+export const getAllRecomTplRequest = () => {
+    return axiosInstance.get(`/recommend`)
 }

@@ -1,9 +1,9 @@
 import { Module, CacheModule } from '@nestjs/common';
 import { ServicesModule } from '@src/services/services.module';
 import { UsersController } from './users/users.controller'
-// import { LoginController } from './login/login.controller'
 import { TagController } from './tag/tag.controller'
 import { TplController } from './tpl/tpl.controller'
+import { RecController } from './recommend/rec.controller'
 
 @Module({
   imports: [
@@ -12,9 +12,9 @@ import { TplController } from './tpl/tpl.controller'
   ],
   controllers: [
     UsersController,
-    // LoginController,
     TagController,
-    TplController
+    TplController,
+    RecController
   ],
 })
 export class SystemModule { }
