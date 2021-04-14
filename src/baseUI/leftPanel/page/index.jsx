@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getAllTplRequest, addTplRequest, deleteTplRequest, updateTplRequest } from 'src/api/request'
 import { connect } from 'react-redux'
-import { changePid, changePageTitle } from "src/store/actions";
+import { changePid, changePageTitle, changePage } from "src/store/actions";
 import cx from 'classnames'
 import { Input, Popover, Popconfirm, message } from 'antd'
 import './style.sass'
@@ -9,8 +9,9 @@ import './style.sass'
 function LeftPanel(props) {
     const {
         pid,
-        changePidStateDispatch,
-        changePageTitleStateDispatch
+        pUpdate,
+        changePageStateDispatch,
+        changePidStateDispatch
     } = props
 
     const safeRef = useRef(false)
@@ -38,7 +39,7 @@ function LeftPanel(props) {
      */
     useEffect(() => {
         getAllTplData()
-    }, [])
+    }, [pUpdate])
 
     useEffect(() => {
         safeRef.current = true
@@ -58,11 +59,13 @@ function LeftPanel(props) {
         }
 
         const text = '你确定要删除这个页面吗?';
-        function confirm(pid) {
-            deleteTplRequest(pid).then(res=>{
+        async function confirm(pid) {
+            await deleteTplRequest(pid).then(res=>{
                 message.info(res);
+                localStorage.removeItem(`tpl_${pid}`)
                 getAllTplData()
             })
+            changePageStateDispatch([],0,'')
         }
         return (
            <div>
@@ -93,8 +96,7 @@ function LeftPanel(props) {
                                     <div
                                         className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}
                                         onClick={() => {
-                                            changePidStateDispatch(item["id"])
-                                            changePageTitleStateDispatch(item["title"])
+                                            changePageStateDispatch(JSON.parse(item["tplData"]),item["id"],item["title"])
                                         }}
                                         key={i}
                                     >
@@ -152,7 +154,6 @@ function LeftPanel(props) {
                                                     addTplRequest(JSON.stringify([]), 1, 1, e.target.value)
                                                         .then(res => {
                                                             changePidStateDispatch(res.id)
-                                                            getAllTplData()
                                                         })
                                                 }} />
                                             </span>
@@ -174,16 +175,20 @@ function LeftPanel(props) {
 }
 // 映射Redux全局的state到组件到props上
 const mapStateToProps = (state) => ({
+    pUpdate: state.getIn(['page', 'pUpdate']),
     pid: state.getIn(['page', 'pid'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
     return {
-        changePidStateDispatch(data) {
-            dispatch(changePid(data))
+        changePidStateDispatch(id) {
+            dispatch(changePid(id))
         },
-        changePageTitleStateDispatch(data) {
-            dispatch(changePageTitle(data))
+        changePageStateDispatch(data, id, title) {
+            dispatch(changePid(id))
+            dispatch(changePageTitle(title))
+            id !== 0 && localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
+            dispatch(changePage(data))
         }
     }
 }

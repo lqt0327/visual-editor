@@ -110,7 +110,7 @@ function Preview(props) {
 
     useEffect(()=>{
         Dustbin()
-    },[currentTemplate,showAdd,pageData])
+    },[currentTemplate,showAdd,pageData,pid])
 
     // 获取 点击模块的 id
     const clickHandler = (e) => {

@@ -16,7 +16,15 @@ export const changePid = (data) => {
 
 export const changePageTitle = (data) => {
     return ({
-        type: 'CHANGE_PAEG_TITLE',
+        type: 'CHANGE_PAGE_TITLE',
+        data: fromJS(data)
+    })
+}
+
+export const updatePage = (data) => {
+    console.log(data,'testestt')
+    return ({
+        type: 'UPDATE_PAGE',
         data: fromJS(data)
     })
 }

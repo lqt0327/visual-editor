@@ -35,7 +35,26 @@ export class RecService {
       .innerJoin(TagEntity, 'tag', 'tag.id=rec.tag')
       .select(['rec.id','rec.tplData','rec.title','tag.tagname','rec.img_url'])
       .getRawMany()
-    return recList;
+      const map = {}
+      for(let v of recList) {
+        if(map[v["tag_tagname"]]) {
+          map[v["tag_tagname"]].push({
+            "id": v["rec_id"],
+            "title": v["rec_title"],
+            "tplData": v["rec_tplData"],
+            "img_url": v["rec_img_url"]
+          })
+        }else{
+          map[v["tag_tagname"]] = [{
+            "id": v["rec_id"],
+            "title": v["rec_title"],
+            "tplData": v["rec_tplData"],
+            "img_url": v["rec_img_url"]
+          }]
+        }
+      }
+
+    return map;
   }
 
   async findOne(id: string): Promise<RecomTplEntity> {

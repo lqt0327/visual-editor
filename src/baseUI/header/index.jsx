@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { connect } from 'react-redux';
 import { Modal, Button, Tabs } from 'antd';
-import { changePanel } from 'store/actions'
-import { updateTplRequest, getAllRecomTplRequest } from 'src/api/request'
+import { changePanel, changePid, changePage, updatePage, changePageTitle } from 'store/actions'
+import { updateTplRequest, getAllRecomTplRequest, addTplRequest } from 'src/api/request'
 import "./style.sass";
 
 const { TabPane } = Tabs;
@@ -10,9 +10,10 @@ const { TabPane } = Tabs;
 function Header(props) {
 
     const {
-        changePanelStateDispatch,
         pid,
-        pTitle
+        pTitle,
+        changePanelStateDispatch,
+        changePageStateDispatch,
     } = props
 
     const updateTpl = (pid) => {
@@ -24,13 +25,12 @@ function Header(props) {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const recTpl = useRef([])
+    const recTpl = useRef()
 
     const showModal = () => {
-        getAllRecomTplRequest().then(res=>{
+        getAllRecomTplRequest().then(res => {
             recTpl.current = res
             setIsModalVisible(true);
-            console.log(res,'ppppppp')
         })
     };
 
@@ -73,26 +73,42 @@ function Header(props) {
                         ><i className="icon iconfont">&#xe6a9;</i>发布</button>
                     </div>
                 </div>
-                <Modal title="热门模版" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={800}>
+                <Modal
+                    title="热门模版"
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    okText="确认"
+                    cancelText="取消"
+                    width={800}
+                >
                     <Tabs defaultActiveKey="1" tabPosition='left' style={{ height: 400 }}>
                         {
-                            recTpl.current.length !== 0 ? recTpl.current.map((item,i) => (
-                                <TabPane 
-                                tab="测试数据" 
-                                key={i+1} 
-                                disabled={i === 10}
-                                style={{
-                                    overflow:"hidden",
-                                    
-                                }}
+                            recTpl.current ? Object.keys(recTpl.current).map((item, i) => (
+                                <TabPane
+                                    tab={item}
+                                    key={i + 1}
+                                    disabled={i === 10}
+                                    style={{
+                                        overflow: "hidden",
+                                    }}
                                 >
-                                    <div style={{width:"100%",height:"600px",overflow:"scroll"}}>
+                                    <div className="tabpane-content">
                                         {
-                                            new Array(8).fill(null).map((item2,j)=>{
+                                            recTpl.current[item].map((item2, j) => {
                                                 return (
-                                                    <div style={{float:"left",width:"200px"}} key={j}>
-                                                        <div style={{background:"url("+item["rec_img_url"]+") no-repeat",backgroundSize:"200px",height:"300px",overflow:"hidden"}}></div>
-                                                        <p style={{textAlign:"center",padding:"10px 0"}}>{item["rec_title"]}</p>
+                                                    <div 
+                                                    className="tabpane-content__item" 
+                                                    key={j} 
+                                                    onDoubleClick={()=>{
+                                                        addTplRequest(item2["tplData"],1,1,item2["title"])
+                                                        .then((res)=>{
+                                                            changePageStateDispatch(JSON.parse(item2["tplData"]),res.id,item2["title"])
+                                                            handleCancel()
+                                                        })
+                                                    }}>
+                                                        <div style={{ background: "url(" + item2["img_url"] + ") no-repeat", backgroundSize: "200px", height: "300px", overflow: "hidden" }}></div>
+                                                        <p>{item2["title"]}</p>
                                                     </div>
                                                 )
                                             })
@@ -100,15 +116,6 @@ function Header(props) {
                                     </div>
                                 </TabPane>
                             )) : ""
-                        }
-                        {
-                            // new Array(20).fill(null).map((item,i)=>{
-                            //     return (
-                            //         <TabPane tab={`Tab-${i}`} key={i+1} disabled={i === 10}>
-                            //             <p>alkdsjflkasjdflk</p>
-                            //         </TabPane>
-                            //     )
-                            // })
                         }
                     </Tabs>
                 </Modal>
@@ -128,6 +135,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changePanelStateDispatch(data) {
             dispatch(changePanel(data))
+        },
+        changePageStateDispatch(data,id,title) {
+            dispatch(changePid(id))
+            // dispatch(updatePage(id))
+            localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
+            dispatch(changePage(data))
+            dispatch(changePageTitle(title))
+            dispatch(updatePage(id))
         }
     }
 }
