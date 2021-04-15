@@ -7,16 +7,17 @@ import { getTplRequest } from './api/request';
 import { useState } from "react";
 
 const TplRender = (tplData) => {
+  console.log(tplData,'??????',typeof tplData,Array.isArray(tplData))
   ReactDOM.render(
     <React.Fragment>
       {
-        tplData.map((item,i)=>{
+        tplData.length !== 0 ? tplData.map((item,i)=>{
           return (
             <div className="fengdie-components" key={i}>
               {Compile(item)}
             </div>
           )
-        })
+        }) : ""
       }
     </React.Fragment>,
     document.getElementById("h5_preview")
@@ -35,7 +36,9 @@ export const PreviewComponent = () => {
     const params = getUrlParams(document.location.search)
     const id = params["page"]
     getTplRequest(id).then(data=>{
+      console.log(typeof Array.from(data.tplData),'pppps')
       const tpl = JSON.parse(data.tplData)
+      console.log(typeof tpl,Array.isArray(tpl),'xxxx')
       safeSetTplData(tpl)
       document.title = data.title
     })
@@ -51,7 +54,7 @@ export const PreviewComponent = () => {
 
   useEffect(()=>{
       TplRender(tplData)
-  },[tplData])
+  })
 
   return (
     <div id="h5_preview">

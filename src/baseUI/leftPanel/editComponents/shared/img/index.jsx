@@ -39,7 +39,7 @@ const ImgPanel = (props) => {
                 template === 'img2' ? 
                 <React.Fragment>
                     <h3>描述</h3>
-                    <Input defaultValue={tpl["desc"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "desc"), 250)} />
+                    <Input key={tpl["desc"]} defaultValue={tpl["desc"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "desc"), 250)} />
                 </React.Fragment> : ""
             }
             <h3>图片</h3>

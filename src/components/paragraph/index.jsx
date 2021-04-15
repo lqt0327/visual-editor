@@ -65,12 +65,14 @@ function Paragraph(props) {
         title,
         content,
         left_editor,
-        tag
+        tag,
+        updatePageDispatch
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
             changePanelStateDispatch([left_editor,template,index])
+            updatePageDispatch(index)
         }}>
             {
                 template === 'parleft3' ? 

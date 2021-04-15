@@ -58,7 +58,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         changePageDataDispatch(id,data) {
-            console.log(id,'ppppp',data)
             localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
             dispatch(changePage(data))
         }

@@ -29,6 +29,7 @@ function Preview(props) {
         changePageDataDispatch
     } = props
 
+    // 获取页面最新数据
     const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`))
     let pageData = page.size !== 0 ? page.toJS() :
         tpldata ? tpldata :  []
@@ -58,7 +59,12 @@ function Preview(props) {
                 },item)
                 return (
                     <div className="fengdie-components" key={i}>
-                        <div id="fengdie-components-drop-placeholder-top" style={{opacity:'1',display: showAdd === (i+'top') ? 'flex' : 'none'}}>
+                        <div 
+                        id="fengdie-components-drop-placeholder-top" 
+                        style={{
+                            opacity:'1',
+                            display: showAdd === (i+'top') ? 'flex' : 'none'
+                        }}>
                             "添加至此处"
                         </div>
                         <button 
@@ -80,7 +86,12 @@ function Preview(props) {
                                 setIndex(i+1)
                                 }
                         }>+</button>
-                        <div id="fengdie-components-drop-placeholder-bottom" style={{opacity:'1',display: showAdd === (i+'bottom') ? 'flex' : 'none'}}>
+                        <div 
+                        id="fengdie-components-drop-placeholder-bottom" 
+                        style={{
+                            opacity:'1',
+                            display: showAdd === (i+'bottom') ? 'flex' : 'none'
+                        }}>
                             "添加至此处"
                         </div>
                     </div>
@@ -99,10 +110,10 @@ function Preview(props) {
     useEffect(() => {
         setTipHeight(tipHeightRef.current.offsetHeight)
         // 获取右侧工具栏 距离顶部高度
-        document.getElementById(activeId) ? setaTipTop(document.getElementById(activeId).offsetTop - tipHeightRef.current.scrollTop) : setIsShow(false)
+        const ele = document.getElementById(activeId)
+        ele ? setaTipTop(ele.offsetTop - tipHeightRef.current.scrollTop) : setIsShow(false)
         // 获取点击预览页面 背景阴影的高度
-        document.getElementById(activeId) ? setaTipHeight(document.getElementById(activeId).offsetHeight) : setaTipHeight(0)
-        
+        ele ? setaTipHeight(ele.offsetHeight) : setaTipHeight(0)
         addTemplate2(currentTemplate,index)
         addTemplateDispatch('')
         

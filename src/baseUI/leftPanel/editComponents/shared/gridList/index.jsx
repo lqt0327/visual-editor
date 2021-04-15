@@ -63,19 +63,19 @@ function CarouselPanel(props) {
                                             return (
                                                 <Panel header={item2["title"]} key={j} extra={genExtra()}>
                                                     <h3>标题</h3>
-                                                    <Input defaultValue={item2["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+                                                    <Input key={item2["title"]} defaultValue={item2["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
                                                     {
                                                         template === 'gridlist3' ? "" :
                                                         <React.Fragment>
                                                             <h3>副标题</h3>
-                                                            <Input defaultValue={item2["subtitle"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "subtitle"), 250)} />
+                                                            <Input key={item2["subtitle"]} defaultValue={item2["subtitle"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "subtitle"), 250)} />
                                                         </React.Fragment>
                                                     }
                                                     {
                                                         template === 'gridlist2' ? 
                                                         <React.Fragment>
                                                             <h3>标签</h3>
-                                                            <Input defaultValue={item2["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
+                                                            <Input key={item2["tag"]} defaultValue={item2["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
                                                         </React.Fragment> : ""
                                                     }
                                                     <Uploads 

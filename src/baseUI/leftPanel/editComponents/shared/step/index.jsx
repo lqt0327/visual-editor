@@ -54,11 +54,11 @@ const Tab2 = (props) => {
                         return (
                             <Panel header={item["step"]} key={i} extra={genExtra()}>
                                 <h3>步骤</h3>
-                                <Input defaultValue={item["step"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"step"),250)} />
+                                <Input key={item["step"]} defaultValue={item["step"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"step"),250)} />
                                 <h3>标题</h3>
-                                <Input defaultValue={item["title"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"title"),250)} />
+                                <Input key={item["title"]} defaultValue={item["title"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"title"),250)} />
                                 <h3>描述</h3>
-                                <Input defaultValue={item["desc"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"desc"),250)} />
+                                <Input key={item["desc"]} defaultValue={item["desc"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"desc"),250)} />
                                 <h3>图片</h3>
                                 <Upload
                                     imgHeight={56}

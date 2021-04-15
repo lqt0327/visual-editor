@@ -53,9 +53,9 @@ const RowPanel = (props) => {
                         return (
                             <Panel header={item["title"]} key={i} extra={genExtra()}>
                                 <h3>标题</h3>
-                                <Input defaultValue={item["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+                                <Input key={item["title"]} defaultValue={item["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
                                 <h3>标签</h3>
-                                <Input defaultValue={item["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
+                                <Input key={item["tag"]} defaultValue={item["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
                                 <h3>图片</h3>
                                 <Upload
                                     imgHeight={56}

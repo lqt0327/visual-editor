@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { connect } from 'react-redux';
-import { Modal, Button, Tabs } from 'antd';
+import { Modal, Tabs } from 'antd';
 import { changePanel, changePid, changePage, updatePage, changePageTitle } from 'store/actions'
 import { updateTplRequest, getAllRecomTplRequest, addTplRequest } from 'src/api/request'
 import "./style.sass";
@@ -13,12 +13,12 @@ function Header(props) {
         pid,
         pTitle,
         changePanelStateDispatch,
-        changePageStateDispatch,
+        changePageStateDispatch
     } = props
 
     const updateTpl = (pid) => {
         const tpl = localStorage.getItem(`tpl_${pid}`)
-        updateTplRequest(pid, tpl).then(() => {
+        updateTplRequest(pid, {tplData: tpl}).then(() => {
             window.open(`http://localhost:8082/?page=${pid}`)
         })
     }
@@ -63,7 +63,6 @@ function Header(props) {
                     </div>
                 </div>
                 <div className="header-right">
-
                     <span className="header-right-preview" onClick={showModal}><i className="icon iconfont">&#xe789;</i>&nbsp;推荐</span>
                     <span className="header-right-save"><i className="icon iconfont">&#xe7c8;</i>&nbsp;保存</span>
                     <div className="header-right-publish">
@@ -73,6 +72,7 @@ function Header(props) {
                         ><i className="icon iconfont">&#xe6a9;</i>发布</button>
                     </div>
                 </div>
+                {/* 待抽离成一个组件 */}
                 <Modal
                     title="热门模版"
                     visible={isModalVisible}

@@ -11,7 +11,7 @@ function LeftPanel(props) {
         pid,
         pUpdate,
         changePageStateDispatch,
-        changePidStateDispatch
+        changePageTitleDispatch
     } = props
 
     const safeRef = useRef(false)
@@ -24,12 +24,15 @@ function LeftPanel(props) {
     const safeSetTplData = (data) => safeRef.current && setTpl(data)
 
     const getAllTplData = () => {
-        getAllTplRequest().then(res => {
-            for (let v of res) {
-                if (!localStorage.getItem(`tpl_${v.id}`)) {
-                    localStorage.setItem(`tpl_${v.id}`, v.tplData)
+        getAllTplRequest().then(async (res) => {
+            function wait(res) {
+                for (let v of res) {
+                    if(localStorage.getItem(`tpl_${v.id}`)) {
+                        v["tplData"] = localStorage.getItem(`tpl_${v.id}`)
+                    }
                 }
             }
+            await wait(res)
             safeSetTplData(res)
         })
     }
@@ -48,7 +51,9 @@ function LeftPanel(props) {
         }
     })
 
+    // 添加页面  true-展示 false-隐藏
     const [add, setAdd] = useState(false)
+
     const [update, setUpdate] = useState(0)
 
     const content = () => {
@@ -96,6 +101,7 @@ function LeftPanel(props) {
                                     <div
                                         className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}
                                         onClick={() => {
+                                            setAdd(false)
                                             changePageStateDispatch(JSON.parse(item["tplData"]),item["id"],item["title"])
                                         }}
                                         key={i}
@@ -120,6 +126,7 @@ function LeftPanel(props) {
                                                                 }
                                                                 // 修改了页面数据后，重新从服务端拉去数据，渲染页面
                                                                 getAllTplData()
+                                                                changePageTitleDispatch(e.target.value)
                                                             })
                                                     }} /> :
                                                     item["title"]
@@ -153,7 +160,8 @@ function LeftPanel(props) {
                                                     // 创建一个空页面
                                                     addTplRequest(JSON.stringify([]), 1, 1, e.target.value)
                                                         .then(res => {
-                                                            changePidStateDispatch(res.id)
+                                                            getAllTplData()
+                                                            changePageStateDispatch([],res.id,e.target.value)
                                                         })
                                                 }} />
                                             </span>
@@ -189,6 +197,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changePageTitle(title))
             id !== 0 && localStorage.setItem(`tpl_${id}`,JSON.stringify(data))
             dispatch(changePage(data))
+        },
+        changePageTitleDispatch(title) {
+            dispatch(changePageTitle(title))
         }
     }
 }

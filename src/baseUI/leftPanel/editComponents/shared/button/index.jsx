@@ -35,7 +35,7 @@ const ButtonPanel = (props) => {
     return (
         <div className="schema-editor-container">
             <h3>按钮文字</h3>
-            <Input defaultValue={tpl["text"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} />
+            <Input key={tpl["text"]} defaultValue={tpl["text"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} />
             <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
         </div>
     )

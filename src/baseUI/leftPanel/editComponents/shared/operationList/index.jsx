@@ -36,7 +36,7 @@ const OperationPanel = (props) => {
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
             <h3>标签</h3>
             <EditableTagGroup
                 tagVal={tpl["tag"]}
@@ -44,9 +44,9 @@ const OperationPanel = (props) => {
                 changeVal={changeVal}
             />
             <h3>地区</h3>
-            <Input defaultValue={tpl["area"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "area"), 250)} />
+            <Input key={tpl["area"]} defaultValue={tpl["area"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "area"), 250)} />
             <h3>按钮</h3>
-            <Input defaultValue={tpl["btn"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "btn"), 250)} />
+            <Input key={tpl["btn"]} defaultValue={tpl["btn"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "btn"), 250)} />
             {
                 template === 'opt1' ? "" :
                     <React.Fragment>

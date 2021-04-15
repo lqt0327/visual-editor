@@ -37,9 +37,10 @@ const FaqPanel = (props) => {
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
             <h3>描述</h3>
             <TextArea 
+            key={tpl["content"]}
             defaultValue={tpl["content"]} 
             onChange={_.debounce((e) => changeVal(path.current, e.target.value, "content"), 250)} 
             rows={4}

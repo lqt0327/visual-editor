@@ -37,6 +37,7 @@ const QutoePanel = (props) => {
         <div className="schema-editor-container">
             <h3>描述</h3>
             <TextArea 
+            key={tpl["text"]}
             defaultValue={tpl["text"]} 
             onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} 
             rows={4}

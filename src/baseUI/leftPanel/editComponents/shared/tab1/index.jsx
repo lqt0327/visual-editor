@@ -54,7 +54,7 @@ const Tab1 = (props) => {
                         return (
                             <Panel header={item["label"]} key={i} extra={genExtra()}>
                                 <h3>标签</h3>
-                                <Input defaultValue={item["label"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"label"),250)} />
+                                <Input key={item["label"]} defaultValue={item["label"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"label"),250)} />
                                 <h3>内容</h3>
                                 <Collapse accordion onChange={(j)=>{
                                     path.current = [i,j]
@@ -64,7 +64,7 @@ const Tab1 = (props) => {
                                             return (
                                                 <Panel header={item2["title"]} key={j} extra={genExtra()}>
                                                     <h3>标题</h3>
-                                                    <Input defaultValue={item2["title"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"title"),250)} />
+                                                    <Input key={item2["title"]} defaultValue={item2["title"]} onChange={_.debounce((e)=>changeVal(path.current,e.target.value,"title"),250)} />
                                                     <h3>封面</h3>
                                                     <Upload
                                                         imgHeight={144}
