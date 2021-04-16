@@ -25,7 +25,7 @@ function ComFooter(props) {
     
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <Footer>
                 <img src={img_address} alt="" className="comp_footer_img_1-img" style={{width:"65px",height:"23px"}} />

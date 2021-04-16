@@ -17,7 +17,7 @@ function CutList(props) {
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div>
                 <a className="fd-link comp_list_news_h_6">
@@ -27,7 +27,7 @@ function CutList(props) {
                             {title}
                         </h1> : ''
                     }
-                    <a className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
+                    <div className="fd-link fd-subject no-action rect-cover reverse comp_list_news_h_6-subject">
                         <div className="fd-subject-cover" style={{backgroundImage:"url("+img_address+")"}}></div>
                         <div className="fd-subject-content">
                             {
@@ -39,7 +39,7 @@ function CutList(props) {
                                 ""
                             }
                         </div>
-                    </a>
+                    </div>
                 </a>
             </div>
         </div>

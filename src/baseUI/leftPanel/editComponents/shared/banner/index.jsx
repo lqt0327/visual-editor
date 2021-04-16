@@ -7,7 +7,6 @@ function BannerPanel(props) {
         pageData,
         changePageDataDispatch 
     } = props
-    console.log(changePageDataDispatch,'????xxxx')
 
     const path = useRef([])
     const tpl = pageData[comp_i]

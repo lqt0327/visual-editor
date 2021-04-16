@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Tabs } from 'antd';
 import PropTypes from 'prop-types'
 import './style.sass';
@@ -40,7 +40,7 @@ function Tab(props) {
     return (
         <div className="use-tag" style={{ position: "relative" }} id={id} data-index={index}>
             <Tabs defaultActiveKey="1" onChange={callback} centered onClick={() => {
-                changePanelStateDispatch([left_editor, template, index])
+                changePanelStateDispatch([left_editor,template],index)
             }}>
                 {
                     children.map((item, i) => {

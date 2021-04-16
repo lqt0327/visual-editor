@@ -1,5 +1,4 @@
 import React from 'react'
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import './style.sass'
 
@@ -10,15 +9,15 @@ const GridCol = (props) => {
             return (
                 <div className="fd-grid-col" key={j}>
                     <a className="fd-link comp_list_grid_5-item">
-                        <a className="fd-link fd-jumbo size-sm">
-                            <a className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+item2.img_address+")" }}></a>
+                        <div className="fd-link fd-jumbo size-sm">
+                            <div className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+item2.img_address+")" }}></div>
                             <div className="fd-jumbo-mask"></div>
                             <div className="fd-jumbo-content">
                                 <h1 className="fd-title line-cut-1 comp_list_grid_5-item-title">
                                     {item2.title}
                                 </h1>
                             </div>
-                        </a>
+                        </div>
                     </a>
                 </div>
             )
@@ -41,7 +40,7 @@ function GridList(props) {
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div className="fd-grid comp_list_grid_5">
                 {

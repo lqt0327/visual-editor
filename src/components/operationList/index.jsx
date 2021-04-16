@@ -14,14 +14,13 @@ function OperationList(props) {
         tag,
         area,
         img_address,
-        link_address,
         left_editor,
         btn
     } = props
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:'relative'}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div>
                 <a className="fd-link fd-subject comp_list_operation_1">

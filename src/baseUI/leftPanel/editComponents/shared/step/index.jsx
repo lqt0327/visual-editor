@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Collapse, Input } from 'antd';
-import { Upload, LinkAddress } from "components";
+import { Upload } from "components";
 import _ from 'lodash'
 import { DeleteOutlined } from '@ant-design/icons';
 

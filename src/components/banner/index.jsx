@@ -9,16 +9,14 @@ function Banner(props) {
         changePanelStateDispatch,
         id,
         img_address,
-        link_address,
         left_editor,
         template,
         index
     } = props
     return (
         <div className={cx("banner",props.className)} id={id} data-index={index} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index]);
+            changePanelStateDispatch([left_editor,template],index);
         }}>
-            {/* <a href={link_address} target="_blank"> */}
             <a>
                 <img src={img_address} alt=""/>
             </a>
@@ -30,13 +28,7 @@ Banner.propTypes = {
     changePanelStateDispatch: PropTypes.func,
     type: PropTypes.string,
     img_address: PropTypes.string.isRequired,
-    link_address: PropTypes.string,
     id: PropTypes.string.isRequired
 }
 
-Banner.defaultProps = {
-    type: "text"
-}
-
-// export default React.forwardRef(Banner)
 export default Banner

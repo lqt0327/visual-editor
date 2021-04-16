@@ -8,7 +8,6 @@ const FaqPanel = (props) => {
     const {
         comp_i,
         pageData,
-        template,
         changePageDataDispatch
     } = props
 

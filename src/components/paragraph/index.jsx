@@ -71,7 +71,7 @@ function Paragraph(props) {
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
             updatePageDispatch(index)
         }}>
             {

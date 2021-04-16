@@ -15,7 +15,7 @@ function RowList(props) {
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div className="fd-grid comp_list_v_1">
                 {

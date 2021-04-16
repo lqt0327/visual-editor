@@ -50,7 +50,7 @@ function Quote(props) {
 
     return (
         <div className="use-tag" id={id} data-index={index} style={{position: "relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index])
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             {
                 template === 'quote1' ? 

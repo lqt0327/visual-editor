@@ -12,25 +12,17 @@ function carousel(props) {
         left_editor,
         index
     } = props
-    const contentStyle = {
-        // height: '160px',
-        // color: '#fff',
-        // lineHeight: '160px',
-        // textAlign: 'center',
-        // background: '#364d79',
-        // marginBottom: 0
-    };
 
     return (
         <div className="carousel-content" id={id} data-index={index} onClick={()=>{
-            changePanelStateDispatch([left_editor,template,index]);
+            changePanelStateDispatch([left_editor,template],index);
         }}>
             <Carousel autoplay>
                 {
                     children.map((item,i)=>{
                         return (
                             <div key={i}>
-                                <a style={contentStyle}>
+                                <a>
                                     <img src={item["img_address"]} alt={i+1} width="375" height="140" />
                                 </a>
                             </div>
