@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 import { addTemplate } from 'store/actions'
 import "./style.sass"
 
 function GeneralTemplate(props) {
 
-    const { imgs, template, addTemplateDispatch } = props
+    const { imgs, addTemplateDispatch } = props
 
     return (
         <div>

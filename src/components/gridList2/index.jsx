@@ -6,11 +6,11 @@ import './style.sass'
 const Card1 = (props) => {
     const { tag, img_address, title, subtitle } = props
     return (
-        <a href="" className="fd-link fd-card shadowMode comp_list_card_1">
+        <a className="fd-link fd-card shadowMode comp_list_card_1">
             <div className="fd-card-inner">
                 <div className="fd-card-inner-head">
-                    <a href="" className="fd-link fd-jumbo size-lg">
-                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
+                    <a className="fd-link fd-jumbo size-lg">
+                        <a className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
                         <div className="fd-jumbo-mask"></div>
                         <div className="fd-jumbo-content"></div>
                         <div className="fd-jumbo-tag">
@@ -32,11 +32,11 @@ const Card1 = (props) => {
 const Card2 = (props) => {
     const { tag, img_address, title, subtitle } = props
     return (
-        <a href="" className="fd-link fd-card comp_list_card_2">
+        <a className="fd-link fd-card comp_list_card_2">
             <div className="fd-card-inner">
                 <div className="fd-card-inner-head">
-                    <a href="" className="fd-link fd-jumbo size-lg">
-                        <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
+                    <a className="fd-link fd-jumbo size-lg">
+                        <a className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url("+img_address+")" }}></a>
                         <div className="fd-jumbo-mask"></div>
                         <div className="fd-jumbo-content">
                         </div>
@@ -61,9 +61,9 @@ const Grid2 = (props) => {
     const { imgUrl, tag, title, desc } = props
 
     return (
-        <a href="" className="fd-link comp_list_grid_1-jumbo">
-            <a href="" className="fd-link fd-jumbo size-md">
-                <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url(" + imgUrl + ")" }}></a>
+        <a className="fd-link comp_list_grid_1-jumbo">
+            <a className="fd-link fd-jumbo size-md">
+                <a className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url(" + imgUrl + ")" }}></a>
                 <div className="fd-jumbo-mask"></div>
                 <div className="fd-jumbo-content">
                 </div>
@@ -82,8 +82,8 @@ const Grid1 = (props) => {
     const { imgUrl, title, desc } = props
 
     return (
-        <a href="" className="fd-link fd-jumbo size-md comp_list_grid_1-jumbo">
-            <a href="" className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url(" + imgUrl + ")" }}></a>
+        <a className="fd-link fd-jumbo size-md comp_list_grid_1-jumbo">
+            <a className="fd-link fd-cover fd-jumbo-cover" style={{ backgroundImage: "url(" + imgUrl + ")" }}></a>
             <div className="fd-jumbo-mask"></div>
             <div className="fd-jumbo-content">
                 <h1>{title}</h1>
@@ -99,16 +99,18 @@ function GridList2(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         children,
         tag,
         img_address,
+        left_editor,
         title,
         subtitle
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch(['banner','static'])
+        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             {
                 template === 'cardlist2' ?
@@ -134,7 +136,7 @@ function GridList2(props) {
                             return (
                                 <div className="fd-grid-row" key={i}>
                                     {
-                                        item.map((item2, j) => {
+                                        item.children.map((item2, j) => {
                                             return (
                                                 <div className="fd-grid-col" key={j}>
                                                     {
@@ -169,12 +171,12 @@ function GridList2(props) {
 GridList2.propTypes = {
     changePanelStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        subtitle: PropTypes.string,
-        tag: PropTypes.string,
-        img_address: PropTypes.string
-    }))),
+    // children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
+    //     title: PropTypes.string,
+    //     subtitle: PropTypes.string,
+    //     tag: PropTypes.string,
+    //     img_address: PropTypes.string
+    // }))),
     tag: PropTypes.string,
     title: PropTypes.string,
     img_address: PropTypes.string,

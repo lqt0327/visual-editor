@@ -1,12 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import './style.sass'
-
-const ListContent = styled.div`
-
-`
 
 function NormalList(props) {
 
@@ -14,15 +9,16 @@ function NormalList(props) {
         changePanelStateDispatch,       
         template,
         id,
-        link_address,
+        index,
+        left_editor,
         title,
         img_address,
         tag
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch(['banner','static'])
+        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div>
                 <a className={cx("fd-link fd-subject comp_list_normal_2",{"reverse": template === 'normal3' ? true : false})}>
@@ -52,7 +48,6 @@ function NormalList(props) {
 NormalList.propTypes = {
     changePanelStateDispatch: PropTypes.func,
     id: PropTypes.string.isRequired,
-    link_address: PropTypes.string,
     title: PropTypes.string,
     tag: PropTypes.array,
     img_address:PropTypes.string

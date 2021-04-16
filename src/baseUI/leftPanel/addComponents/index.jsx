@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tabs } from 'antd';
 import GeneralTemplate from './generalTemplate'
 import './style.sass'
@@ -19,7 +19,6 @@ function AddComponents() {
                     <div className="l-resource-list">
                         <Tabs tabPosition="left" defaultActiveKey="0" onChange={callback} size="small">
                             {
-                                // console.log(Object.values(data),"[][][][][][]")
                                 Object.keys(data).map((item,i)=>{
                                     return (
                                         <TabPane tab={item} key={i}>

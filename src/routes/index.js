@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import BlankLayout from 'src/layouts/BlankLayout';
 
 const HomeComponent = lazy(() => import("src/application/Home"))
-const EditorComponent = lazy(() => import("src/application/Editor"))
 
 const SuspenseComponent = Component => props => {
     return (
@@ -24,10 +23,6 @@ export default [{
         {
             path: "/home",
             component: SuspenseComponent(HomeComponent)
-        },
-        {
-            path:"/editor",
-            component: SuspenseComponent(EditorComponent)
         }
     ]
 }]

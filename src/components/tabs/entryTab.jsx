@@ -40,14 +40,15 @@ function EntryTab(props) {
         template,
         left_editor,
         id,
-        children
+        children,
+        index
     } = props
 
     return (
         <EnteryNormal onClick={() => { 
-            changePanelStateDispatch([left_editor,template])
+            changePanelStateDispatch([left_editor,template],index)
          }}>
-            <div className="use-tag" style={{ position: "relative" }} id={id}>
+            <div className="use-tag" style={{ position: "relative" }} id={id} data-index={index}>
                 <section className="comp_entry_normal_1">
                     {
                         children.map((item, i) => {

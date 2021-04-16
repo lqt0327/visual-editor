@@ -1,29 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Header, Preview } from "baseUI";
-import * as LeftPanel from "baseUI/leftPanel";
+import { AddComponents, LeftPanelPage, EditComponents } from "baseUI/leftPanel";
 import { connect } from 'react-redux';
-import cx from "classnames";
 import "./style.sass";
 
 // 事件代理 preview中点击 模块 左侧面板 响应
 
 function Home(props) {
 
-    const { panel } = props
+    const { panel: p, comp_i } = props
+    const panel = p ? p.toJS() : []
 
-    console.log(panel, '????????')
     return (
         <div className="l-eidtor">
             <Header />
             <main>
                 {
-                    // panel[0] === 'addComponents' ? <AddComponents /> :
-                    // panel[0] === 'page' ? <LeftPanelPage /> :
-                    // panel[0] === 'banner' ? <LeftPanelBanner /> :
-                    // panel[0] === 'tab' ? <TabPanel /> :
-                    // <LeftPanelPage />
-                    panel[0] ? React.createElement(LeftPanel[panel[0]],{panel: panel[1]},'') :
-                    <LeftPanel.LeftPanelPage />
+                    panel[0] === 'AddComponents' ? <AddComponents /> :
+                    panel[0] === 'page' ? <LeftPanelPage /> : 
+                    <EditComponents panel={panel[0]} comp_i={comp_i} template={panel[1]} />
                 }
                 <Preview />
             </main>
@@ -34,6 +29,7 @@ function Home(props) {
 // 映射Redux全局的state到组件到props上
 
 const mapStateToProps = (state) => ({
+    comp_i: state.getIn(['panels','comp_i']),
     panel: state.getIn(['panels', 'currentPanel'])
 })
 // 映射dispatch到props上

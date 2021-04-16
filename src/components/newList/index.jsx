@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
 import './style.sass'
 
 function NewList(props) {
@@ -9,14 +8,16 @@ function NewList(props) {
         changePanelStateDispatch,
         template,
         id,
+        index,
         title,
         img_address,
+        left_editor,
         tag
     } = props
 
     return (
-        <div className="use-tag" id={id} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch(['banner','static'])
+        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
+            changePanelStateDispatch([left_editor,template],index)
         }}>
             <div>
                 <div className="fd-link fd-card comp_list_news_v_3">
@@ -34,7 +35,7 @@ function NewList(props) {
                                                     _.map((item, j) => {
                                                         return (
                                                             <div className="fd-grid-col" key={j}>
-                                                                <a href="" className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
+                                                                <a className="fd-link fd-cover cover" style={{ backgroundImage: "url(" + item + ")" }}></a>
                                                             </div>
                                                         )
                                                     })

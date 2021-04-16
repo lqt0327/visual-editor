@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
-    currentTemplate: ''
+    currentTemplate: ''     // 添加组件面板 选中
 })
 
 export default (state = defaultState, action) => {

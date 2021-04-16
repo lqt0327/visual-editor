@@ -14,8 +14,8 @@ function Footer() {
                         <a href="https://www.baidu.com">测试数据</a>
                     </div>
                     <div className="footer-wrapper-top-right">
-                        <a href="#"><span className="icon iconfont">&#xe667;</span></a>
-                        <a href="#"><span className="icon iconfont">&#xe65f;</span></a>
+                        <a href="https://www.baidu.com"><span className="icon iconfont">&#xe667;</span></a>
+                        <a href="https://www.baidu.com"><span className="icon iconfont">&#xe65f;</span></a>
                     </div>
                 </div>
                 <div className="footer-wrapper-middle">
