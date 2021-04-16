@@ -8,7 +8,7 @@ import "./style.sass";
 
 function Home(props) {
 
-    const { panel: p } = props
+    const { panel: p, comp_i } = props
     const panel = p ? p.toJS() : []
 
     return (
@@ -18,7 +18,7 @@ function Home(props) {
                 {
                     panel[0] === 'AddComponents' ? <AddComponents /> :
                     panel[0] === 'page' ? <LeftPanelPage /> : 
-                    <EditComponents panel={panel[0]} comp_i={panel[2]} template={panel[1]} />
+                    <EditComponents panel={panel[0]} comp_i={comp_i} template={panel[1]} />
                 }
                 <Preview />
             </main>
@@ -29,6 +29,7 @@ function Home(props) {
 // 映射Redux全局的state到组件到props上
 
 const mapStateToProps = (state) => ({
+    comp_i: state.getIn(['panels','comp_i']),
     panel: state.getIn(['panels', 'currentPanel'])
 })
 // 映射dispatch到props上
