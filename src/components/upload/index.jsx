@@ -1,5 +1,7 @@
-import { Upload, Button } from 'antd';
+import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { validRatio } from 'src/utils/tools'
+import axios from 'axios'
 
 function upload(props) {
     const { imgWidth = 750, imgHeight = 280 } = props
@@ -20,12 +22,35 @@ function upload(props) {
         // imgWindow.document.write(image.outerHTML);
     };
 
+    const beforeUpload = (file, filelist) => {
+        // 验证图片的函数validRatio  存在问题-------------
+        const vaildRes = validRatio(file, {width: imgWidth,height: imgHeight})
+        if(vaildRes === 'sucess') {
+            console.log(file,'?????',filelist)
+            let param = new FormData()
+            // ‘file' 对应于服务端的 ctx.request.files.file 的 .file
+            param.append('file', file)
+            const config = {
+                // headers: { 'Content-Type': 'multipart/form-data' }
+            }
+            axios.post('https://two.luoqintai.cn/upload', 
+                param,
+                config
+            ).then(res => {
+                console.log(res,'pppppppp')
+            })
+        }else {
+            message.info(vaildRes)
+            return false
+        }
+    }
+
     return (
         <div style={{ margin: "8px 0" }}>
             <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 listType="picture"
                 maxCount={1}
+                beforeUpload={beforeUpload}
                 onPreview={onPreview}
             >
                 <Button icon={<UploadOutlined />}>选择图片</Button>
