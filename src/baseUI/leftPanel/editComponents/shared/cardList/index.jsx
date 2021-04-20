@@ -32,6 +32,8 @@ const CardPanel = (props) => {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
@@ -42,10 +44,11 @@ const CardPanel = (props) => {
             <Input key={tpl["tag"]} defaultValue={tpl["tag"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "tag"), 250)} />
             <h3>图片</h3>
             <Upload
-                imgHeight={56}
-                imgWidth={56}
+                imgHeight={320}
+                imgWidth={686}
+                changeVal={curried(path.current)}
             />
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

@@ -44,6 +44,8 @@ const Tab1 = (props) => {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <Collapse accordion onChange={(e) => {
@@ -69,8 +71,9 @@ const Tab1 = (props) => {
                                                     <Upload
                                                         imgHeight={144}
                                                         imgWidth={220}
+                                                        changeVal={curried(path.current)}
                                                     />
-                                                    <LinkAddress linkVal={item2["link_address"]} path={path} changeVal={changeVal} />
+                                                    <LinkAddress linkVal={item2["link_address"]} changeVal={curried(path.current)} />
                                                 </Panel>
                                             )
                                         })

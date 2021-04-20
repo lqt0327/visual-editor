@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Upload, LinkAddress } from "components";
+import _ from 'lodash';
 
 function BannerPanel(props) {
     const { 
@@ -30,13 +31,16 @@ function BannerPanel(props) {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <Upload 
                 imgWidth={750}
                 imgHeight={280}
+                changeVal={curried(path.current)}
             />
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

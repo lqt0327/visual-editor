@@ -52,7 +52,7 @@ const validRatio = async (file, { width, height, size=1000000}) => {
     }
     image.src = data
   }
-  await reader.readAsDataURL(file)
+  reader.readAsDataURL(file)
   console.log(map[valid],'000000')
   return map[valid]
 }

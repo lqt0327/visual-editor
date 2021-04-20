@@ -32,6 +32,8 @@ const NormalPanel = (props) => {
         tmp[type] = newVal
         changePageDataDispatch(pageData)
     }
+    
+    const curried = _.curry(changeVal)
 
     return (
         <div className="schema-editor-container">
@@ -50,10 +52,11 @@ const NormalPanel = (props) => {
                         <Upload
                             imgHeight={56}
                             imgWidth={56}
+                            changeVal={curried(path.current)}
                         />
                     </React.Fragment>
             }
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }
