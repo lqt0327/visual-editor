@@ -42,6 +42,8 @@ const RowPanel = (props) => {
         tmp[type] = newVal
         changePageDataDispatch(pageData)
     }
+    
+    const curried = _.curry(changeVal)
 
     return (
         <div className="schema-editor-container">
@@ -60,8 +62,9 @@ const RowPanel = (props) => {
                                 <Upload
                                     imgHeight={56}
                                     imgWidth={56}
+                                    changeVal={curried(path.current)}
                                 />
-                                <LinkAddress linkVal={item["link_address"]} path={path} changeVal={changeVal} />
+                                <LinkAddress linkVal={item["link_address"]} changeVal={curried(path.current)} />
                             </Panel>
                         )
                     })

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Collapse } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Upload, LinkAddress } from "components";
+import _ from 'lodash';
 
 const { Panel } = Collapse;
 
@@ -43,6 +44,8 @@ function CarouselPanel(props) {
         tmp[type] = newVal
         changePageDataDispatch(pageData)
     }
+
+    const curried = _.curry(changeVal)
         
     return (
         <div className="schema-editor-container">
@@ -56,8 +59,9 @@ function CarouselPanel(props) {
                                 <Upload 
                                     imgWidth={750}
                                     imgHeight={280}
+                                    changeVal={curried(path.current)}
                                 />
-                                <LinkAddress linkVal={item["link_address"]} path={path} changeVal={changeVal} />
+                                <LinkAddress linkVal={item["link_address"]} changeVal={curried(path.current)} />
                             </Panel>
                         )
                     })

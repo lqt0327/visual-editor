@@ -32,11 +32,13 @@ const ButtonPanel = (props) => {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <h3>按钮文字</h3>
             <Input key={tpl["text"]} defaultValue={tpl["text"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} />
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

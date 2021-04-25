@@ -45,3 +45,5 @@ export const deleteTplRequest = (id) => {
 export const getAllRecomTplRequest = () => {
     return axiosInstance.get(`/recommend`)
 }
+
+// 上传图片

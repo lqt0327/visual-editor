@@ -93,9 +93,8 @@
   },
   "scripts": {
     "start:main": "node scripts/start.js",
-    "start:child": "cd ./src/tpl && npm run start",
     "start:server": "cd ./src/server && npm run start:dev",
-    "start": "concurrently \"npm run start:main\" \"npm run start:child\" \"npm run start:server\"",
+    "start": "concurrently \"npm run start:main\" \"npm run start:server\"",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
