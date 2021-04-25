@@ -1,6 +1,6 @@
 import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors } from '@nestjs/common';
 import { TagEntity } from '@src/entities/model/system/tag.entity';
-import { TagService } from '@src/services/tag/tag.service';
+import { TagService } from '@src/services/admin/tag/tag.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 

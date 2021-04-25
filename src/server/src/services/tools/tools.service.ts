@@ -1,51 +1,74 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import * as uuidv4 from 'uuid';
 import { isUUID, isEmail, isInt, isMobilePhone } from 'class-validator';
+import * as uuidv4 from 'uuid'
+import random from './random'
+var CryptoJS = require("crypto-js");
 
 @Injectable()
 export class ToolsService {
-
-  public get uuid(): string {
-    return uuidv4.v4();
-  }
-
-//   makePassword(password: string): string {
-//     return this.nodeAuth.makePassword(password);
-//   }
-
-  checkPassword(password: string, sqlPassword: string): boolean {
-    return Object.is(password, sqlPassword);
-  }
-
-  public isUUID(id: string): boolean {
-    return isUUID(id);
-  }
-
-  public isInt(id: string): boolean {
-    return isInt(Number(id));
-  }
-
-  public isEmail(str: string): boolean {
-    return isEmail(str);
-  }
-
-  public isMobilePhone(mobile: string, nation: any = 'zh-CN'): boolean {
-    return isMobilePhone(mobile, nation);
-  }
-
-  public checkPage(pageSize: number, pageNumber: number): void {
-    if (!isInt(Number(pageSize)) || !isInt(Number(pageNumber))) {
-      throw new HttpException(`传递的pageSize:${pageSize},pageNumber:${pageNumber}其中一个不是整数`, HttpStatus.OK);
+    public get uuid(): string {
+        return uuidv4.v4();
     }
-  }
 
-  public async findByIdOrUuid(id: string, repository: any) {
-    if (this.isUUID(id)) {
-      return await repository.findOne({ uuid: id });
-    } else if (this.isInt(id)) {
-      return await repository.findOne({ id: Number(id) });
-    } else {
-      return new HttpException(`你传递的参数错误:${id}不是uuid或者id的一种`, HttpStatus.OK);
+    /**
+     * @description 判断是否为uuid
+     * @param id 
+     */
+    public isUUID(id: string): boolean {
+        return isUUID(id);
     }
-  }
+
+    public isInt(id: string): boolean {
+        return isInt(Number(id));
+    }
+
+    public isEmail(str: string): boolean {
+        return isEmail(str);
+    }
+
+    public isMobilePhone(mobile: string, nation: any = 'zh-CN'): boolean {
+        return isMobilePhone(mobile, nation);
+    }
+
+    /**
+     * @description 生成密文的方法
+     * @param password 明文密码
+     */
+    public makePassword(password: string): string {
+        // 1.生成随机数
+        const randomStr = random()
+        // 2.对生成的随机数base64加密
+        const base64RandomStr = CryptoJS.Base64.stringify(randomStr)
+        return this.md5MakePassword(base64RandomStr, password);
+    }
+
+    /**
+     * @description 判断与密文密码是否匹配
+     * @param password 没有加密的密码
+     * @param sqlPwd 加密了的密码
+     */
+    public checkPassword(password: string, sqlPwd: string): boolean {
+        // 1.从查询出来的密码中截取前面随机数
+        const base64RandomStr = sqlPwd.substring(0, 16);
+        const lastPwd = this.md5MakePassword(base64RandomStr, password);
+        // console.log(sqlPwd,'[[[[[[[',lastPwd,';;;;;',typeof sqlPwd, typeof lastPwd,sqlPwd === lastPwd)
+        return sqlPwd === lastPwd;
+    }
+
+    /**
+     * @description 对密码进行md5加密
+     * @param base64RandomStr base64加密的随机数
+     * @param password 没有加密的密码
+     */
+    private md5MakePassword(base64RandomStr: string, password: string): string {
+        // 2.将密码与加密的随机数拼接
+        const newPwd = base64RandomStr + password;
+        // 3.将第二步进行md5加密
+        const md5Pwd = CryptoJS.hmacSHA512(newPwd, "llscw");
+        // 4.将加密后的md5Pwd继续加密
+        const base64Md5 = CryptoJS.Base64.stringify(md5Pwd);
+        // 5.继续将2和4拼接
+        const lastPwd = base64RandomStr + base64Md5;
+        return lastPwd;
+    }
 }

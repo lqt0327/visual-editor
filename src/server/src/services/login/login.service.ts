@@ -17,9 +17,7 @@ export class LoginService {
     try {
       const { username, password } = loginDto;
       const user = await this.userRepository.findOne({where: { username }});
-      console.log(user,'+++++');
       if (user && this.toolsService.checkPassword(password, user.password)) {
-          console.log(user,'------')
           return Object.assign({"status":200},{"data":user});
         // return user.toResponseObject();
       } else {

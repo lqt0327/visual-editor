@@ -1,6 +1,6 @@
 import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body } from '@nestjs/common';
 import { RecomTplEntity } from '@src/entities/model/system/recom_tpl.entity';
-import { RecService } from '@src/services/recommend/rec.service';
+import { RecService } from '@src/services/admin/recommend/rec.service';
 import { ApiOperation, ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
 import { CreateRecDto } from './dto/create-rec.dto'
 

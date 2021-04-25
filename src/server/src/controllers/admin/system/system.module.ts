@@ -4,6 +4,7 @@ import { UsersController } from './users/users.controller'
 import { TagController } from './tag/tag.controller'
 import { TplController } from './tpl/tpl.controller'
 import { RecController } from './recommend/rec.controller'
+import { LoginController } from './login/login.controller'
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { RecController } from './recommend/rec.controller'
     UsersController,
     TagController,
     TplController,
-    RecController
+    RecController,
+    LoginController
   ],
 })
 export class SystemModule { }

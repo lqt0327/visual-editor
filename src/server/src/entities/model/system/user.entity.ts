@@ -56,20 +56,20 @@ export class UserEntity {
 		);
 	}
 
-//   public toResponseObject(isShowToken = true): object {
-// 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// 		console.log('test')
-// 		const { password, token, ...params } = this;
-// 		const responseData: ObjectType = {
-// 			...params,
-// 		}
-// 		console.log(params,token)
-// 		if (isShowToken) {
-// 			console.log('test1')
-// 			return Object.assign(responseData, { token });
-// 		} else {
-// 			console.log('test2')
-// 			return responseData;
-// 		}
-// 	}
+  public toResponseObject(isShowToken = true): object {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		console.log('test')
+		const { password, token, ...params } = this;
+		const responseData: ObjectType = {
+			...params,
+		}
+		console.log(params,token)
+		if (isShowToken) {
+			console.log('test1')
+			return Object.assign(responseData, { token });
+		} else {
+			console.log('test2')
+			return responseData;
+		}
+	}
 }

@@ -1,6 +1,6 @@
 import { CacheInterceptor, Controller, Get, HttpCode, HttpStatus, UseInterceptors, Param, Post, Body, Patch, ParseIntPipe, Delete } from '@nestjs/common';
 import { TplEntity } from '@src/entities/model/system/tpl.entity';
-import { TplService } from '@src/services/tpl/tpl.service';
+import { TplService } from '@src/services/admin/tpl/tpl.service';
 import { ApiOperation, ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
 import { CreateTplDto } from './dto/create-tpl.dto'
 import { UpdateTplDto } from './dto/update-tpl.dto';
