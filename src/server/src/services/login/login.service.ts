@@ -18,8 +18,8 @@ export class LoginService {
       const { username, password } = loginDto;
       const user = await this.userRepository.findOne({where: { username }});
       if (user && this.toolsService.checkPassword(password, user.password)) {
-          return Object.assign({"status":200},{"data":user});
-        // return user.toResponseObject();
+          // return Object.assign({"status":200},{"data":user});
+        return user.toResponseObject();
       } else {
         throw new HttpException('请检查你的用户名与密码', HttpStatus.OK);
       }

@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 var fs = require('fs');
+require('dotenv').config()
 
 async function bootstrap() {
 

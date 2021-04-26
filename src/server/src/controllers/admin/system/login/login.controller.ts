@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { LoginService } from '@src/services/login/login.service';
 import { LoginDto } from './dto/login.dto';
@@ -19,6 +19,7 @@ export class LoginController {
     description: '用户登录DTO'
   })
   @Post()
+  @HttpCode(HttpStatus.OK)
   async adminLogin(
     @Body() loginDto: LoginDto,
   ): Promise<any> {
