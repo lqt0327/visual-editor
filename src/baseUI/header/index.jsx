@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Modal, Tabs } from 'antd';
 import { changePanel, changePid, changePage, updatePage, changePageTitle } from 'store/actions'
 import { updateTplRequest, getAllRecomTplRequest, addTplRequest } from 'src/api/request'
+import { url_h5 } from 'src/utils/tools/config'
 import "./style.sass";
 
 const { TabPane } = Tabs;
@@ -19,7 +20,7 @@ function Header(props) {
     const updateTpl = (pid) => {
         const tpl = localStorage.getItem(`tpl_${pid}`)
         updateTplRequest(pid, {tplData: tpl}).then(() => {
-            window.open(`http://localhost:8082/?page=${pid}`)
+            window.open(`${url_h5}?page=${pid}`)
         })
     }
 

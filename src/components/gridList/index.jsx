@@ -36,8 +36,6 @@ function GridList(props) {
         children
     } = props
 
-    console.log(children)
-
     return (
         <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
             changePanelStateDispatch([left_editor,template],index)

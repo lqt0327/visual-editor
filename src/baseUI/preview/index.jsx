@@ -8,6 +8,7 @@ import { Button } from 'antd';
 import cx from 'classnames';
 import config from './config.json'
 import './style.sass'
+import { url_h5 } from "../../utils/tools/config";
 
 
 function Preview(props) {
@@ -182,7 +183,7 @@ function Preview(props) {
             <div className="l-preview--mask" onClick={() => setShowAdd('')}></div>
             <div className="l-page-path-container">
                 <div className="l-page-path">
-                    <div className="l-pp-url"><span>https://render.yunfengdie.cn/p/q/kj9nbl7b</span></div>
+                    <div className="l-pp-url"><span>{pid === 0 ? "" : url_h5 + `?page=${pid}`}</span></div>
                     <div className="l-pp-share"><i className="icon iconfont">&#xe7d0;</i></div>
                 </div>
             </div>

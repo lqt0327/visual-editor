@@ -19,7 +19,7 @@
             align-items: center
             justify-content: space-between
 
-            .header-left-logo
+            &-logo
                 width: 40px
                 height: 40px
                 overflow: hidden
@@ -28,13 +28,13 @@
                 img
                     height: 40px
 
-            .header-left-tabbar
+            &-tabbar
                 height: 40px
                 width: 245px
                 background-color: #f9f9f9
                 line-height: 40px
                 padding-left: 20px
-
+                cursor: pointer
                 
 
         .header-right
@@ -45,6 +45,9 @@
             align-items: center
             width: 230px
             margin-right: 20px
+
+            &-preview, &-save
+                cursor: pointer
 
             &-publish
 
