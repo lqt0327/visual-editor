@@ -1,0 +1,13 @@
+img2:
+    comp: ComImg
+    left_editor: LeftPanelImg
+    link_address: 'https://www.baidu.com'
+    template: img2
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/hxisPCETBGwVXAdEYrke.png'
+    desc: 产品图
+img1:
+    comp: ComImg
+    left_editor: LeftPanelImg
+    link_address: 'https://www.baidu.com'
+    template: img1
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/hxisPCETBGwVXAdEYrke.png'

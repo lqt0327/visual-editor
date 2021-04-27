@@ -1,0 +1,34 @@
+step1:
+    comp: ComStep
+    left_editor: LeftPanelStep
+    template: step1
+    children:
+      - step: Step 1
+        title: 在线预定
+        desc: 填写信息，上传驾照正反面
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/ooZDRgfpKxPsQSrVmGZX.png'
+      - step: Step 2
+        title: 翻译制作
+        desc: 对驾照信息进行翻译及认证，于 1 个工作日内完成
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/XKTyAJMVsgjEOuxwtITN.png'
+      - step: Step 3
+        title: 寄送到家
+        desc: 在证件的最后一页贴上白底证件照，签署中文姓名
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/QJXyJDFxUiHbSfShONXG.png'
+step3:
+    comp: ComStep
+    left_editor: LeftPanelStep
+    template: step3
+    children:
+      - step: Step 1
+        title: 在线预定
+        desc: 填写信息，上传驾照正反面
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/oXWUFANYmciCOAAEQJjD.png'
+      - step: Step 2
+        title: 翻译制作
+        desc: 对驾照信息进行翻译及认证，于 1 个工作日内完成
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/PeDRFGbGRbNBIaQTDndp.png'
+      - step: Step 3
+        title: 寄送到家
+        desc: 在证件的最后一页贴上白底证件照，签署中文姓名
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/BepCpOQgGGMpWAJiPiYZ.png'

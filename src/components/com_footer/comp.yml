@@ -1,0 +1,5 @@
+footer1:
+    comp: ComFooter
+    left_editor: LeftPanelFooter
+    template: footer1
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/XtMFIqbtszjfPnrtQnIe.png'

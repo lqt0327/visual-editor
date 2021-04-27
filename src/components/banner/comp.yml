@@ -1,0 +1,6 @@
+banner1:
+    comp: Banner
+    template: banner
+    left_editor: LeftPanelBanner
+    link_address: 'https://www.baidu.com'
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png'

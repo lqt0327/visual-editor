@@ -93,7 +93,7 @@
   },
   "scripts": {
     "start:main": "node scripts/start.js",
-    "start:server": "cd ./src/server && npm run start:dev",
+    "start:server": "cd ./src/server && node app.mjs",
     "start": "concurrently \"npm run start:main\" \"npm run start:server\"",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
@@ -172,5 +172,9 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "koa": "^2.13.1"
   }
 }
