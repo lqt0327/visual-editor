@@ -32,7 +32,9 @@ function NewPanel(props) {
         tmp[type] = newVal
         changePageDataDispatch(pageData)
     }
-        
+     
+    const curried = _.curry(changeVal)
+    
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
@@ -53,7 +55,7 @@ function NewPanel(props) {
                         />
                     </React.Fragment> : ""
             }
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

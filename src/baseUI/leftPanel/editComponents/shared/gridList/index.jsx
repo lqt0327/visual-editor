@@ -46,6 +46,8 @@ function CarouselPanel(props) {
         changePageDataDispatch(pageData)
     }
         
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <Collapse accordion onChange={(key)=>{
@@ -83,7 +85,7 @@ function CarouselPanel(props) {
                                                         imgHeight={280}
                                                         maxlist={item.children.length}
                                                     />
-                                                    <LinkAddress linkVal={item2["link_address"]} path={path} changeVal={changeVal} />
+                                                    <LinkAddress linkVal={item2["link_address"]} changeVal={curried(path.current)} />
                                                 </Panel>    
                                             )
                                         })

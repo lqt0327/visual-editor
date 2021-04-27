@@ -33,6 +33,8 @@ const ImgPanel = (props) => {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             {
@@ -44,10 +46,11 @@ const ImgPanel = (props) => {
             }
             <h3>图片</h3>
             <Upload
-                imgHeight={56}
-                imgWidth={56}
+                imgHeight={384}
+                imgWidth={686}
+                changeVal={curried(path.current)}
             />
-            <LinkAddress linkVal={tpl["link_address"]} path={path} changeVal={changeVal} />
+            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

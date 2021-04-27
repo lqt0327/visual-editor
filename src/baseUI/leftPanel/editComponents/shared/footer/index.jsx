@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Upload } from "components";
+import _ from 'lodash';
 
 function FooterPanel(props) {
     const { 
@@ -30,11 +31,14 @@ function FooterPanel(props) {
         changePageDataDispatch(pageData)
     }
 
+    const curried = _.curry(changeVal)
+
     return (
         <div className="schema-editor-container">
             <Upload 
-                imgWidth={750}
-                imgHeight={280}
+                imgWidth={124}
+                imgHeight={40}
+                changeVal={curried(path.current)}
             />
         </div>
     )
