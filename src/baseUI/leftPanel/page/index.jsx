@@ -45,6 +45,7 @@ function LeftPanel(props) {
     }, [pUpdate])
 
     useEffect(() => {
+        document.onclick = ()=>{setUpdate(0)}
         safeRef.current = true
         return () => {
             safeRef.current = false
@@ -73,7 +74,7 @@ function LeftPanel(props) {
             changePageStateDispatch([],0,'')
         }
         return (
-           <div>
+        <div>
             <Popconfirm
                 placement="rightTop"
                 title={text}
@@ -100,9 +101,11 @@ function LeftPanel(props) {
                                 return (
                                     <div
                                         className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}
-                                        onClick={() => {
+                                        onClick={(e) => {
                                             setAdd(false)
                                             changePageStateDispatch(JSON.parse(item["tplData"]),item["id"],item["title"])
+                                            console.log(update,'????xxx')
+                                            e.nativeEvent.stopImmediatePropagation()
                                         }}
                                         key={i}
                                     >
@@ -111,7 +114,7 @@ function LeftPanel(props) {
                                             <h4>
                                                 <span>
                                                 {
-                                                    update === item["id"] ? 
+                                                    update === item["id"] && pid === item["id"] ? 
                                                     <Input size="small" onPressEnter={(e) => {
                                                         setUpdate(false)
                                                         // 更新页面标题
