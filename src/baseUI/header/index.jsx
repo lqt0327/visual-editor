@@ -102,7 +102,7 @@ function Header(props) {
                                                     className="tabpane-content__item" 
                                                     key={j} 
                                                     onDoubleClick={()=>{
-                                                        addTplRequest(item2["tplData"],1,1,item2["title"])
+                                                        addTplRequest(item2["tplData"],1,item2["title"])
                                                         .then((res)=>{
                                                             changePageStateDispatch(JSON.parse(item2["tplData"]),res.id,item2["title"])
                                                             handleCancel()
