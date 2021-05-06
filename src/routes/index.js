@@ -37,12 +37,10 @@ export default [
             {
                 path: "/login",
                 component: SuspenseComponent(LoginComponent),
-                auth: false
             },
             {
                 path: "/register",
                 component: SuspenseComponent(RegisterComponent),
-                auth: false
             }
         ]
     }

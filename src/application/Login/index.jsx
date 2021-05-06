@@ -1,5 +1,7 @@
 import React from 'react'
 import { loginRequest } from 'src/api/request'
+import { connect } from 'react-redux'
+import { setUid } from 'store/actions'
 import './style.sass'
 import { Form, Input, Button, Checkbox, message } from 'antd';
 
@@ -12,6 +14,11 @@ const tailLayout = {
 };
 
 function Login(props) {
+
+    const { 
+        setUidDispatch
+    } = props
+
     const onFinish = (values) => {
         console.log('Success:', values);
         loginRequest(values).then((res)=>{
@@ -20,9 +27,10 @@ function Login(props) {
                 message.info(res.message)
             }else {
                 // message.success(res)
+                setUidDispatch(res.id)
                 localStorage.setItem('uid',res.id)
                 localStorage.setItem('token',res.token)
-                // props.history.push('/home')
+                props.history.push('/home')
             }
         })
     };
@@ -92,4 +100,18 @@ function Login(props) {
     );
 }
 
-export default Login
+// 映射Redux全局的state到组件到props上
+
+const mapStateToProps = (state) => ({
+    uid: state.getIn(['panels', 'comp_i'])
+})
+// 映射dispatch到props上
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUidDispatch(data) {
+            dispatch(setUid(data))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
