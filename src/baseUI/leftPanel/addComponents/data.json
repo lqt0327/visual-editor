@@ -54,7 +54,7 @@
     "按钮": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh1exo/d170cc90-a831-454f-a891-162c99d90725.cms/images/2757f791-fef1-4e36-ad64-f5b7fb62a7f4.png?x-oss-process=image/resize,w_560/crop,h_560","通栏吸底按钮","btn3"],
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh1a44/c956ccb2-5940-41de-95d5-6e12570e3478.cms/images/9e8c8254-36d0-4a3f-882b-b8bcdd6ffa05.png?x-oss-process=image/resize,w_560/crop,h_560","普通吸底按钮","btn2"],
-        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh1544/a8451356-14f1-4d23-b956-9479fff2017b.cms/images/ed921d65-3228-4ba3-94c6-c1b9adccc9b3.png?x-oss-process=image/resize,w_560/crop,h_560","普通按钮"]
+        ["https://gw.alipayobjects.com/os/q/cms/images/jnlh1544/a8451356-14f1-4d23-b956-9479fff2017b.cms/images/ed921d65-3228-4ba3-94c6-c1b9adccc9b3.png?x-oss-process=image/resize,w_560/crop,h_560","普通按钮","btn1"]
     ],
     "FAQ": [
         ["https://gw.alipayobjects.com/os/q/cms/images/jnlh3fkm/e0464e5e-2b33-40f4-bb36-5ef4502c2657.cms/images/82d62ca7-23ff-42e5-9abe-e473d3f9d8c1.png?x-oss-process=image/resize,w_560/crop,h_560","普通 FAQ - 2","faq2"],

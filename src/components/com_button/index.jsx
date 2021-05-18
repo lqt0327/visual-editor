@@ -30,6 +30,15 @@ const Btn2 = (props) => {
     )
 }
 
+const Btn1 = (props) => {
+    const { text } = props
+    return (
+        <div className="comp_btn_normal-wrap">
+            <button className="fd-button comp_btn_normal-btn" style={{ background: "rgb(229,177,101)" }} type="button">{text}</button>
+        </div>
+    )
+}
+
 function ComButton(props) {
     const { 
         changePanelStateDispatch,
@@ -41,7 +50,7 @@ function ComButton(props) {
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={()=>{
+        <div className="use-tag" id={id} data-index={index} style={{ position: "relative", zIndex: "99" }} onClick={()=>{
             changePanelStateDispatch([left_editor,template],index)
         }}>
             {
@@ -51,6 +60,10 @@ function ComButton(props) {
                 /> :
                 template === 'btn2' ?
                 <Btn2
+                    text={text}
+                /> :  
+                template === 'btn1' ?
+                <Btn1 
                     text={text}
                 /> : ""
             }
