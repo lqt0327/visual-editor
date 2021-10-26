@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getAllTplRequest, addTplRequest, deleteTplRequest, updateTplRequest } from 'src/api/request'
+import { getUserTplRequest, addTplRequest, deleteTplRequest, updateTplRequest } from 'src/api/request'
 import { connect } from 'react-redux'
 import { changePid, changePageTitle, changePage } from "src/store/actions";
 import cx from 'classnames'
@@ -23,8 +23,8 @@ function LeftPanel(props) {
      */
     const safeSetTplData = (data) => safeRef.current && setTpl(data)
 
-    const getAllTplData = () => {
-        getAllTplRequest().then(async (res) => {
+    const getUserTplData = () => {
+        getUserTplRequest().then(async (res) => {
             function wait(res) {
                 for (let v of res) {
                     if(localStorage.getItem(`tpl_${v.id}`)) {
@@ -41,10 +41,11 @@ function LeftPanel(props) {
      * 只需要执行一次 接口数据的请求
      */
     useEffect(() => {
-        getAllTplData()
+        getUserTplData()
     }, [pUpdate])
 
     useEffect(() => {
+        document.onclick = ()=>{setUpdate(0)}
         safeRef.current = true
         return () => {
             safeRef.current = false
@@ -68,12 +69,12 @@ function LeftPanel(props) {
             await deleteTplRequest(pid).then(res=>{
                 message.info(res);
                 localStorage.removeItem(`tpl_${pid}`)
-                getAllTplData()
+                getUserTplData()
             })
             changePageStateDispatch([],0,'')
         }
         return (
-           <div>
+        <div>
             <Popconfirm
                 placement="rightTop"
                 title={text}
@@ -100,9 +101,11 @@ function LeftPanel(props) {
                                 return (
                                     <div
                                         className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}
-                                        onClick={() => {
+                                        onClick={(e) => {
                                             setAdd(false)
                                             changePageStateDispatch(JSON.parse(item["tplData"]),item["id"],item["title"])
+                                            console.log(update,'????xxx')
+                                            e.nativeEvent.stopImmediatePropagation()
                                         }}
                                         key={i}
                                     >
@@ -111,7 +114,7 @@ function LeftPanel(props) {
                                             <h4>
                                                 <span>
                                                 {
-                                                    update === item["id"] ? 
+                                                    update === item["id"] && pid === item["id"] ? 
                                                     <Input size="small" onPressEnter={(e) => {
                                                         setUpdate(false)
                                                         // 更新页面标题
@@ -125,7 +128,7 @@ function LeftPanel(props) {
                                                                    message.info(res) 
                                                                 }
                                                                 // 修改了页面数据后，重新从服务端拉去数据，渲染页面
-                                                                getAllTplData()
+                                                                getUserTplData()
                                                                 changePageTitleDispatch(e.target.value)
                                                             })
                                                     }} /> :
@@ -158,9 +161,9 @@ function LeftPanel(props) {
                                                 <Input size="small" onPressEnter={(e) => {
                                                     setAdd(false)
                                                     // 创建一个空页面
-                                                    addTplRequest(JSON.stringify([]), 1, 1, e.target.value)
+                                                    addTplRequest(JSON.stringify([]), 1, e.target.value)
                                                         .then(res => {
-                                                            getAllTplData()
+                                                            getUserTplData()
                                                             changePageStateDispatch([],res.id,e.target.value)
                                                         })
                                                 }} />

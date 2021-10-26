@@ -1,0 +1,16 @@
+newlist3:
+    comp: NewList
+    left_editor: LeftPanelNewList
+    template: newlist3
+    title: 为什么这么多大企业都在做可视化页面搭建？
+    img_address:
+      - - 'https://gw.alipayobjects.com/zos/rmsportal/QncRkuaOpqaYLBoxyEmW.png'
+        - 'https://gw.alipayobjects.com/zos/rmsportal/idMzNdbVOavlarSCCWEL.png'
+        - 'https://gw.alipayobjects.com/zos/rmsportal/PfeIDYodSsakxpFemfZd.png'
+      - - 'https://gw.alipayobjects.com/zos/rmsportal/kLpVGRlmVkhSVpqyBxKj.png'
+        - 'https://gw.alipayobjects.com/zos/rmsportal/gWYqjqJFBRTNhRNYrQkE.png'
+        - 'https://gw.alipayobjects.com/zos/rmsportal/lKDrgTiyERvYSeMvdirE.png'
+    link_address: 'https://www.baidu.com'
+    tag:
+      - 市场
+      - 第一财经

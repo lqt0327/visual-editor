@@ -1,0 +1,18 @@
+btn3:
+    comp: ComButton
+    link_address: 'https://www.baidu.com'
+    left_editor: LeftPanelBtn
+    template: btn3
+    text: 立即申请
+btn2:
+    comp: ComButton
+    link_address: 'https://www.baidu.com'
+    left_editor: LeftPanelBtn
+    template: btn2
+    text: 提交
+btn1:
+    comp: ComButton
+    link_address: 'https://www.baidu.com'
+    left_editor: LeftPanelBtn
+    template: btn1
+    text: 提交

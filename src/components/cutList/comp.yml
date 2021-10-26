@@ -1,0 +1,15 @@
+cutlist1:
+    comp: CutList
+    left_editor: LeftPanelCutList
+    template: cutlist1
+    title: 为什么这么多大企业都在做可视化页面搭建？
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png'
+    link_address: 'https://www.baidu.com'
+    desc: 无需搭建开发环境和部署服务器，基于开发者工具，使用丰富的 UI 组件和行业模板研发 H5
+cutlist2:
+    comp: CutList
+    left_editor: LeftPanelCutList
+    template: cutlist2
+    title: 为什么这么多大企业都在做可视化页面搭建？
+    link_address: 'https://www.baidu.com'
+    img_address: 'https://gw.alipayobjects.com/zos/rmsportal/ebuQSFOLCrYqpCHmfxll.png'

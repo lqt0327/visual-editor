@@ -1,0 +1,13 @@
+carousel2:
+    comp: Carousel
+    template: carousel2
+    left_editor: LeftPanelCarousel
+    children:
+      - link_address: 'https://www.baidu.com'
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png'
+      - link_address: 'https://www.baidu.com'
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png'
+      - link_address: 'https://www.baidu.com'
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/nKBqduiIsQWrHPVehZrG.png'
+      - link_address: 'https://www.baidu.com'
+        img_address: 'https://gw.alipayobjects.com/zos/rmsportal/JRmzNcWymcwpVRSISlbM.png'

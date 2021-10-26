@@ -6,7 +6,7 @@ import "./style.sass";
 
 // 事件代理 preview中点击 模块 左侧面板 响应
 
-function Home(props) {
+function Home(props,...param) {
 
     const { panel: p, comp_i } = props
     const panel = p ? p.toJS() : []

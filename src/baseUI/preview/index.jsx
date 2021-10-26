@@ -6,7 +6,7 @@ import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import { Button } from 'antd';
 import cx from 'classnames';
-import config from './config.json'
+import config from 'server/comp_config/config.json'
 import './style.sass'
 import { url_h5 } from "../../utils/tools/config";
 

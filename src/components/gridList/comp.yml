@@ -1,0 +1,25 @@
+gridlist3:
+    comp: GridList
+    left_editor: LeftPanelGridList
+    template: gridlist3
+    children:
+      - children:
+          - title: 海外旅行
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/wWQZevyGptOADcEhscIp.png'
+          - title: 出国留学
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/YVtEOLbGeJXCFrOARpLS.png'
+          - title: 留学快汇
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/iHEPGHUfgKMuIJhnmYCk.png'
+      - children:
+          - title: 商务出行
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/VJeIDTUhhgZbEOAZcXeE.png'
+          - title: 资产配置
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/MsBVFalmPzPZWnovieJz.png'
+          - title: 代办签证
+            link_address: 'https://www.baidu.com'
+            img_address: 'https://gw.alipayobjects.com/zos/rmsportal/IJPHFytoWJjCBrKTQxhx.png'
