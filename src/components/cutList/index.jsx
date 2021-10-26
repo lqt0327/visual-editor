@@ -5,22 +5,17 @@ import './style.sass'
 function CutList(props) {
 
     const { 
-        changePanelStateDispatch,
         template,
-        id,
-        index,
         title,
         img_address,
-        left_editor,
+        link_address,
         desc
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template],index)
-        }}>
+        <div className="use-tag">
             <div>
-                <a className="fd-link comp_list_news_h_6">
+                <a href={link_address} className="fd-link comp_list_news_h_6">
                     {
                         template === 'cutlist1' ? 
                         <h1 className="fd-title sub line-cut-1 comp_list_news_h_6-title">
@@ -47,10 +42,9 @@ function CutList(props) {
 }
 
 CutList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     title: PropTypes.string,
     img_address: PropTypes.string,
+    link_address: PropTypes.string,
     desc: PropTypes.string
 }
 

@@ -35,45 +35,36 @@ const EnteryNormal = styled.div`
 
 function EntryTab(props) {
 
-    const {
-        changePanelStateDispatch,
-        template,
-        left_editor,
-        id,
-        children,
-        index
-    } = props
+  const {
+    children,
+  } = props
 
-    return (
-        <EnteryNormal onClick={() => { 
-            changePanelStateDispatch([left_editor,template],index)
-         }}>
-            <div className="use-tag" style={{ position: "relative" }} id={id} data-index={index}>
-                <section className="comp_entry_normal_1">
-                    {
-                        children.map((item, i) => {
-                            return (
-                                <a className="comp_entry_normal_1-item" style={{ width: "25%" }} key={i}>
-                                    <img src={item["img_address"]} alt="" />
-                                    <p>{item["label"]}</p>
-                                </a>
-                            )
-                        })
-                    }
-                </section>
-            </div>
-        </EnteryNormal>
-    )
+  return (
+    <EnteryNormal>
+      <div className="use-tag" style={{ position: "relative" }}>
+        <section className="comp_entry_normal_1">
+          {
+            children.map((item, i) => {
+              return (
+                <a className="comp_entry_normal_1-item" style={{ width: "25%" }} key={i}>
+                  <img src={item["img_address"]} alt="" />
+                  <p>{item["label"]}</p>
+                </a>
+              )
+            })
+          }
+        </section>
+      </div>
+    </EnteryNormal>
+  )
 }
 
 EntryTab.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        img_address: PropTypes.string,
-        link_address: PropTypes.string
-    }))
+  children: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    img_address: PropTypes.string,
+    link_address: PropTypes.string
+  }))
 }
 
 export default React.memo(EntryTab);

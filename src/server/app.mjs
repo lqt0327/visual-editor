@@ -1,8 +1,6 @@
-import koa from 'koa'
 import { join } from 'path'
 import { load } from 'js-yaml'
 import { readdirSync, statSync, readFileSync, writeFileSync } from 'fs'
-const app = new koa()
 
 function bootstrap() {
     const obj = {}
@@ -29,25 +27,13 @@ function bootstrap() {
     }
     travel('../components', function(doc) {
         Object.assign(obj,doc)
-        // console.log(obj)
     })
-
-    // fs.writeFile('./result/config.json', JSON.stringify(obj), err => {
-    //     if(err) {
-    //         console.error(err)
-    //         return
-    //     }
-    // })
 
     // [nodemon] restarting due to changes...
     // 由于在程序刚启动，便处理了写入了文件逻辑，造成了更改，使用nodemon运行，会导致该程序不断重新启动
     writeFileSync('./comp_config/config.json', JSON.stringify(obj))
     
-    
-    app.listen(3020, () => {
-        console.log('启动成功')
-        console.log('http://localhost:3020')
-    });
+    console.log('数据初始化完成……')
 }
 
 bootstrap()

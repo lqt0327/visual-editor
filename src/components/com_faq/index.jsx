@@ -19,19 +19,13 @@ function ComFAQ(props){
     });
 
     const { 
-        changePanelStateDispatch,
         template,
-        id,
-        left_editor,
-        index,
         title,
         content
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template],index)
-        }}>
+        <div className="use-tag">
             <div className="comp_faq_normal_1">
                 <section className="fd-desc-sect has-side">
                     <div className="fd-desc-sect-side">
@@ -59,8 +53,6 @@ function ComFAQ(props){
 }
 
 ComFAQ.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     content: PropTypes.string,
     title: PropTypes.string
 }

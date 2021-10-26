@@ -5,19 +5,13 @@ import './style.sass';
 function ComponentImg(props) {
 
     const { 
-        changePanelStateDispatch,       
         template,
-        id,
-        index,
         img_address,
-        left_editor,
         desc
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{position:"relative"}} onClick={()=>{
-            changePanelStateDispatch([left_editor,template],index)
-        }}>
+        <div className="use-tag">
             <div className="comp_img_2">
                 <img src={img_address} alt="" className="comp_img_2-img"/>
                 {
@@ -31,8 +25,6 @@ function ComponentImg(props) {
 }
 
 ComponentImg.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     img_address: PropTypes.string,
     desc: PropTypes.string
 }

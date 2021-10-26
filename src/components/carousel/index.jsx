@@ -5,18 +5,11 @@ import React from 'react'
 function carousel(props) {
 
     const { 
-        changePanelStateDispatch, 
         children,
-        id,
-        template,
-        left_editor,
-        index
     } = props
 
     return (
-        <div className="carousel-content" id={id} data-index={index} onClick={()=>{
-            changePanelStateDispatch([left_editor,template],index);
-        }}>
+        <div className="carousel-content" >
             <Carousel autoplay>
                 {
                     children.map((item,i)=>{
@@ -35,14 +28,10 @@ function carousel(props) {
 }
 
 carousel.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
     children: PropTypes.arrayOf(PropTypes.shape({
         img_address: PropTypes.string.isRequired,
         link_address: PropTypes.string,
-    })),
-    id: PropTypes.string.isRequired,
-    template: PropTypes.string.isRequired,
-    left_editor: PropTypes.string.isRequired
+    }))
 }
 
 export default React.memo(carousel);

@@ -57,18 +57,12 @@ const Step3 = (props) => {
 function ComStep(props) {
 
     const {
-        changePanelStateDispatch,
         template,
-        id,
-        index,
-        left_editor,
         children
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch([left_editor,template],index)
-        }}>
+        <div className="use-tag">
             {
                 template === 'step1' ?
                     <Step1
@@ -84,8 +78,6 @@ function ComStep(props) {
 }
 
 ComStep.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({
         step: PropTypes.string,
         title: PropTypes.string,

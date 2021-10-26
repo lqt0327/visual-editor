@@ -28,18 +28,11 @@ const GridCol = (props) => {
 function GridList(props) {
 
     const {
-        changePanelStateDispatch,
-        template,
-        left_editor,
-        id,
-        index,
         children
     } = props
 
     return (
-        <div className="use-tag" id={id} data-index={index} style={{ position: "relative" }} onClick={() => {
-            changePanelStateDispatch([left_editor,template],index)
-        }}>
+        <div className="use-tag">
             <div className="fd-grid comp_list_grid_5">
                 {
                     children.map((item, i) => {
@@ -58,8 +51,6 @@ function GridList(props) {
 }
 
 GridList.propTypes = {
-    changePanelStateDispatch: PropTypes.func,
-    id: PropTypes.string.isRequired,
     // children: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
     //     tag: PropTypes.string,
     //     img_address: PropTypes.string
