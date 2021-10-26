@@ -25,7 +25,7 @@ function bootstrap() {
             }
         }) 
     }
-    travel('../components', function(doc) {
+    travel('../open-modules/packages/components', function(doc) {
         Object.assign(obj,doc)
     })
 

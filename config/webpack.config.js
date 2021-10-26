@@ -332,7 +332,7 @@ module.exports = function (webpackEnv) {
         }),
         ...(modules.webpackAliases || {}),
         src: path.resolve(__dirname, '../src'),
-        components: path.resolve(__dirname, '../src/components'),
+        components: path.resolve(__dirname, '../src/open-modules/packages/components'),
         baseUI: path.resolve(__dirname, '../src/baseUI'),
         store: path.resolve(__dirname, '../src/store'),
         server: path.resolve(__dirname, '../src/server'),
