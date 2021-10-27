@@ -409,9 +409,12 @@ module.exports = function (webpackEnv) {
                       runtime: hasJsxRuntime ? 'automatic' : 'classic',
                     },
                   ],
+                  "@babel/preset-env"
                 ],
                 
                 plugins: [
+                  ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                  ["@babel/plugin-proposal-class-properties", { "loose" : true }],
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {

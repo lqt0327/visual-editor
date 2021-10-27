@@ -1,37 +1,17 @@
 import React, { useRef } from 'react';
 import { Input } from 'antd';
-import _ from 'lodash'
+import _ from 'lodash';
+import CommonHoc from '../../common';
 
 const { TextArea } = Input;
 
 const FaqPanel = (props) => {
-    const {
-        comp_i,
-        pageData,
-        changePageDataDispatch
-    } = props
+  const { 
+    tpl,
+    changeVal
+  } = props
 
-    const path = useRef([])
-    const tpl = pageData[comp_i]
-
-    const tplData = (path) => {
-        if (path.length !== 0) {
-            return path.reduce((pre, cur) => {
-                if (pre !== 0) {
-                    return pre.children[cur]
-                }
-                return tpl.children[cur]
-            }, 0)
-        } else {
-            return tpl
-        }
-    }
-
-    const changeVal = (path, newVal, type) => {
-        const tmp = tplData(path)
-        tmp[type] = newVal
-        changePageDataDispatch(pageData)
-    }
+  const path = useRef([])
 
     return (
         <div className="schema-editor-container">
@@ -48,4 +28,4 @@ const FaqPanel = (props) => {
     )
 }
 
-export default React.memo(FaqPanel);
+export default CommonHoc(React.memo(FaqPanel));
