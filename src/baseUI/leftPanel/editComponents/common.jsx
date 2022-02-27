@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-const CommonHoc = WrappedComponent => function (props) {
+const CommonHoc = (WrappedComponent) => function (props) {
   // 为什么这里能够拿到正确的props ？？
   console.log(props,'???Xxxx')
   const {

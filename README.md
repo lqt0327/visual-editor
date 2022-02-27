@@ -16,3 +16,9 @@ npm run start
 
 ## 介绍
 基于React技术栈构建一个可视化页面搭建平台，帮助用户在没有任何编程基础的情况下，搭建一个线上可见的页面。
+
+docker run -it -d --name graduationProject --privileged -p 3000:3000 -v  /Users/luoqintai/Desktop/visual-editor/graduationProject:/app/visual-editor node:14.17.0 /bin/bash -c "cd /app/visual-editor && node -v && npm install && npm run start"
+
+docker run -it --name graduationProject 3b7ecd51 /bin/bash
+
+docker run -it -d --name server --privileged -p 3030:3030 -v  /Users/luoqintai/Desktop/visual-editor/server:/app/visual-editor node:14.17.0 /bin/bash -c "cd /app/visual-editor && npm run start:dev"

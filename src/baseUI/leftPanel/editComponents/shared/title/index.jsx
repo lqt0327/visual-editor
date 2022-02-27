@@ -21,7 +21,11 @@ const TitlePanel = (props) => {
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input 
+              key={tpl["title"]} 
+              defaultValue={tpl["title"]} 
+              onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} 
+            />
             <h3>样式</h3>
             <div className="editor-container-wrapper">
               <ColorSelect updateColor={setColor} color={color} />

@@ -121,6 +121,11 @@ function Preview(props) {
     </React.Fragment>, document.getElementById("stage"))
   }
 
+  /**
+   * 添加模块函数
+   * @param {string} currentTpl -分类的唯一标识
+   * @param {*} i 插入位置的索引
+   */
   const addTemplate2 = (currentTpl, i) => {
     if (currentTpl) {
       pageData.splice(i, 0, config[currentTpl])
