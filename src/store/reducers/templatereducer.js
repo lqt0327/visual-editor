@@ -4,7 +4,7 @@ const defaultState = fromJS({
     currentTemplate: {}     // 添加组件面板 选中
 })
 
-export default (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
     switch(action.type) {
         case 'ADD_TEMPLATE':
             return state.set('currentTemplate', action.data);
@@ -12,3 +12,5 @@ export default (state = defaultState, action) => {
             return state;
     }
 }
+
+export default reducer

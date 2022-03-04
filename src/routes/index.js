@@ -15,7 +15,7 @@ const SuspenseComponent = Component => props => {
     )
 }
 
-export default [
+const routes = [
     {
         component: BlankLayout,
         routes: [
@@ -45,3 +45,5 @@ export default [
         ]
     }
 ]
+
+export default routes

@@ -30,6 +30,7 @@ const Tab2 = (props) => {
   return (
     <div className="schema-editor-container">
       <Collapse accordion onChange={(e) => {
+        console.log(e,'????000000')
         path.current = [e]
       }}>
         {

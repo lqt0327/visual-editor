@@ -5,7 +5,7 @@ const defaultState = fromJS({
     uid: null
 })
 
-export default (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
     switch(action.type) {
         case 'SET_UID':
             return state.set('uid', action.data);
@@ -13,3 +13,5 @@ export default (state = defaultState, action) => {
             return state;
     }
 }
+
+export default reducer

@@ -12,13 +12,18 @@ const CommonHoc = (WrappedComponent) => function (props) {
 
   const tpl = pageData[comp_i]
 
+  /**
+   * 目前的结构，只能满足content的嵌套，若是content-》children就无法满足，需要重构该函数
+   * @param {*} path 
+   * @returns 
+   */
   const tplData = (path) => {
     if (path.length !== 0) {
       return path.reduce((pre, cur) => {
         if (pre !== 0) {
           return pre.children[cur]
         }
-        return tpl.children[cur]
+        return tpl.content[cur]
       }, 0)
     } else {
       return tpl

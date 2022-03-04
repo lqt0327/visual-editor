@@ -6,7 +6,7 @@ const defaultState = fromJS({
     comp_i: 0   // 预览页面 选中组件索引
 })
 
-export default (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
     switch(action.type) {
         case 'CHANGE_PANEL':
             return state.set('currentPanel', action.data);
@@ -16,3 +16,5 @@ export default (state = defaultState, action) => {
             return state;
     }
 }
+
+export default reducer

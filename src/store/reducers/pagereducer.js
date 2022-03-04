@@ -7,7 +7,7 @@ const defaultState = fromJS({
     pUpdate: 0  // 用于 左侧页面列表 重渲染
 })
 
-export default (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
     switch(action.type) {
         case 'CHANGE_PAGE':
             return state.set('pageData', action.data);
@@ -21,3 +21,5 @@ export default (state = defaultState, action) => {
             return state;
     }
 }
+
+export default reducer
