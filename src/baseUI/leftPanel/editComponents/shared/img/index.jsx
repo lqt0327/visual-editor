@@ -12,6 +12,8 @@ const ImgPanel = (props) => {
     template
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
     return (
@@ -20,7 +22,7 @@ const ImgPanel = (props) => {
                 template === 'img2' ? 
                 <React.Fragment>
                     <h3>描述</h3>
-                    <Input key={tpl["desc"]} defaultValue={tpl["desc"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "desc"), 250)} />
+                    <Input key={content["desc"]} defaultValue={content["desc"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "desc"), 250)} />
                 </React.Fragment> : ""
             }
             <h3>图片</h3>
@@ -29,7 +31,7 @@ const ImgPanel = (props) => {
                 imgWidth={686}
                 changeVal={curried(path.current)}
             />
-            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
+            <LinkAddress linkVal={content["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

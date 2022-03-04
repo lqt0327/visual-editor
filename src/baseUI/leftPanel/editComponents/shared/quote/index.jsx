@@ -11,14 +11,16 @@ const QutoePanel = (props) => {
     changeVal
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
     return (
         <div className="schema-editor-container">
             <h3>描述</h3>
             <TextArea 
-            key={tpl["text"]}
-            defaultValue={tpl["text"]} 
+            key={content["text"]}
+            defaultValue={content["text"]} 
             onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} 
             rows={4}
             />

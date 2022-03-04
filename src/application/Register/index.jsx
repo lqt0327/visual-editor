@@ -40,8 +40,7 @@ const RegistrationForm = (props) => {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
         registerRequest(values).then(res => {
-            console.log(res,'?????')
-            if(res.status == 200) {
+            if(res.status === 200) {
                 message.info(res.message);
             }else {
                 message.success(res)
@@ -153,7 +152,7 @@ const RegistrationForm = (props) => {
                         {...tailFormItemLayout}
                     >
                         <Checkbox>
-                            I have read the <a href="">agreement</a>
+                            I have read the <a href="https://www.baidu.com">agreement</a>
                         </Checkbox>
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>

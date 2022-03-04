@@ -22,8 +22,7 @@ function Login(props) {
     const onFinish = (values) => {
         console.log('Success:', values);
         loginRequest(values).then((res)=>{
-            console.log(res,'[[[[[')
-            if(res.statusCode == 200) {
+            if(res.statusCode === 200) {
                 message.info(res.message)
             }else {
                 // message.success(res)
@@ -89,7 +88,7 @@ function Login(props) {
                             
                         </Form.Item>
                         <Form.Item {...tailLayout}>
-                            <a href="">忘记密码</a>
+                            <a href="https://www.baidu.com">忘记密码</a>
                         </Form.Item>
                     </Form>
                 </div>

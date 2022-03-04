@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import style from './style.module.sass'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -7,12 +7,12 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 function User() {
-    const [collapsed, setCollapsed] = useState(false)
+    // const [collapsed, setCollapsed] = useState(false)
 
-    const onCollapse = collapsed => {
-        console.log(collapsed);
-        setCollapsed(collapsed);
-    };
+    // const onCollapse = collapsed => {
+    //     console.log(collapsed);
+    //     setCollapsed(collapsed);
+    // };
 
     return (
         <Layout style={{height:"100vh"}}>

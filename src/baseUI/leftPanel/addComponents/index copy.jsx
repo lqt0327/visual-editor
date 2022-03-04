@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import GeneralTemplate from './generalTemplate'
 import './style.sass'
 import config from 'server/comp_config/config.json'
+import data from './data.json'
 
 const { TabPane } = Tabs
 
@@ -19,11 +20,11 @@ function AddComponents() {
           <div className="l-resource-list">
             <Tabs tabPosition="left" defaultActiveKey="0" onChange={callback} size="small">
               {
-                config.map((item, i)=>{
+                Object.keys(data).map((item, i) => {
                   return (
-                    <TabPane tab={item.name} key={i}>
+                    <TabPane tab={item} key={i}>
                       <GeneralTemplate
-                        list={item.children}
+                        imgs={data[item]}
                       />
                     </TabPane>
                   )

@@ -3,7 +3,7 @@ import { HexColorPicker } from "react-colorful";
 import './style.scss';
 
 const ColorSelect = (props) => {
-  const { updateColor, color } = props
+  const { updateColor, color, title } = props
 
   const [flag, setFlag] = useState(false)
 
@@ -26,7 +26,7 @@ const ColorSelect = (props) => {
 
   return (
     <div className="color-select">
-      <span>文字颜色：</span>
+      <span>{title}：</span>
       <div className="color-select-container" onClick={showColorEditor}>
         <span className='color-select-editor'>{color} <div style={{"backgroundColor": color}}></div> </span>
           {

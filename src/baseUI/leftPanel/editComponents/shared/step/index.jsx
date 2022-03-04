@@ -31,7 +31,7 @@ const Tab2 = (props) => {
         path.current = [e]
       }}>
         {
-          tpl.children.map((item, i) => {
+          tpl.content.map((item, i) => {
             return (
               <Panel header={item["step"]} key={i} extra={genExtra()}>
                 <h3>步骤</h3>
@@ -51,7 +51,7 @@ const Tab2 = (props) => {
           })
         }
       </Collapse>
-      <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+      <div className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</div>
     </div>
   )
 }

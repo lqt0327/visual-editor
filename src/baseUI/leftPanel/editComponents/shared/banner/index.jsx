@@ -8,6 +8,10 @@ function BannerPanel(props) {
       tpl
     } = props
 
+    const {
+        content
+    } = tpl
+
     const path = useRef([])
 
     return (
@@ -17,7 +21,7 @@ function BannerPanel(props) {
                 imgHeight={280}
                 changeVal={curried(path.current)}
             />
-            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
+            <LinkAddress linkVal={content["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

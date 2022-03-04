@@ -15,7 +15,7 @@ function LeftPanel(props) {
   } = props
 
   const safeRef = useRef(false)
-  const [tpl, setTpl] = useState([])
+  const [tpl, setTpl] = useState()
 
   /**
    * @description 定义安全函数 防止内存泄漏问题
@@ -38,10 +38,15 @@ function LeftPanel(props) {
       safeSetTplData(res)
     })
   }
+
   useEffect(() => {
+    // 这里导致了内存泄露  如何处理？？？
+    // setUpdate 方法在组件卸载后，遍无法执行了，因此需要在组件卸载前将其删除掉
     document.onclick = () => { setUpdate(0) }
     safeRef.current = true
     return () => {
+      // 处理 内存泄露 问题
+      document.onclick = () => {}
       safeRef.current = false
     }
   })
@@ -98,7 +103,7 @@ function LeftPanel(props) {
           <h3>页面列表<i className="icon iconfont">&#xe75e;</i></h3>
           <div className="l-panel-list">
             {
-              tpl.length !== 0 && tpl.map((item, i) => {
+              tpl?.map((item, i) => {
                 return (
                   <div
                     className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}

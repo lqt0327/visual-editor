@@ -12,15 +12,17 @@ function NewPanel(props) {
     template
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
     
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input key={content["title"]} defaultValue={content["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
             <h3>标签</h3>
             <EditableTagGroup
-                tagVal={tpl["tag"]}
+                tagVal={content["tag"]}
                 path={path}
                 changeVal={changeVal}
             />
@@ -34,7 +36,7 @@ function NewPanel(props) {
                         />
                     </React.Fragment> : ""
             }
-            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
+            <LinkAddress linkVal={content["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

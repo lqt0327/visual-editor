@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 const CommonHoc = (WrappedComponent) => function (props) {
   // 为什么这里能够拿到正确的props ？？
-  console.log(props,'???Xxxx')
   const {
     comp_i,
     pageData,
@@ -26,6 +25,14 @@ const CommonHoc = (WrappedComponent) => function (props) {
     }
   }
 
+  /**
+   * 需要更新，样式 和 内容 区分开来赋值，内容存在嵌套，type不足以完成，需要升级
+   * type 数组？？ ['style','color'] ?
+   * {style: }
+   * @param {*} path 
+   * @param {*} newVal 
+   * @param {*} type 0 - 样式 1 - 内容
+   */
   const changeVal = (path, newVal, type) => {
     const tmp = tplData(path)
     tmp[type] = newVal

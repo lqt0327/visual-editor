@@ -17,7 +17,9 @@ function EditComponents(props) {
     changePageDataDispatch
   } = props
 
-  const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`))
+  const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`)) || []
+
+  // 这里 刷新页面 数据被冲掉了？？
   let pageData = page.size !== 0 ? page.toJS() :
     tpldata ? tpldata : []
   const tpl = pageData[comp_i]

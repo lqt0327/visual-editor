@@ -12,22 +12,24 @@ const OperationPanel = (props) => {
     template
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input key={content["title"]} defaultValue={content["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
             <h3>标签</h3>
             <EditableTagGroup
-                tagVal={tpl["tag"]}
+                tagVal={content["tag"]}
                 path={path}
                 changeVal={changeVal}
             />
             <h3>地区</h3>
-            <Input key={tpl["area"]} defaultValue={tpl["area"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "area"), 250)} />
+            <Input key={content["area"]} defaultValue={content["area"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "area"), 250)} />
             <h3>按钮</h3>
-            <Input key={tpl["btn"]} defaultValue={tpl["btn"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "btn"), 250)} />
+            <Input key={content["btn"]} defaultValue={content["btn"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "btn"), 250)} />
             {
                 template === 'opt1' ? "" :
                     <React.Fragment>
@@ -39,7 +41,7 @@ const OperationPanel = (props) => {
                         />
                     </React.Fragment>
             }
-            <LinkAddress linkVal={tpl["link_address"]} changeVal={curried(path.current)} />
+            <LinkAddress linkVal={content["link_address"]} changeVal={curried(path.current)} />
         </div>
     )
 }

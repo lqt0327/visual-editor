@@ -25,6 +25,8 @@ function CarouselPanel(props) {
     template
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
   return (
@@ -33,7 +35,7 @@ function CarouselPanel(props) {
         path.current = [key]
       }}>
         {
-          tpl.children.map((item, i) => {
+          content.map((item, i) => {
             return (
               <Panel header={`This is ${i + 1}`} key={i} extra={genExtra()}>
                 <Collapse accordion onChange={(j) => {
@@ -75,7 +77,7 @@ function CarouselPanel(props) {
           })
         }
       </Collapse>
-      <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+      <div className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</div>
     </div>
   )
 }

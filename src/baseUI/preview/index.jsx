@@ -6,7 +6,6 @@ import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import { Button } from 'antd';
 import cx from 'classnames';
-import config from 'server/comp_config/config.json'
 import './style.sass'
 import { url_h5 } from "../../utils/tools/config";
 
@@ -127,8 +126,8 @@ function Preview(props) {
    * @param {*} i 插入位置的索引
    */
   const addTemplate2 = (currentTpl, i) => {
-    if (currentTpl) {
-      pageData.splice(i, 0, config[currentTpl])
+    if (currentTpl.comp) {
+      pageData.splice(i, 0, currentTpl)
       changePageDataDispatch(pageData, pid)
     }
   }

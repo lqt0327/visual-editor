@@ -23,6 +23,8 @@ const Tab1 = (props) => {
     changeVal
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
   return (
@@ -31,7 +33,7 @@ const Tab1 = (props) => {
         path.current = [e]
       }}>
         {
-          tpl.children.map((item, i) => {
+          content.map((item, i) => {
             return (
               <Panel header={item["label"]} key={i} extra={genExtra()}>
                 <h3>标签</h3>
@@ -58,13 +60,13 @@ const Tab1 = (props) => {
                     })
                   }
                 </Collapse>
-                <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+                <div className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</div>
               </Panel>
             )
           })
         }
       </Collapse>
-      <a className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</a>
+      <div className="schema-editor-container__add"><i className="icon iconfont">&#xe8a1;</i> 新增列表项</div>
     </div>
   )
 }

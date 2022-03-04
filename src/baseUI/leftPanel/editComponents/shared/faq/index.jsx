@@ -11,17 +11,19 @@ const FaqPanel = (props) => {
     changeVal
   } = props
 
+  const { content } = tpl
+
   const path = useRef([])
 
     return (
         <div className="schema-editor-container">
             <h3>标题</h3>
-            <Input key={tpl["title"]} defaultValue={tpl["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
+            <Input key={content["title"]} defaultValue={content["title"]} onChange={_.debounce((e) => changeVal(path.current, e.target.value, "title"), 250)} />
             <h3>描述</h3>
             <TextArea 
-            key={tpl["content"]}
-            defaultValue={tpl["content"]} 
-            onChange={_.debounce((e) => changeVal(path.current, e.target.value, "content"), 250)} 
+            key={content["text"]}
+            defaultValue={content["text"]} 
+            onChange={_.debounce((e) => changeVal(path.current, e.target.value, "text"), 250)} 
             rows={4}
             />
         </div>

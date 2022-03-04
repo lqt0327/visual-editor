@@ -5,25 +5,25 @@ import "./style.sass"
 
 function GeneralTemplate(props) {
 
-  const { imgs, addTemplateDispatch } = props
+  const { list, addTemplateDispatch } = props
 
   return (
     <div>
       <div className="l-resource-item">
         <div className="smooth-dnd-container vertical">
           {
-            imgs.map((item, i) => {
+            list.map((item, i) => {
               return (
                 <div 
                   className="ser-module-item smooth-dnd-draggable-wrapper" 
                   key={i} 
-                  onClick={() => { addTemplateDispatch(item[2]); console.log('123123', item[2]) }}
+                  onClick={() => { addTemplateDispatch(item) }}
                 >
                   <div>
                     <span className="ser-module-item-image">
-                      <img width="280" src={item[0]} alt="" />
+                      <img width="280" src={item.extends.img} alt="" />
                     </span>
-                    <span className="ser-module-item-title">{item[1]}</span>
+                    <span className="ser-module-item-title">{item.extends.title}</span>
                   </div>
                 </div>
               )

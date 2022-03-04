@@ -26,12 +26,29 @@ function bootstrap() {
         }) 
     }
     travel('../open-modules/packages/components', function(doc) {
-        Object.assign(obj,doc)
+        if(obj[doc.name]) {
+            obj[doc.name].children.push(doc)
+        }else {
+            obj[doc.name] =  {
+                name: doc.name,
+                children: [
+                    doc
+                ]
+            }
+        }
     })
+
+    
+
+    let arr = []
+
+    for(let k in obj) {
+        arr.push({name: k,children:obj[k].children})
+    }
 
     // [nodemon] restarting due to changes...
     // 由于在程序刚启动，便处理了写入了文件逻辑，造成了更改，使用nodemon运行，会导致该程序不断重新启动
-    writeFileSync('./comp_config/config.json', JSON.stringify(obj))
+    writeFileSync('./comp_config/config.json', JSON.stringify(arr))
     
     console.log('数据初始化完成……')
 }
