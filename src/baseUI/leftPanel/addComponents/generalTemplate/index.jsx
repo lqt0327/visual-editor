@@ -1,11 +1,29 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { addTemplate } from 'store/actions'
+import { addTemplate, setShowAdd } from 'store/actions'
 import "./style.sass"
 
 function GeneralTemplate(props) {
 
-  const { list, addTemplateDispatch } = props
+  const { list, addTemplateDispatch, setShowAddDispatch } = props
+  console.log(list,'???0000')
+
+  /**
+   * 传递数据给放置区域
+   * @param {*} e 
+   * @param {*} data -组件数据
+   */
+  const dragStart = (e, data) => {
+    e.dataTransfer.setData("text/plain", JSON.stringify(data))
+  }
+
+  /**
+   * 松开拖动元素，预览区域的放置框隐藏
+   * @param {*} e 
+   */
+  const dragEnd = (e) => {
+    setShowAddDispatch('')
+  }
 
   return (
     <div>
@@ -18,6 +36,9 @@ function GeneralTemplate(props) {
                   className="ser-module-item smooth-dnd-draggable-wrapper" 
                   key={i} 
                   onClick={() => { addTemplateDispatch(item) }}
+                  onDragStart={(e) => dragStart(e, item)}
+                  onDragEnd={(e) => dragEnd(e)}
+                  draggable
                 >
                   <div>
                     <span className="ser-module-item-image">
@@ -45,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTemplateDispatch(data) {
       dispatch(addTemplate(data))
+    },
+    setShowAddDispatch(data) {
+      dispatch(setShowAdd(data))
     }
   }
 }

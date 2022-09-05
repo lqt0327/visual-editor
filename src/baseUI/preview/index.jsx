@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { changePanel, addTemplate, changePage, changeCompI } from 'store/actions'
+import { changePanel, addTemplate, changePage, changeCompI, setShowAdd } from 'store/actions'
 import { generateInitJson, getUuid } from 'src/utils/help';
 import { Compile } from "src/utils/compile";
 import { Button } from 'antd';
@@ -15,8 +15,6 @@ function Preview(props) {
 
   // 组件添加的位置  索引
   const [index, setIndex] = useState(0)
-  // 预览页面 组件将被添加的位置 那个 “添加至此处” 的虚线框
-  const [showAdd, setShowAdd] = useState('')
 
   // 动态计算右侧工具栏的位置
   const [atipTop, setaTipTop] = useState(0)
@@ -27,6 +25,8 @@ function Preview(props) {
   const {
     pid,
     comp_i,
+    showAdd,
+    setShowAddDispatch,
     pageData: page,
     currentTemplate,
     changePanelStateDispatch,
@@ -34,6 +34,28 @@ function Preview(props) {
     changePageDataDispatch,
     changeCompIDispatch
   } = props
+
+  const drop = (e, index) => {
+    const data = JSON.parse(e.dataTransfer.getData('text/plain'))
+    // TODO: 执行插入逻辑  待处理 上下插入 区分操作
+    // 拖动元素，可放置区域自动展示
+    setTemplate(data, index)
+    console.log(e,'??kkkkkk',data)
+    e.stopPropagation();
+  }
+
+  const dragover = (e) => {
+    // console.log(e,'??kkkkkk3333')
+    e.preventDefault()
+    e.dataTransfer.dropEffect = "copy";
+
+  }
+  
+
+  const showDropPlace = (e, activeIndex) => {
+    if(showAdd === activeIndex) return
+    setShowAddDispatch(activeIndex)
+  }
 
   // 获取页面最新数据
   const tpldata = JSON.parse(localStorage.getItem(`tpl_${pid}`))
@@ -48,7 +70,7 @@ function Preview(props) {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type="dashed" block onClick={() => {
               changePanelStateDispatch(['AddComponents']);
-              setShowAdd(0 + 'top');
+              setShowAddDispatch(0 + 'top');
               setIndex(0)
             }}>
               添加组件
@@ -60,6 +82,7 @@ function Preview(props) {
         pageData.map((item, i) => {
           // 增加数组索引，以便localstorage数据更新时，可以准确定位相关模块
           // item["index"] = i
+          console.log(item,'akldfjalksnfdla++++++=====')
           const json = generateInitJson(item["comp"])
           // 需要的方法 应该在这里统一传递给组件  或  直接写在组件之中
           Object.assign(json.props, item)
@@ -74,8 +97,11 @@ function Preview(props) {
                 id="fengdie-components-drop-placeholder-top"
                 style={{
                   opacity: '1',
-                  display: showAdd === (i + 'top') ? 'flex' : 'none'
-                }}>
+                  display: (showAdd === (i + 'top') || showAdd === (i + 'both')) ? 'flex' : 'none'
+                }}
+                onDrop={(e) => drop(e, i)}
+                onDragOver={(e) => dragover(e)}
+              >
                 "添加至此处"
               </div>
               <button
@@ -83,7 +109,7 @@ function Preview(props) {
                 type="button"
                 onClick={() => {
                   changePanelStateDispatch(['AddComponents']);
-                  setShowAdd(i + 'top');
+                  setShowAddDispatch(i + 'top');
                   setIndex(i)
                 }
                 }>+</button>
@@ -93,6 +119,8 @@ function Preview(props) {
                   onClick={()=>{
                     changePanelStateDispatch([left_editor,template],i)
                   }}
+                  onDrop={(e)=>{}}
+                  onDragOver={e=>showDropPlace(e, i + 'both')}
                 >
                   {Compile(json)}
                 </div>
@@ -101,7 +129,7 @@ function Preview(props) {
                 type="button"
                 onClick={() => {
                   changePanelStateDispatch(['AddComponents']);
-                  setShowAdd(i + 'bottom');
+                  setShowAddDispatch(i + 'bottom');
                   setIndex(i + 1)
                 }
                 }>+</button>
@@ -109,8 +137,11 @@ function Preview(props) {
                 id="fengdie-components-drop-placeholder-bottom"
                 style={{
                   opacity: '1',
-                  display: showAdd === (i + 'bottom') ? 'flex' : 'none'
-                }}>
+                  display: (showAdd === (i + 'bottom') || showAdd === (i + 'both')) ? 'flex' : 'none'
+                }}
+                onDrop={(e) => drop(e, i+1)}
+                onDragOver={(e) => dragover(e)}
+              >
                 "添加至此处"
               </div>
             </div>
@@ -125,7 +156,7 @@ function Preview(props) {
    * @param {string} currentTpl -分类的唯一标识
    * @param {*} i 插入位置的索引
    */
-  const addTemplate2 = (currentTpl, i) => {
+  const setTemplate = (currentTpl, i) => {
     if (currentTpl.comp) {
       pageData.splice(i, 0, currentTpl)
       changePageDataDispatch(pageData, pid)
@@ -134,12 +165,19 @@ function Preview(props) {
 
   useEffect(() => {
     setTipHeight(tipHeightRef.current.offsetHeight)
-    // 获取右侧工具栏 距离顶部高度
     const ele = document.getElementById(uuId)
-    ele ? setaTipTop(ele.offsetTop - tipHeightRef.current.scrollTop) : setIsShow(false)
-    // 获取点击预览页面 背景阴影的高度
-    ele ? setaTipHeight(ele.offsetHeight) : setaTipHeight(0)
-    addTemplate2(currentTemplate, index)
+    if(ele) {
+      // 获取右侧工具栏 距离顶部高度
+      setaTipTop(ele.offsetTop - tipHeightRef.current.scrollTop)
+      // 获取点击预览页面 背景阴影的高度
+      setaTipHeight(ele.offsetHeight)
+    }else {
+      // TODO: 上下移动组件，工具栏需要随组件一起移动，组件的背景阴影也是一样
+      // 上下移动组件，工具栏隐藏
+      // setIsShow(false)
+      setaTipHeight(0)
+    }
+    setTemplate(currentTemplate, index)
     addTemplateDispatch('')
 
   }, [tipHeight, currentTemplate, uuId, showAdd, comp_i])
@@ -193,9 +231,16 @@ function Preview(props) {
     Dustbin()
   }
 
+  useEffect(()=>{
+    tipHeightRef.current.addEventListener('scroll', (e) => {
+      console.log(uuId,'???lll;;;', [document.getElementById(uuId)])
+      
+    })
+  })
+
   return (
     <div className="l-preview">
-      <div className="l-preview--mask" onClick={() => setShowAdd('')}></div>
+      {/* <div className="l-preview--mask" onClick={() => setShowAddDispatch('')}></div> */}
       <div className="l-page-path-container">
         <div className="l-page-path">
           <div className="l-pp-url"><span>{pid === 0 ? "" : url_h5 + `?page=${pid}`}</span></div>
@@ -263,7 +308,8 @@ const mapStateToProps = (state) => ({
   currentTemplate: state.getIn(['template', 'currentTemplate']),  // 左侧添加面板中 选中的模版
   pid: state.getIn(['page', 'pid']),
   pageData: state.getIn(['page', 'pageData']),
-  comp_i: state.getIn(['panels', 'comp_i'])
+  comp_i: state.getIn(['panels', 'comp_i']),
+  showAdd: state.getIn(['preview', 'showAdd'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
@@ -281,6 +327,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeCompIDispatch(i) {
       dispatch(changeCompI(i))
+    },
+    // 预览页面 组件将被添加的位置 那个 “添加至此处” 的虚线框
+    setShowAddDispatch(index) {
+      dispatch(setShowAdd(index))
     }
   }
 }

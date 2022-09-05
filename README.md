@@ -22,3 +22,8 @@ docker run -it -d --name graduationProject --privileged -p 3000:3000 -v  /Users/
 docker run -it --name graduationProject 3b7ecd51 /bin/bash
 
 docker run -it -d --name server --privileged -p 3030:3030 -v  /Users/luoqintai/Desktop/visual-editor/server:/app/visual-editor node:14.17.0 /bin/bash -c "cd /app/visual-editor && npm run start:dev"
+
+## changelog
+* `2022.8.25`
+ + Features
+ + 1. 元素拖动功能完善

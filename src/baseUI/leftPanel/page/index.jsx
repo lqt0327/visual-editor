@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { changePid, changePageTitle, changePage } from "src/store/actions";
 import cx from 'classnames'
 import { Input, Popover, Popconfirm, message } from 'antd'
+import DragComponent from './modules/drag'
 import './style.sass'
 
 function LeftPanel(props) {
@@ -36,6 +37,7 @@ function LeftPanel(props) {
       }
       await wait(res)
       safeSetTplData(res)
+      console.log(res,'====kkk')
     })
   }
 
@@ -96,6 +98,33 @@ function LeftPanel(props) {
     )
   }
 
+  /* 列表拖拽 */
+  const [dragIndex, setDragIndex] = useState('')
+
+  const dragenter = (e, i) =>{
+    e.preventDefault()
+    const moving = tpl[dragIndex]
+    tpl.splice(dragIndex, 1)
+    tpl.splice(i, 0, moving)
+    setDragIndex(i)
+  }
+
+  const dragover = (e, i) => {
+    e.preventDefault()
+    // console.log(e.clientX,'===',e)
+  }
+
+  const dragstart = (i) => {
+    setDragIndex(i)
+  }
+  const dragEvent = (e) => {
+    // console.log(e,'====')
+  }
+  const dragEnd = (e) => {
+    console.log('------',e)
+  }
+  /* 列表拖拽 */
+
   return (
     <React.Fragment>
       <div className="l-panel" style={{ width: "336px" }}>
@@ -104,9 +133,21 @@ function LeftPanel(props) {
           <div className="l-panel-list">
             {
               tpl?.map((item, i) => {
-                return (
+                  return (
+                  // <DragComponent 
+                  //   tpl={tpl}
+                  //   index={i}
+                  //   setTpl={setTpl}
+                  //   key={i}
+                  // >
                   <div
                     className={cx("l-panel-item", { "l-panel-item-active": pid === item["id"] })}
+                    onDragEnter={(e)=>dragenter(e, i)}
+                    onDragOver={(e)=>dragover(e,i)}
+                    onDragStart={()=>dragstart(i)}
+                    onDrag={(e)=>dragEvent(e)}
+                    onDragEnd={(e)=>dragEnd(e)}
+                    draggable="true"
                     onClick={(e) => {
                       setAdd(false)
                       changePageStateDispatch(JSON.parse(item["tplData"]), item["id"], item["title"])
@@ -114,6 +155,7 @@ function LeftPanel(props) {
                     }}
                     key={i}
                   >
+                  
                     <div className="l-panel-item__drag"></div>
                     <div className="l-panel-item__title">
                       <h4>
@@ -151,6 +193,7 @@ function LeftPanel(props) {
                       <i className="icon iconfont">&#xe7f5;</i>
                     </Popover>
                   </div>
+                  // </DragComponent>
                 )
               })
             }
